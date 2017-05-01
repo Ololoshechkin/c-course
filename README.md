@@ -1,2 +1,2 @@
-# c++-course
+# c++ course
 ITMO c++ course
