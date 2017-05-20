@@ -1,0 +1,3 @@
+/Users/Vadim/Downloads/cpp-course-master/bigint/CMakeFiles/edit_cache.dir
+/Users/Vadim/Downloads/cpp-course-master/bigint/CMakeFiles/rebuild_cache.dir
+/Users/Vadim/Downloads/cpp-course-master/bigint/CMakeFiles/big_integer_testing.dir
