@@ -696,10 +696,6 @@ big_integer big_integer::absolute() const {
     return answer;
 }
 
-size_t big_integer::get_size() const {
-    return size();
-}
-
 big_integer big_integer::base_deg(size_t n) {
     std::vector<uint32_t> res_data(n + 1, 0);
     res_data.back() = 1;

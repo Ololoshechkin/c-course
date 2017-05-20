@@ -31,6 +31,11 @@ void print(char c)
 
 int main(int argc, char* argv[])
 {
+	// TODO : delete this mesh...
+	argc = 4;
+	argv = new char*[4];
+	//argv = {"huffman", "-decrypt", "code.txt", "decoded.txt"};
+	argv[0] = "huffman", argv[1] = "-encrypt", argv[2] = "file.txt", argv[3] = "code.txt";
 	print("program started");
 	if (argc != 4)
 	{

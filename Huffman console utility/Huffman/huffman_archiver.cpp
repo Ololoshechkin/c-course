@@ -10,9 +10,9 @@ huffman_archiver::huffman_archiver()
 		, tree(letter_cnt)
 {}
 
-void huffman_archiver::inc_letter_cnt(huffman_archiver::uchar c, uint64_t delta) 
+void huffman_archiver::inc_letter_cnt(char c, uint64_t delta) 
 {
-	letter_cnt[c] += delta;
+	letter_cnt[c - CHAR_MIN] += delta;
 }
 
 uint64_t huffman_archiver::get_letter_cnt(huffman_archiver::uchar c)
@@ -47,4 +47,3 @@ std::vector<huffman_archiver::uchar> huffman_archiver::decrypt(std::vector<huffm
 {
 	return tree.decode(code_block);
 }
-
