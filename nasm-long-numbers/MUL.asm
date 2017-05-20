@@ -14,7 +14,7 @@ global          start
 
 %define reading_syscall_number 0x2000003
 %define writing_syscall_number 0x2000004
-%define exit_syscall_number 0x20000014
+%define exit_syscall_number 0x2000001
 
 
 
@@ -34,7 +34,7 @@ start:
 	call 			mul_long_long
 	mov 			First, Result
 	call 			write_long
-	
+
 	call 			write_endl		
 
 	jmp             exit
@@ -327,21 +327,21 @@ read_long:			;
 
 	call            set_zero			;
 	.loop:			;
-	call            read_char			;
-	or              rax, rax			;
-	js              exit			;
-	cmp             rax, 0x0a			;
-	je              .done			;
-	cmp             rax, '0'			;
-	jb              .invalid_char			;
-	cmp             rax, '9'			;
-	ja              .invalid_char			;
+		call            read_char			;
+		or              rax, rax			;
+		js              exit			;
+		cmp             rax, 0x0a			;
+		je              .done			;
+		cmp             rax, '0'			;
+		jb              .invalid_char			;
+		cmp             rax, '9'			;
+		ja              .invalid_char			;
 
-	sub             rax, '0'			;
-	mov             rbx, 10			;
-	call            mul_long_short			;
-	call            add_long_short			;
-	jmp             .loop			;
+		sub             rax, '0'			;
+		mov             rbx, 10			;
+		call            mul_long_short			;
+		call            add_long_short			;
+		jmp             .loop			;
 
 .done:			;
 	pop 			rax
@@ -489,11 +489,15 @@ print_string:			;
 	push            rax			;
 	push 			rdi
 	push 			rcx
-	mov 			rcx, 128
+
+
+	;mov 			rcx, 128
 
 	mov             rax, writing_syscall_number			;
 	mov             rdi, 1			;
 	syscall			;
+
+
 	pop 			rcx
 	pop 			rdi
 	pop             rax			;
