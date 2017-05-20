@@ -256,6 +256,7 @@
 				DDD352981EAA88CD003BEE95 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

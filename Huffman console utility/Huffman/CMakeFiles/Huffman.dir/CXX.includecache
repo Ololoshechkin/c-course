@@ -1,0 +1,76 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/binary_code.cpp
+iostream
+-
+binary_code.h
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/binary_code.h
+
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/binary_code.h
+vector
+-
+
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/exceptions.cpp
+exceptions.h
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/exceptions.h
+
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/exceptions.h
+exception
+-
+string
+-
+
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_archiver.cpp
+iostream
+-
+huffman_archiver.h
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_archiver.h
+
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_archiver.h
+huffman_tree.h
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_tree.h
+binary_code.h
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/binary_code.h
+vector
+-
+
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_tree.cpp
+vector
+-
+iostream
+-
+huffman_tree.h
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_tree.h
+
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_tree.h
+cstdint
+-
+climits
+-
+set
+-
+binary_code.h
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/binary_code.h
+
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/main.cpp
+iostream
+-
+fstream
+-
+stdexcept
+-
+vector
+-
+exceptions.h
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/exceptions.h
+huffman_archiver.h
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_archiver.h
+binary_code.h
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/binary_code.h
+

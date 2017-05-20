@@ -1,0 +1,3 @@
+/Users/Vadim/Documents/coding/c++ course/StringClassWithExceptions/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/Vadim/Documents/coding/c++ course/StringClassWithExceptions/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/Vadim/Documents/coding/c++ course/StringClassWithExceptions/cmake-build-debug/CMakeFiles/StringClassWithExceptions.dir

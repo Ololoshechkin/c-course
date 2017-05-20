@@ -100,7 +100,7 @@ std::vector<uchar> huffman_tree::encode(std::vector<uchar>& data) const
 	return bin.get_code();
 }
 
-std::vector<uchar> huffman_tree::decode(std::vector<uchar>& code) const 
+std::vector<uchar> huffman_tree::decode(std::vector<uchar>& code) 
 {
 	std::vector<uchar> data;
 	binary_code bin;

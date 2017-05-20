@@ -1,0 +1,46 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/binary_code.cpp
+binary_code.h
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/binary_code.h
+
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/binary_code.h
+vector
+-
+
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_archiver.cpp
+huffman_archiver.h
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_archiver.h
+
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_archiver.h
+huffman_tree.h
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_tree.h
+binary_code.h
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/binary_code.h
+vector
+-
+
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_tree.cpp
+vector
+-
+iostream
+-
+huffman_tree.h
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_tree.h
+
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_tree.h
+cstdint
+-
+climits
+-
+set
+-
+binary_code.h
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/binary_code.h
+

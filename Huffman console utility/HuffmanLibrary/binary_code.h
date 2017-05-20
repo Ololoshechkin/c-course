@@ -5,6 +5,7 @@
 #ifndef HUFFMANLIBRARY_BINARY_CODE_H
 #define HUFFMANLIBRARY_BINARY_CODE_H
 
+#include <vector>
 
 class binary_code
 {
@@ -12,6 +13,7 @@ private:
 	std::vector<bool> data;
 	size_t pos;
 public:
+    typedef unsigned char uchar;
 	binary_code();
 	void insert_symbol(uchar);
 	void build(std::vector<uchar>&);

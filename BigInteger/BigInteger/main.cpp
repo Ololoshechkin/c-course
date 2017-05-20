@@ -8,16 +8,33 @@
 
 #include <iostream>
 #include "big_integer.h"
+#include <stack>
+#include <vector>
 using namespace std;
 
 int main(int argc, const char * argv[]) {
-    big_integer a = big_integer("1312313133133131331") - big_integer("24151213214123123125123231293812938193819310293012858329041023804");
-    big_integer b = big_integer("99999999999999911111111111111999991");
-    big_integer c = big_integer("1231313123013019320912039120388231819231") * 10;
-    big_integer ans = -(a ^ b | c);
-    cout << a << "\n" << b << "\n" << c << "\n\n " << ans << endl;
+    big_integer a("10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000");
+    big_integer b("100000000000000000000000000000000000000");
+    big_integer c("100000000000000000000000000000000000000000000000000000");
+    cout << (a / b) << endl << c << endl;
     return 0;
 }
 //10000000000000000000000000
 //10000000000000000000
 //4294967297000000000
+
+/*
+ 2   1   0
+ 987|654|321 << 2
+ 0:  tmp = 32100
+ ans[i] = 100
+ tmp = 032
+ 1: tmp = 65432
+ ans[i] = 432
+ tmp = 065
+ 2: tmp = 98765
+ ans[i] = 765
+ tmp = 098
+ new: ans.push(098)
+ => 098|765|432|100
+ */

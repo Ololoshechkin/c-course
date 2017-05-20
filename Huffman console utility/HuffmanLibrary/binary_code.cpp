@@ -5,7 +5,7 @@
 #include "binary_code.h"
 
 binary_code::binary_code() 
-		: data(vector<bool>())
+		: data(std::vector<bool>())
 		, pos(0)
 {}
 
@@ -40,6 +40,11 @@ std::vector<uchar> binary_code::get_code()
 	if ((data.size() & 7) != 0)
 		data.push_back((uchar) cur);
 	return code;
+}
+
+void binary_code::start_encoding() 
+{
+	pos = 0;
 }
 
 bool binary_code::get_next_data() 

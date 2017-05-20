@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/Vadim/Documents/coding/c++ course/template_lection_withDefines/main.cpp
+cstdlib
+-
+iostream
+-
+algorithm
+-
+cmath
+-
+
