@@ -7,9 +7,14 @@
 //
 
 #include <iostream>
+using namespace std;
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+    // ctrl+shift+b
+    int a[10];
+    cout << a[11];
+    int*b = new int(2);
+    delete b;
+    *b = 10;
     return 0;
 }
