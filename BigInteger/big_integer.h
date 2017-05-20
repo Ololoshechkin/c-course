@@ -27,7 +27,6 @@ private:
     std::vector<uint32_t> data;
     
     short signum;
-    bool non_correct = false;
     
     void negate();
     void mul(uint32_t val);

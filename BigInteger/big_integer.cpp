@@ -93,7 +93,6 @@ uint32_t big_integer::mod(uint32_t val)
 
 void big_integer::correct_size(size_t expected_size = 0)
 {
-    if (non_correct) return;
     if (expected_size == 0)
     {
         while (data.size() > 1 && !data.back())
@@ -170,11 +169,9 @@ void big_integer::mul_max_int32()
 
 void big_integer::div_max_int32()
 {
-    data.back() = 0;
-    for (size_t i = data.size() - 2; ; --i) {
+    for (size_t i = 0; i < data.size() - 1; ++i)
         data[i] = data[i + 1];
-        if (!i) break;
-    }
+    data.back() = 0;
     correct_size();
 }
 
@@ -515,12 +512,11 @@ big_integer operator/(big_integer const& a, big_integer const& b) {
         return left;
     }
     uint32_t normalization = (uint32_t) (base / (right.back() + 1));
-    left.non_correct = true;
-    right.non_correct = true;
     left.mul(normalization);
     right.mul(normalization);
     size_t n = left.size(), m = right.size();
     std::vector<uint32_t> q(n);
+    big_integer beta = big_integer::base_deg(n - m) * right, tmp;
     for (size_t j = n - m; ; --j) {
         uint64_t q_star = 0;
         if (m + j - 1 < left.size())
@@ -528,21 +524,21 @@ big_integer operator/(big_integer const& a, big_integer const& b) {
         if (m + j < left.size())
             q_star = ((uint64_t) left[m + j] * base + left[m + j - 1]) / right.back();
         q[j] = (uint32_t) std::min(q_star, (uint64_t) max_int32);
-        big_integer beta = big_integer::base_deg(j) * right;
-        big_integer tmp = beta;
+        tmp = beta;
         tmp.mul(q[j]);
         tmp.correct_size();
         left -= tmp;
+        int cnt = 0;
         while (left.signum == -1) {
             --q[j];
             left += beta;
+            ++cnt;
         }
+        beta.div_max_int32();
         if (!j) break;
     }
     big_integer answer(q, 1);
     answer.correct_size();
-    //if (answer != a.absolute() * b.absolute())
-    //    answer -= max_int32;
     answer.signum = signum;
     return answer;
 }
@@ -698,6 +694,10 @@ big_integer big_integer::absolute() const {
     big_integer answer = *this;
     answer.signum = abs(answer.signum);
     return answer;
+}
+
+size_t big_integer::get_size() const {
+    return size();
 }
 
 big_integer big_integer::base_deg(size_t n) {
