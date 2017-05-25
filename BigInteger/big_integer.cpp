@@ -304,14 +304,6 @@ big_integer::big_integer(big_integer const& other)
     signum = other.signum;
 }
 
-
-//for swap trick:
-void big_integer::swap(big_integer& other)
-{
-    std::swap(data, other.data);
-    std::swap(signum, other.signum);
-}
-
 std::string big_integer::to_string() const
 {
     std::string answer = "";
@@ -344,7 +336,8 @@ bool big_integer::is_deg2() const {
 
 big_integer& big_integer::operator=(big_integer other)
 {
-    swap(other);
+    data = other.data;
+    signum = other.signum;
     return *this;
 }
 

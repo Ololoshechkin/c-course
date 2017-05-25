@@ -62,7 +62,6 @@ public:
     big_integer(std::vector<uint32_t>&, short);
     big_integer(big_integer const&);
     
-    void swap(big_integer& other);
     std::string to_string() const;
     std::vector<uint32_t> get_digits() const;
     
