@@ -29,13 +29,20 @@ void print(char c)
 	std::cout << c << std::endl;
 }
 
+size_t get_size(std::ifstream& fin) {
+	size_t size = 0;
+	char c;
+	while (fin.get(c)) {
+		if (c == ' ')
+			break;
+		size = 10 * size + (c - '0');
+	}
+	return size;
+}
+
 int main(int argc, char* argv[])
 {
 	// TODO : delete this mesh...
-	argc = 4;
-	argv = new char*[4];
-	//argv = {"huffman", "-decrypt", "code.txt", "decoded.txt"};
-	argv[0] = "huffman", argv[1] = "-encrypt", argv[2] = "file.txt", argv[3] = "code.txt";
 	print("program started");
 	if (argc != 4)
 	{
@@ -60,14 +67,37 @@ int main(int argc, char* argv[])
 		print("gonna encrypt");
 		char symbol;
 		while (fin.get(symbol))
-			archiver.inc_letter_cnt((unsigned char) (symbol + 128), 1);
+			archiver.inc_letter_cnt(symbol, 1);
 		print("fin is read!");
-		std::vector<unsigned char> tree_code = archiver.get_tree_code();
+		std::vector<char> tree_code = archiver.get_tree_code();
 		print("get_tree_code is finnished!");
-		for (unsigned char c : tree_code)
-			fout << (char) (c - 128);
+		binary_code bin;
+		for (char c : tree_code) {
+			unsigned char uc = ((int) c - CHAR_MIN);
+			bin.insert_symbol(uc);
+		}
+		bin.start_encoding();
+		int balance = 0;
+		while (!bin.empty()) {
+			balance += bin.get_cur_data() ? 1 : -1;
+			std::cout << " tree(next) : " << bin.get_next_data() << '\n';
+			if (!balance)
+				break;
+		}
+		uchar ctz = 0, d = 7;
+		while (!bin.empty()) {
+			ctz += bin.get_next_data() << d;
+			--d;
+			if (d < 0) {
+				d = 7;
+				std::cout << " tree(symbol-next) : " << (char) ((int) ctz - CHAR_MIN) << '\n';
+				ctz = 0;
+			}
+		}
+		for (char c : tree_code)
+			fout << c;
 		print("tree_code is written to out!");
-		std::vector<unsigned char> block_code;
+		std::vector<char> block_code;
 		fin.close();
 		print("fin closed");
 		fin.open(argv[2]);
@@ -76,32 +106,20 @@ int main(int argc, char* argv[])
 		while (!fin.eof()) {
 			block_code.clear();
 			for (size_t i = 0; i < block_size && fin.get(symbol); ++i)
-				block_code.push_back((unsigned char) (symbol + 128));
+				block_code.push_back(symbol);
 			std::cout << "block.size : " << block_code.size() << std::endl;
 			block_code = archiver.encrypt(block_code);
 			std::cout << "block.size' : " << block_code.size() << std::endl;
-			for (unsigned char c : block_code)
-				fout << (char) (c - 128);
+			for (char c : block_code)
+				fout << c;
 		}
 	}
-	else
+	else if (cmp(argv[1], "-decrypt"))
 	{
 		print("gonna decrypt");
-		std::vector<unsigned char> tree_code;
+		std::vector<char> tree_code;
 		int sharp_cnt = 0;
 		char symbol;
-		while (fin.get(symbol)) {
-			if (symbol == '#')
-				std::cout << symbol << '\n';
-			else {
-				std::cout << "          " << symbol << '\n';
-				binary_code bin;
-				bin.insert_symbol(symbol + 128);
-				bin.start_encoding();
-				while (!bin.empty())
-					std::cout << (int) bin.get_next_data() << '\n';
-			}
-		}
 		fin.close();
 		fin.open(argv[2]);
 		while (fin.get(symbol) && sharp_cnt != 3)
@@ -110,21 +128,26 @@ int main(int argc, char* argv[])
 				++sharp_cnt;
 			else
 				sharp_cnt = 0;
-			tree_code.push_back((unsigned char) (symbol + 128));
+			tree_code.push_back(symbol);
 		}
 		if (sharp_cnt != 3) 
 			throw bad_file_format_exception();
 		archiver.set_tree_code(tree_code);
 		std::cout << "tree built!\n";
-		std::vector<unsigned char> data_block;
+		std::vector<char> data_block;
 		while (!fin.eof()) {
 			data_block.clear();
+			size_t block_size = get_size(fin);
 			for (size_t i = 0; i < block_size && fin.get(symbol); ++i)
-				data_block.push_back((unsigned char) (symbol + 128));
-			data_block = archiver.decrypt(data_block);
-			for (unsigned char c : data_block)
-				fout << (char) (c - 128);
+				data_block.push_back(symbol);
+			data_block = archiver.decrypt(block_size, data_block);
+			for (char c : data_block)
+				fout << c;
 		}
+	}
+	else
+	{
+		std::cout << "bad argument (expected -encrypt or -decrypt)";
 	}
 	fin.close();
 	fout.close();

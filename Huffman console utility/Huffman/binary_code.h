@@ -7,22 +7,24 @@
 
 #include <vector>
 
+#define uchar unsigned char
+
 class binary_code
 {
 private:
 	std::vector<bool> data;
 	size_t pos;
 public:
-    typedef unsigned char uchar;
 	binary_code();
 	void insert_symbol(uchar);
-	void build(std::vector<uchar>&, bool);
-	std::vector<uchar> get_code(bool);
+	void build(std::vector<uchar>&, size_t);
+	std::vector<uchar> get_code();
 	void start_encoding();
 	bool get_next_data();
 	bool get_cur_data();
 	bool empty();
 	void insert_bool(bool);
+	size_t get_size();
 	~binary_code();
 };
 

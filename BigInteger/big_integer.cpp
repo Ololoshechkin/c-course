@@ -251,7 +251,7 @@ big_integer::big_integer(std::vector<uint32_t>&v, short signum = 1)
 big_integer::big_integer(int val)
 {
     data.clear();
-    data.push_back((uint32_t) abs(val));
+    data.push_back((uint32_t) std::abs((int64_t) val));
     signum = val ? (val < 0 ? -1 : 1) : 0;
 }
 
@@ -679,15 +679,13 @@ bool operator!(big_integer const& x)
     return !x.signum;
 }
 
-big_integer big_integer::pow(const big_integer& n)
+big_integer big_integer::pow(int n)
 {
-    if (!n)
-        return 1;
-    big_integer tmp = n;
-    tmp.div(2);
-    big_integer d = pow(tmp);
+    if (!n) return 1;
+    big_integer d = pow(n >> 1);
     d *= d;
-    return 0;
+    if (n & 1) d *= *this;
+    return d;
 }
 
 big_integer big_integer::absolute() const {

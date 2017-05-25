@@ -140,7 +140,7 @@ void huffman_tree::build()
 	std::cout << "tree is built\n";
 }
 
-void huffman_tree::build_from_code(std::vector<huffman_tree::uchar>& code) 
+void huffman_tree::build_from_code(std::vector<uchar>& code) 
 {
 	std::cout << "building tree from code :\n";
 	binary_code bin;
@@ -148,16 +148,16 @@ void huffman_tree::build_from_code(std::vector<huffman_tree::uchar>& code)
 		bin.insert_symbol(code[i]);
 	bin.start_encoding();
 	from_tree_code(root, bin);
-	std::vector<uchar> letters = bin.get_code(false);
+	std::vector<uchar> letters = bin.get_code();
 	size_t pos = 0;
 	from_letters_in_dfs_order(root, letters, pos);
 }
 
-std::vector<huffman_tree::uchar> huffman_tree::get_code() const
+std::vector<uchar> huffman_tree::get_code() const
 {
 	binary_code bin;
 	to_tree_code(root, bin);
-	std::vector<uchar> answer = bin.get_code(false);
+	std::vector<uchar> answer = bin.get_code();
 	to_letters_in_dfs_order(root, answer);
 	answer.push_back('#' + 128);
 	answer.push_back('#' + 128);
@@ -165,7 +165,7 @@ std::vector<huffman_tree::uchar> huffman_tree::get_code() const
 	return answer;
 }
 
-std::vector<huffman_tree::uchar> huffman_tree::encode(std::vector<huffman_tree::uchar>& data) const 
+std::pair<size_t, std::vector<uchar>> huffman_tree::encode(std::vector<uchar>& data) const 
 {
 	binary_code bin;
 	for (uchar c : data)
@@ -173,18 +173,18 @@ std::vector<huffman_tree::uchar> huffman_tree::encode(std::vector<huffman_tree::
 		std::cout << "symbol : " << (int) (c) << '>' << (int)letter_code[c] << '\n';
 		bin.insert_symbol(letter_code[c]);
 	}
-	std::vector<uchar> code = bin.get_code(true);
-	return code;
+	std::vector<uchar> code = bin.get_code();
+	return {bin.get_size(), code};
 }
 
-std::vector<huffman_tree::uchar> huffman_tree::decode(std::vector<huffman_tree::uchar>& code) 
+std::vector<uchar> huffman_tree::decode(size_t len, std::vector<uchar>& code) 
 {
 	std::cout << "tree.decode()\n";
 	std::vector<uchar> data;
 	std::cout << "data.\n";
 	binary_code bin;
 	std::cout << "bin.\n";
-	bin.build(code, true);
+	bin.build(code, len);
 	std::cout << "bin.build(code)\n";
 	bin.start_encoding();
 	std::cout << "bin.start()\n";

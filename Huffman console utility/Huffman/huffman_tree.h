@@ -11,10 +11,11 @@
 #include <set>
 #include "binary_code.h"
 
+#define uchar unsigned char
+
 class huffman_tree
 {
 private:
-	typedef unsigned char uchar;
 	struct node
 	{
 		uint64_t cnt;
@@ -41,8 +42,8 @@ public:
 	void build();
 	void build_from_code(std::vector<uchar>&);
 	std::vector<uchar> get_code() const;
-	std::vector<uchar> encode(std::vector<uchar>&) const;
-	std::vector<uchar> decode(std::vector<uchar>&);
+	std::pair<size_t, std::vector<uchar>> encode(std::vector<uchar>&) const;
+	std::vector<uchar> decode(size_t, std::vector<uchar>&);
 };
 
 

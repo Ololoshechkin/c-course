@@ -24,17 +24,15 @@ void binary_code::insert_symbol(uchar c)
 		data.push_back(0);
 }
 
-void binary_code::build(std::vector<uchar>& symbols, bool last_is_cnt = false)
+void binary_code::build(std::vector<uchar>& symbols, size_t length)
 {
 	data.clear();
-	for (size_t i = 0; i < symbols.size() - 2; ++i)
+	for (size_t i = 0; i < symbols.size(); ++i)
 		insert_symbol(symbols[i]);
-	for (uchar i = 0; i < symbols.back(); ++i) 
-		insert_bool(symbols[i - 2] & (1 << (7 - i)));
-	std::cout << data.size() << std::endl;
+	while (data.size() > length) data.pop_back();
 }
 
-std::vector<binary_code::uchar> binary_code::get_code(bool with_postinfo = false)
+std::vector<uchar> binary_code::get_code()
 {
 	std::vector <uchar> code;
 	uchar max_deg = (uchar)(1 << 7);
@@ -49,16 +47,14 @@ std::vector<binary_code::uchar> binary_code::get_code(bool with_postinfo = false
 		cur_deg >>= 1;
 		if (!cur_deg) 
 		{
-			code.push_back((uchar) cur);
+			code.push_back(cur);
 			cur_deg = max_deg;
 			cur = 0;
 		}
 	}
 	uchar cnt = (uchar) (7 - (data.size() & 7));
 	if (cnt)
-		code.push_back((uchar) cur);
-	if (with_postinfo)
-		code.push_back(cnt);
+		code.push_back(cur);
 	return code;
 }
 
@@ -85,6 +81,10 @@ bool binary_code::empty()
 void binary_code::insert_bool(bool bit) 
 {
 	data.push_back(bit);
+}
+
+size_t binary_code::get_size() {
+	return data.size();
 }
 
 binary_code::~binary_code() 

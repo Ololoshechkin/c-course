@@ -111,7 +111,7 @@ public:
     friend big_integer operator~(big_integer const&);
     friend bool operator!(big_integer const&);
     
-    big_integer pow(big_integer const&);
+    big_integer pow(int);
     big_integer absolute() const;
     
     inline static big_integer base_deg(size_t n);

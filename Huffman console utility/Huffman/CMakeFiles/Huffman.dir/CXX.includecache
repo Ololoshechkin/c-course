@@ -29,6 +29,8 @@ string
 /Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_archiver.cpp
 iostream
 -
+string
+-
 huffman_archiver.h
 /Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_archiver.h
 
