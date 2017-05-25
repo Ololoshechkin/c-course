@@ -67,7 +67,7 @@ public:
     
     bool is_deg2() const;
     
-    big_integer& operator = (big_integer);
+    big_integer& operator = (const big_integer&);
     
     friend bool operator == (big_integer const&, big_integer const&);
     friend bool operator != (big_integer const&, big_integer const&);

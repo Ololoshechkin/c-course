@@ -334,7 +334,7 @@ bool big_integer::is_deg2() const {
 
 // operators :
 
-big_integer& big_integer::operator=(big_integer other)
+big_integer& big_integer::operator=(const big_integer& other)
 {
     data = other.data;
     signum = other.signum;
