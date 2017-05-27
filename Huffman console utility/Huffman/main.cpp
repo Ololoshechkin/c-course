@@ -12,14 +12,17 @@
 const size_t block_size = 128 * 1024 * 8;
 
 uint64_t file_size(std::string name) {
-	std::ifstream fin(name, std::ifstream::binary);
+	std::ifstream fin;
+	fin.open(name);
 	uint64_t ans = (uint64_t) fin.tellg();
 	fin.close();
 	return ans;
 }
 
-void encrypt(int argc, char* argv[]) 
+void encrypt(char* argv[]) 
 {
+	uint64_t old_size = file_size(argv[2]), new_size = 0;
+	
 	my_buffered_reader fin;
 	fin.open(argv[2]);
 	if (!fin)
@@ -31,7 +34,6 @@ void encrypt(int argc, char* argv[])
 	huffman_archiver archiver;
 	
 	std::cout << "encrypting...\n";
-	uint64_t old_size = file_size(argv[2]), new_size = 0;
 	
 	char symbol;
 	while (fin.get(symbol))
@@ -54,14 +56,14 @@ void encrypt(int argc, char* argv[])
 	fin.close();
 	fout.close();
 	new_size = file_size(argv[3]);
-	std::cout << "done (" << block_cnt << " blocks total, old file size : "
+	std::cout << "done (" << block_cnt /*<< " blocks total, old file size : "
 	          << 1.0 * old_size / 1024.0 << " kbs , new file size :"
 	          << 1.0 * new_size / 1024.0 << " kbs, compressing ratio :"
 	          << 100.0 * ((double) old_size - (double) new_size) / (double) old_size << "%"
-	          << ")\ntime : " << (double) clock() / 1000000.0 << " sec.\n";
+	          */ << ")\ntime : " << (double) clock() / 1000000.0 << " sec.\n";
 }
 
-void decrypt(int argc, char* argv[]) 
+void decrypt(char* argv[]) 
 {
 	my_buffered_reader fin;
 	fin.open(argv[2]);
@@ -100,11 +102,11 @@ void solve(int argc, char* argv[])
 	}
 	if (!strcmp(argv[1], "-encrypt"))
 	{
-		encrypt(argc, argv);
+		encrypt(argv);
 	}
 	else if (!strcmp(argv[1], "-decrypt"))
 	{
-		decrypt(argc, argv);
+		decrypt(argv);
 	}
 	else
 	{

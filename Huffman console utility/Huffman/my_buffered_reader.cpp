@@ -42,7 +42,10 @@ bool operator!(my_buffered_reader const& r)
 
 void my_buffered_writer::put(char c) 
 {
-	fout << c;
+	/*if (pos == buffer_size)
+		fout.write(buffer, buffer_size), pos = 0;
+	buffer[pos++] = c;*/
+	fout.put(c);
 }
 
 void my_buffered_writer::put(size_t x)
@@ -57,11 +60,14 @@ void my_buffered_writer::put(std::string const& s)
 
 void my_buffered_writer::open(std::string const& filename) 
 {
+	//pos = 0;
 	fout.open(filename);
 }
 
 void my_buffered_writer::close() 
 {
+	//if (pos)
+	//	fout.write(buffer, pos + 1), pos = 0;
 	fout.close();
 }
 
