@@ -102,6 +102,7 @@ void decrypt(int argc, char* argv[])
 
 int main(int argc, char* argv[])
 {
+	std::ios_base::sync_with_stdio(0);
 	if (argc != 4)
 	{
 		throw illegal_argument_cnt_exception(argc - 1, 3);
