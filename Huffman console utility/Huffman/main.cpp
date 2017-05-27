@@ -12,8 +12,7 @@
 const size_t block_size = 128 * 1024 * 8;
 
 uint64_t file_size(std::string name) {
-	std::ifstream fin;
-	fin.open(name);
+	std::ifstream fin(name, std::ios::binary | std::ios::ate);
 	uint64_t ans = (uint64_t) fin.tellg();
 	fin.close();
 	return ans;

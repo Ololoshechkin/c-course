@@ -9,7 +9,7 @@
 #include <iostream>
 #include <string>
 
-const size_t buffer_size = 128 * 1024 * 8;
+const size_t buffer_size = 64 * 1024 * 8;
 
 class my_buffered_reader
 {
