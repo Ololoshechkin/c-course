@@ -34,8 +34,8 @@
       <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="47" lean-forward="true" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
+            <state relative-caret-position="398">
+              <caret line="81" column="38" lean-forward="true" selection-start-line="81" selection-start-column="38" selection-end-line="81" selection-end-column="38" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -125,7 +125,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>uint8t</find>
       <find>data.push_back</find>
       <find>MAX</find>
       <find>from_tree</find>
@@ -155,6 +154,7 @@
       <find>ifst</find>
       <find>.open</find>
       <find>get(</find>
+      <find>time</find>
     </findStrings>
     <replaceStrings>
       <replace>huffman_archiver::</replace>
@@ -453,12 +453,12 @@
       <workItem from="1495788464833" duration="2422000" />
       <workItem from="1495799924638" duration="27938000" />
       <workItem from="1495873358860" duration="19920000" />
-      <workItem from="1495901254303" duration="2951000" />
+      <workItem from="1495901254303" duration="3377000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="104558000" />
+    <option name="totallyTimeSpent" value="104984000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -471,7 +471,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1280" height="725" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20571883" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296355" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -826,8 +826,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="47" lean-forward="true" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
+        <state relative-caret-position="398">
+          <caret line="81" column="38" lean-forward="true" selection-start-line="81" selection-start-column="38" selection-end-line="81" selection-end-column="38" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>

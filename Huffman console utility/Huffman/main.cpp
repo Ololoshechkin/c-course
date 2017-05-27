@@ -59,12 +59,14 @@ void encrypt(char* argv[])
 	          << 1.0 * old_size / 1024.0 << " kbs , new file size :"
 	          << 1.0 * new_size / 1024.0 << " kbs, compressing ratio :"
 	          << 100.0 * ((double) old_size - (double) new_size) / (double) old_size << "%"
-	           << ")\ntime : " << (double) clock() / 1000000.0 << " sec.\n";
+	          << ")\ntime : " << (double) clock() / 1000000.0 << " sec.\n"
+	          << "(mb per sec : " << 1.0 * old_size / (double) clock() << ")\n";
 }
 
 void decrypt(char* argv[]) 
 {
 	my_buffered_reader fin;
+	uint64_t code_size = file_size(argv[2]);
 	fin.open(argv[2]);
 	if (!fin)
 		throw std::runtime_error("input file open failed");
@@ -88,7 +90,8 @@ void decrypt(char* argv[])
 		for (char c : symbols)
 			fout.put(c);
 	}
-	std::cout << "done.\ntime : " << (double) clock() / 1000000.0 << " sec.\n";	
+	std::cout << "done.\ntime : " << (double) clock() / 1000000.0 << " sec.\n"
+			<< "(mb per sec : " << 1.0 * code_size / (double) clock() << ")\n";	
 	fin.close();
 	fout.close();
 }
