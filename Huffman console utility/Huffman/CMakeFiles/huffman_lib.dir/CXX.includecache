@@ -83,6 +83,10 @@ huffman_tester.h
 /Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_tester.h
 huffman_archiver.h
 /Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_archiver.h
+iostream
+-
+fstream
+-
 
 /Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_tree.cpp
 vector

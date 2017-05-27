@@ -56,11 +56,11 @@ void encrypt(char* argv[])
 	fin.close();
 	fout.close();
 	new_size = file_size(argv[3]);
-	std::cout << "done (" << block_cnt /*<< " blocks total, old file size : "
+	std::cout << "done (" << block_cnt << " blocks total, old file size : "
 	          << 1.0 * old_size / 1024.0 << " kbs , new file size :"
 	          << 1.0 * new_size / 1024.0 << " kbs, compressing ratio :"
 	          << 100.0 * ((double) old_size - (double) new_size) / (double) old_size << "%"
-	          */ << ")\ntime : " << (double) clock() / 1000000.0 << " sec.\n";
+	           << ")\ntime : " << (double) clock() / 1000000.0 << " sec.\n";
 }
 
 void decrypt(char* argv[]) 
