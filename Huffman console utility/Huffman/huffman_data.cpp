@@ -5,6 +5,8 @@
 #include "huffman_data.h"
 #include "exceptions.h"
 
+const size_t max_block_size = 128 * 1024 * 8 * 3;
+
 huffman_data::huffman_data() 
 	: huffman_data::huffman_data(binary_code())
 {}
@@ -26,6 +28,9 @@ size_t huffman_data::get_size(my_buffered_reader& fin)
 		if (c == ' ')
 			break;
 		size = 10 * size + (c - '0');
+	}
+	if (size > max_block_size) {
+		throw bad_file_format_exception("incorrect block size");
 	}
 	return size;
 }
