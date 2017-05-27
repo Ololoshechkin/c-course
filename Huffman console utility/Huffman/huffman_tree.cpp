@@ -171,17 +171,17 @@ std::vector<uint8_t> huffman_tree::decode(huffman_data& code) const
 	for (size_t i = 0; i < code.size; ++i) {
 		if (code.bin.get_next_data() == LEFT_CODE) {
 			if (!v->left)
-				throw bad_file_format_exception();
+				throw bad_file_format_exception("block code doesn't match tree code");
 			v = v->left;
 		}
 		else 
 		{
 			if (!v->right)
-				throw bad_file_format_exception();
+				throw bad_file_format_exception("block code doesn't match tree code");
 			v = v->right;
 		}
 		if (v->isLeaf())
-			data.push_back(v->letter);
+			data.push_back(v->letter), v = root;
 	}
 	return data;
 }

@@ -103,6 +103,8 @@ stdexcept
 -
 vector
 -
+string
+-
 exceptions.h
 /Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/exceptions.h
 huffman_archiver.h

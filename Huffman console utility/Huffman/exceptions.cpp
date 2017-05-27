@@ -20,7 +20,11 @@ illegal_arguments_exception::illegal_arguments_exception(int arg_number, std::st
 	message = "instead of " + std::to_string(arg_number) + "-th parametr expected " + expected_arg;
 }
 
+bad_file_format_exception::bad_file_format_exception(std::string message)
+	: message(message)
+{}
+
 const char* bad_file_format_exception::what() const throw() 
 {
-	return "bad decrypting file format";
+	return message.c_str();
 }

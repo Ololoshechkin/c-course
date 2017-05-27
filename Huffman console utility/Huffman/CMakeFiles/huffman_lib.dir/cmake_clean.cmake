@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/huffman_lib.dir/huffman_tree.cpp.o"
   "CMakeFiles/huffman_lib.dir/huffman_archiver.cpp.o"
   "CMakeFiles/huffman_lib.dir/huffman_data.cpp.o"
+  "CMakeFiles/huffman_lib.dir/huffman_tester.cpp.o"
   "libhuffman_lib.pdb"
   "libhuffman_lib.a"
 )

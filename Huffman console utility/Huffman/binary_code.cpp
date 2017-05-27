@@ -37,14 +37,8 @@ std::vector<uint8_t> binary_code::get_code()
 		if (deg < 0) 
 			deg = 7, code.push_back(cur), cur = 0;
 	}
-	if (data.size() & 7) {
+	if (deg != 7)
 		code.push_back(cur);
-		std::cout << "suffix : ";
-		for (int i = 7; i > 0; --i) {
-			std::cout << (int) (bool)(cur & (1 << i)) << ' ';
-		}
-		std::cout << '\n';
-	}
 	return code;
 }
 
@@ -55,8 +49,17 @@ void binary_code::start_encoding()
 
 bool binary_code::get_next_data() 
 {
-	if (pos == data.size())
-		throw bad_file_format_exception();
+	if (pos == data.size()) {
+		std::string explanation = "real size = " + std::to_string(data.size()) + "\n";
+		explanation += "chars : ";
+		std::vector<uint8_t> ttt = get_code();
+		for (uint8_t tt : ttt)
+			explanation.push_back((char) ((int) tt - 128));
+		explanation += "\nbit sequence : ";
+		for (bool bit : data)
+			explanation += (bit ? "1 " : "0 ");
+		throw bad_file_format_exception("data doesn't fit data size\n" + explanation);
+	}
 	return data[pos++];
 }
 

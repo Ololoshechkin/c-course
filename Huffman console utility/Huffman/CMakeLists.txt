@@ -14,7 +14,7 @@ add_library(huffman_lib
         huffman_archiver.cpp
         huffman_data.cpp 
         huffman_data.h
-        )
+        huffman_tester.cpp huffman_tester.h)
 
 install(TARGETS huffman_lib DESTINATION lib)
 install (FILES

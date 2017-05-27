@@ -196,6 +196,12 @@
 			<Option target="Huffman"/>
 			<Option target="huffman_lib"/>
 		</Unit>
+		<Unit filename="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_tester.cpp">
+			<Option target="huffman_lib"/>
+		</Unit>
+		<Unit filename="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_tester.h">
+			<Option target="huffman_lib"/>
+		</Unit>
 		<Unit filename="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_tree.cpp">
 			<Option target="Huffman"/>
 			<Option target="huffman_lib"/>

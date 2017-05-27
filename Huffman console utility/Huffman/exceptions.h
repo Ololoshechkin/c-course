@@ -28,6 +28,8 @@ struct illegal_arguments_exception : public argument_exeption
 
 struct bad_file_format_exception : public std::exception
 {
+	std::string message;
+	bad_file_format_exception(std::string message = "bad decrypting file format");
 public:
 	virtual const char* what() const throw();
 };

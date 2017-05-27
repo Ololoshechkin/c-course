@@ -9,7 +9,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/Vadim/Documents/coding/c++ course/BigInteger/gtest/gtest-all.cc" "/Users/Vadim/Documents/coding/c++ course/BigInteger/CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.o"
   "/Users/Vadim/Documents/coding/c++ course/BigInteger/gtest/gtest_main.cc" "/Users/Vadim/Documents/coding/c++ course/BigInteger/CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.o"
   )
-set(CMAKE_CXX_COMPILER_ID "Clang")
+set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH

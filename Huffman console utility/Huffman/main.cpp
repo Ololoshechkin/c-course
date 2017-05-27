@@ -2,11 +2,12 @@
 #include <fstream>
 #include <stdexcept>
 #include <vector>
+#include <string>
 #include "exceptions.h"
 #include "huffman_archiver.h"
 #include "binary_code.h"
 
-const size_t block_size = 4 * 1024;
+const size_t block_size = 128 * 1024 * 8;
 
 bool cmp(char* arg, std::string str)
 {
@@ -19,96 +20,107 @@ bool cmp(char* arg, std::string str)
 	return true;
 }
 
-void print(std::string const& msg)
-{
-	std::cout << msg << std::endl;
+
+uint64_t file_size(std::string name) {
+	std::ifstream fin(name, std::ifstream::ate | std::ifstream::binary);
+	uint64_t ans = (uint64_t) fin.tellg();
+	fin.close();
+	return ans;
 }
 
-void print(char c)
+void encrypt(int argc, char* argv[]) 
 {
-	std::cout << c << std::endl;
-}
-
-void solve(int argc, char* argv[]) 
-{
-	// TODO : delete this mesh...
-	print("program started");
-	if (argc != 4)
-	{
-		throw illegal_argument_cnt_exception(argc, 3);
-	}
-	if (!cmp(argv[1], "-encrypt") && !cmp(argv[1], "-decrypt"))
-	{
-		throw illegal_arguments_exception(1, "\"-encrypt\" or \"-decrypt\"");
-	}
-	print("gonna fin");
 	std::ifstream fin;
 	fin.open(argv[2]);
 	if (!fin)
 		throw std::runtime_error("input file open failed");
-	print("gonna fout");
 	std::ofstream fout(argv[3]);
 	if (!fout)
 		throw std::runtime_error("output file open failed");
 	huffman_archiver archiver;
-	if (cmp(argv[1], "-encrypt"))
+	
+	std::cout << "encrypting...\n";
+	uint64_t old_size = file_size(argv[2]), new_size = 0;
+	
+	char symbol;
+	while (fin.get(symbol))
+		archiver.inc_letter_cnt(symbol, 1);
+	fin.close();
+	fin.open(argv[2]);
+	tree_code_t tree_code = archiver.get_tree_code();
+	tree_code.print(fout);
+	std::vector<char> symbols_block;
+	size_t block_cnt = 0;
+	while (!fin.eof())
 	{
-		print("gonna encrypt");
-		char symbol;
-		while (fin.get(symbol))
-			archiver.inc_letter_cnt(symbol, 1);
-		fin.close();
-		fin.open(argv[2]);
-		for (int c = CHAR_MIN; c <= CHAR_MAX; ++c) {
-			if (archiver.get_letter_cnt((char) c))
-				std::cout << "cnt[" << (char)  c << "] = " << archiver.get_letter_cnt(c) << '\n';
-		}
-		print("fin is read!");
-		fout << archiver.get_tree_code();
-		print("get_tree_code is finnished!");
-		std::vector<char> symbols_block;
-		while (!fin.eof())
-		{
-			symbols_block.clear();
-			for (size_t i = 0; i < block_size && fin.get(symbol); ++i)
-				symbols_block.push_back(symbol);
-			fout << archiver.encrypt(symbols_block);
-		}
-		print("it's ok!");
+		++block_cnt;
+		symbols_block.clear();
+		for (size_t i = 0; i < block_size && fin.get(symbol); ++i)
+			symbols_block.push_back(symbol);
+		auto code_block = archiver.encrypt(symbols_block);
+		code_block.print(fout);
 	}
-	else if (cmp(argv[1], "-decrypt"))
+	fin.close();
+	fout.close();
+	new_size = file_size(argv[3]);
+	std::cout << "done (" << block_cnt << " blocks total, old file size : "
+	          << 1.0 * old_size / 1024.0 << " kbs , new file size :"
+	          << 1.0 * new_size / 1024.0 << " kbs, compressing ratio :"
+	          << 100.0 * ((double) old_size - (double) new_size) / (double) old_size << "%"
+	          << ")\ntime : " << (double) clock() / 1000000.0 << " sec.\n";
+}
+
+void decrypt(int argc, char* argv[]) 
+{
+	std::ifstream fin;
+	fin.open(argv[2]);
+	if (!fin)
+		throw std::runtime_error("input file open failed");
+	std::ofstream fout(argv[3]);
+	if (!fout)
+		throw std::runtime_error("output file open failed");
+	huffman_archiver archiver;
+	
+	std::cout << "decrypting...\n";
+	tree_code_t tree_code;
+	tree_code.read(fin);
+	archiver.set_tree_code(tree_code);
+	huffman_data data_block;
+	size_t block_nmb = 0;
+	while (!fin.eof())
 	{
-		print("gonna decrypt");
-		tree_code_t tree_code;
-		fin >> tree_code;
-		print("tree code is obtained");
-		archiver.set_tree_code(tree_code);
-		print("tree code is set to archiver");
-		huffman_data data_block;
-		while (!fin.eof())
-		{
-			fin >> data_block;
-			std::vector<char> symbols = archiver.decrypt(data_block);
-			for (char c : symbols)
-				fout << c;
-		}
-		print("it's ok!");
+		++block_nmb;
+		data_block.read(fin);
+		std::vector<char> symbols = archiver.decrypt(data_block);
+		for (char c : symbols)
+			fout << c;
 	}
-	else
-	{
-		std::cout << "bad argument (expected -encrypt or -decrypt)";
-	}
+	std::cout << "done.\ntime : " << (double) clock() / 1000000.0 << " sec.\n";	
 	fin.close();
 	fout.close();
 }
 
 int main(int argc, char* argv[])
 {
-	std::cout << (uint8_t) (200) << ' ' << (char) (200) << '\n';
-	char* arguments[4];
-	arguments[0] = "huffman", arguments[1] = "-encrypt", arguments[2] = "file.txt", arguments[3] = "code.txt";
-	solve(4, arguments);
-	arguments[0] = "huffman", arguments[1] = "-decrypt", arguments[2] = "code.txt", arguments[3] = "2.txt";
-	solve(4, arguments);
+	if (argc != 4)
+	{
+		throw illegal_argument_cnt_exception(argc - 1, 3);
+	}
+	if (!cmp(argv[1], "-encrypt") && !cmp(argv[1], "-decrypt"))
+	{
+		throw illegal_arguments_exception(1, "\"-encrypt\" or \"-decrypt\"");
+	}
+	if (cmp(argv[1], "-encrypt"))
+	{
+		encrypt(argc, argv);
+	}
+	else if (cmp(argv[1], "-decrypt"))
+	{
+		decrypt(argc, argv);
+	}
+	else
+	{
+		std::cout << "bad argument (expected -encrypt or -decrypt)";
+	}
 	return 0;
 }

@@ -13,15 +13,17 @@
 
 class huffman_data {
 private:
-	size_t get_size(std::ifstream&);
+	size_t get_size(std::istream&);
 public:
 	size_t size;
 	binary_code bin;
 	huffman_data();
 	huffman_data(size_t, const binary_code&);
 	huffman_data(const binary_code&);
-	friend std::ifstream& operator>>(std::ifstream&, huffman_data&);
-	friend std::ofstream& operator<<(std::ofstream&, huffman_data const&);
+	//friend std::istream& operator>>(std::istream&, huffman_data&);
+	//friend std::ostream& operator<<(std::ostream&, huffman_data const&);
+	void read(std::istream&);
+	void print(std::ostream&) const;
 };
 
 struct tree_code_t {
@@ -29,8 +31,10 @@ struct tree_code_t {
 	huffman_data second;
 	tree_code_t();
 	tree_code_t(huffman_data const&, huffman_data const&);
-	friend std::ifstream& operator>>(std::ifstream&, tree_code_t&);
-	friend std::ofstream& operator<<(std::ofstream&, tree_code_t const&);
+	//friend std::istream& operator>>(std::istream&, tree_code_t&);
+	//friend std::ostream& operator<<(std::ostream&, tree_code_t const&);
+	void read(std::istream&);
+	void print(std::ostream&) const;
 };
 
 
