@@ -473,15 +473,24 @@ big_integer operator*(big_integer const& a, big_integer const& b)
     big_integer res = 0;
     if (!a.signum || !b.signum)
         return res;
-    big_integer tmp = a;
-    for (size_t i = 0; i < b.size(); ++i)
+    res.correct_size(a.size() + b.size());
+    uint64_t tmp = 0;
+    for (size_t i = 0; i < a.size(); ++i)
     {
-        big_integer tmp2 = tmp;
-        tmp.mul(b[i]);
-        res.add(tmp);
-        tmp = tmp2;
-        tmp.mul_max_int32();
+        for (size_t j = 0; j < b.size(); ++j)
+        {
+            tmp += (uint64_t) res[i + j] + (uint64_t) a[i] * (uint64_t) b[j];
+            res[i + j] = tmp & max_int32;
+            tmp >>= log_int32;
+        }
+        size_t pos = i + b.size();
+        while (tmp) {
+            tmp += (uint64_t) res[pos];
+            res[pos++] = tmp & max_int32;
+            tmp >>= log_int32;
+        }
     }
+    res.correct_size();
     res.signum = a.signum * b.signum;
     return res;
 }
