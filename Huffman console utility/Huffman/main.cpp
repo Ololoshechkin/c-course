@@ -5,24 +5,14 @@
 #include <string>
 #include "exceptions.h"
 #include "huffman_archiver.h"
+#include "my_buffered_reader.h"
+#include <cstring>
 #include "binary_code.h"
 
 const size_t block_size = 128 * 1024 * 8;
 
-bool cmp(char* arg, std::string str)
-{
-	size_t len = strlen(arg);
-	if (len != str.length())
-		return false;
-	for (size_t i = 0; i < len; ++i)
-		if (arg[i] != str[i])
-			return false;
-	return true;
-}
-
-
 uint64_t file_size(std::string name) {
-	std::ifstream fin(name, std::ifstream::ate | std::ifstream::binary);
+	std::ifstream fin(name, std::ifstream::binary);
 	uint64_t ans = (uint64_t) fin.tellg();
 	fin.close();
 	return ans;
@@ -30,11 +20,12 @@ uint64_t file_size(std::string name) {
 
 void encrypt(int argc, char* argv[]) 
 {
-	std::ifstream fin;
+	my_buffered_reader fin;
 	fin.open(argv[2]);
 	if (!fin)
 		throw std::runtime_error("input file open failed");
-	std::ofstream fout(argv[3]);
+	my_buffered_writer fout;
+	fout.open(argv[3]);
 	if (!fout)
 		throw std::runtime_error("output file open failed");
 	huffman_archiver archiver;
@@ -72,11 +63,12 @@ void encrypt(int argc, char* argv[])
 
 void decrypt(int argc, char* argv[]) 
 {
-	std::ifstream fin;
+	my_buffered_reader fin;
 	fin.open(argv[2]);
 	if (!fin)
 		throw std::runtime_error("input file open failed");
-	std::ofstream fout(argv[3]);
+	my_buffered_writer fout;
+	fout.open(argv[3]);
 	if (!fout)
 		throw std::runtime_error("output file open failed");
 	huffman_archiver archiver;
@@ -93,35 +85,42 @@ void decrypt(int argc, char* argv[])
 		data_block.read(fin);
 		std::vector<char> symbols = archiver.decrypt(data_block);
 		for (char c : symbols)
-			fout << c;
+			fout.put(c);
 	}
 	std::cout << "done.\ntime : " << (double) clock() / 1000000.0 << " sec.\n";	
 	fin.close();
 	fout.close();
 }
 
-int main(int argc, char* argv[])
+void solve(int argc, char* argv[])
 {
-	std::ios_base::sync_with_stdio(0);
 	if (argc != 4)
 	{
 		throw illegal_argument_cnt_exception(argc - 1, 3);
 	}
-	if (!cmp(argv[1], "-encrypt") && !cmp(argv[1], "-decrypt"))
-	{
-		throw illegal_arguments_exception(1, "\"-encrypt\" or \"-decrypt\"");
-	}
-	if (cmp(argv[1], "-encrypt"))
+	if (!strcmp(argv[1], "-encrypt"))
 	{
 		encrypt(argc, argv);
 	}
-	else if (cmp(argv[1], "-decrypt"))
+	else if (!strcmp(argv[1], "-decrypt"))
 	{
 		decrypt(argc, argv);
 	}
 	else
 	{
-		std::cout << "bad argument (expected -encrypt or -decrypt)";
+		throw illegal_arguments_exception(1, "\"-encrypt\" or \"-decrypt\"");
+	}
+}
+
+int main(int argc, char* argv[])
+{
+	std::ios_base::sync_with_stdio(0);
+	try {
+		solve(argc, argv);
+	} 
+	catch (const std::exception& e) 
+	{
+		std::cout << e.what() << '\n';
 	}
 	return 0;
 }

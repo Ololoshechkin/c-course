@@ -98,6 +98,15 @@ void huffman_tree::from_tree_code(node* v, binary_code& bin)
 	}
 }
 
+void huffman_tree::destruct_dfs(node* v) 
+{
+	if (!v)
+		return;
+	destruct_dfs(v->left);
+	destruct_dfs(v->right);
+	delete(v);
+}
+
 huffman_tree::huffman_tree(std::vector<uint64_t>& letter_cnt)
 		: root(nullptr)
 		, letter_cnt(letter_cnt) 
@@ -184,4 +193,9 @@ std::vector<uint8_t> huffman_tree::decode(huffman_data& code) const
 			data.push_back(v->letter), v = root;
 	}
 	return data;
+}
+
+huffman_tree::~huffman_tree() 
+{
+	destruct_dfs(root);
 }

@@ -18,7 +18,7 @@ huffman_data::huffman_data(const binary_code& bin)
 	: huffman_data::huffman_data(bin.get_size(), bin)
 {}
 
-size_t huffman_data::get_size(std::istream& fin)
+size_t huffman_data::get_size(my_buffered_reader& fin)
 {
 	size = 0;
 	char c;
@@ -30,7 +30,7 @@ size_t huffman_data::get_size(std::istream& fin)
 	return size;
 }
 
-void huffman_data::read(std::istream& fin)
+void huffman_data::read(my_buffered_reader& fin)
 {
 	size = 0;
 	bin = binary_code();
@@ -50,16 +50,17 @@ void huffman_data::read(std::istream& fin)
 	}
 }
 
-void huffman_data::print(std::ostream& fout) const
+void huffman_data::print(my_buffered_writer& fout) const
 {
 	huffman_data code = *this;
-	fout << code.size << ' ';
+	fout.put(code.size);
+	fout.put(' ');
 	auto uint8_code = code.bin.get_code();
 	std::string string_code;
 	for (uint8_t c : uint8_code) {
 		string_code.push_back((char) (((int) c) - 128));
 	}
-	fout << string_code;// << '\n';
+	fout.put(string_code);
 }
 
 tree_code_t::tree_code_t()
@@ -71,13 +72,13 @@ tree_code_t::tree_code_t(huffman_data const& f, huffman_data const& s)
 		, second(s)
 {}
 
-void tree_code_t::read(std::istream& fin) 
+void tree_code_t::read(my_buffered_reader& fin) 
 {
 	first.read(fin);
 	second.read(fin);
 }
 
-void tree_code_t::print(std::ostream& fout) const
+void tree_code_t::print(my_buffered_writer& fout) const
 {
 	first.print(fout);
 	second.print(fout);

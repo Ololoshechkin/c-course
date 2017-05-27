@@ -186,7 +186,6 @@ binary_code.o: binary_code.cpp.o
 
 # target to build an object file
 binary_code.cpp.o:
-	$(MAKE) -f CMakeFiles/Huffman.dir/build.make CMakeFiles/Huffman.dir/binary_code.cpp.o
 	$(MAKE) -f CMakeFiles/huffman_lib.dir/build.make CMakeFiles/huffman_lib.dir/binary_code.cpp.o
 .PHONY : binary_code.cpp.o
 
@@ -196,7 +195,6 @@ binary_code.i: binary_code.cpp.i
 
 # target to preprocess a source file
 binary_code.cpp.i:
-	$(MAKE) -f CMakeFiles/Huffman.dir/build.make CMakeFiles/Huffman.dir/binary_code.cpp.i
 	$(MAKE) -f CMakeFiles/huffman_lib.dir/build.make CMakeFiles/huffman_lib.dir/binary_code.cpp.i
 .PHONY : binary_code.cpp.i
 
@@ -206,7 +204,6 @@ binary_code.s: binary_code.cpp.s
 
 # target to generate assembly for a file
 binary_code.cpp.s:
-	$(MAKE) -f CMakeFiles/Huffman.dir/build.make CMakeFiles/Huffman.dir/binary_code.cpp.s
 	$(MAKE) -f CMakeFiles/huffman_lib.dir/build.make CMakeFiles/huffman_lib.dir/binary_code.cpp.s
 .PHONY : binary_code.cpp.s
 
@@ -216,7 +213,7 @@ exceptions.o: exceptions.cpp.o
 
 # target to build an object file
 exceptions.cpp.o:
-	$(MAKE) -f CMakeFiles/Huffman.dir/build.make CMakeFiles/Huffman.dir/exceptions.cpp.o
+	$(MAKE) -f CMakeFiles/huffman_lib.dir/build.make CMakeFiles/huffman_lib.dir/exceptions.cpp.o
 .PHONY : exceptions.cpp.o
 
 exceptions.i: exceptions.cpp.i
@@ -225,7 +222,7 @@ exceptions.i: exceptions.cpp.i
 
 # target to preprocess a source file
 exceptions.cpp.i:
-	$(MAKE) -f CMakeFiles/Huffman.dir/build.make CMakeFiles/Huffman.dir/exceptions.cpp.i
+	$(MAKE) -f CMakeFiles/huffman_lib.dir/build.make CMakeFiles/huffman_lib.dir/exceptions.cpp.i
 .PHONY : exceptions.cpp.i
 
 exceptions.s: exceptions.cpp.s
@@ -234,7 +231,7 @@ exceptions.s: exceptions.cpp.s
 
 # target to generate assembly for a file
 exceptions.cpp.s:
-	$(MAKE) -f CMakeFiles/Huffman.dir/build.make CMakeFiles/Huffman.dir/exceptions.cpp.s
+	$(MAKE) -f CMakeFiles/huffman_lib.dir/build.make CMakeFiles/huffman_lib.dir/exceptions.cpp.s
 .PHONY : exceptions.cpp.s
 
 huffman_archiver.o: huffman_archiver.cpp.o
@@ -243,7 +240,6 @@ huffman_archiver.o: huffman_archiver.cpp.o
 
 # target to build an object file
 huffman_archiver.cpp.o:
-	$(MAKE) -f CMakeFiles/Huffman.dir/build.make CMakeFiles/Huffman.dir/huffman_archiver.cpp.o
 	$(MAKE) -f CMakeFiles/huffman_lib.dir/build.make CMakeFiles/huffman_lib.dir/huffman_archiver.cpp.o
 .PHONY : huffman_archiver.cpp.o
 
@@ -253,7 +249,6 @@ huffman_archiver.i: huffman_archiver.cpp.i
 
 # target to preprocess a source file
 huffman_archiver.cpp.i:
-	$(MAKE) -f CMakeFiles/Huffman.dir/build.make CMakeFiles/Huffman.dir/huffman_archiver.cpp.i
 	$(MAKE) -f CMakeFiles/huffman_lib.dir/build.make CMakeFiles/huffman_lib.dir/huffman_archiver.cpp.i
 .PHONY : huffman_archiver.cpp.i
 
@@ -263,7 +258,6 @@ huffman_archiver.s: huffman_archiver.cpp.s
 
 # target to generate assembly for a file
 huffman_archiver.cpp.s:
-	$(MAKE) -f CMakeFiles/Huffman.dir/build.make CMakeFiles/Huffman.dir/huffman_archiver.cpp.s
 	$(MAKE) -f CMakeFiles/huffman_lib.dir/build.make CMakeFiles/huffman_lib.dir/huffman_archiver.cpp.s
 .PHONY : huffman_archiver.cpp.s
 
@@ -273,7 +267,6 @@ huffman_data.o: huffman_data.cpp.o
 
 # target to build an object file
 huffman_data.cpp.o:
-	$(MAKE) -f CMakeFiles/Huffman.dir/build.make CMakeFiles/Huffman.dir/huffman_data.cpp.o
 	$(MAKE) -f CMakeFiles/huffman_lib.dir/build.make CMakeFiles/huffman_lib.dir/huffman_data.cpp.o
 .PHONY : huffman_data.cpp.o
 
@@ -283,7 +276,6 @@ huffman_data.i: huffman_data.cpp.i
 
 # target to preprocess a source file
 huffman_data.cpp.i:
-	$(MAKE) -f CMakeFiles/Huffman.dir/build.make CMakeFiles/Huffman.dir/huffman_data.cpp.i
 	$(MAKE) -f CMakeFiles/huffman_lib.dir/build.make CMakeFiles/huffman_lib.dir/huffman_data.cpp.i
 .PHONY : huffman_data.cpp.i
 
@@ -293,7 +285,6 @@ huffman_data.s: huffman_data.cpp.s
 
 # target to generate assembly for a file
 huffman_data.cpp.s:
-	$(MAKE) -f CMakeFiles/Huffman.dir/build.make CMakeFiles/Huffman.dir/huffman_data.cpp.s
 	$(MAKE) -f CMakeFiles/huffman_lib.dir/build.make CMakeFiles/huffman_lib.dir/huffman_data.cpp.s
 .PHONY : huffman_data.cpp.s
 
@@ -330,7 +321,6 @@ huffman_tree.o: huffman_tree.cpp.o
 
 # target to build an object file
 huffman_tree.cpp.o:
-	$(MAKE) -f CMakeFiles/Huffman.dir/build.make CMakeFiles/Huffman.dir/huffman_tree.cpp.o
 	$(MAKE) -f CMakeFiles/huffman_lib.dir/build.make CMakeFiles/huffman_lib.dir/huffman_tree.cpp.o
 .PHONY : huffman_tree.cpp.o
 
@@ -340,7 +330,6 @@ huffman_tree.i: huffman_tree.cpp.i
 
 # target to preprocess a source file
 huffman_tree.cpp.i:
-	$(MAKE) -f CMakeFiles/Huffman.dir/build.make CMakeFiles/Huffman.dir/huffman_tree.cpp.i
 	$(MAKE) -f CMakeFiles/huffman_lib.dir/build.make CMakeFiles/huffman_lib.dir/huffman_tree.cpp.i
 .PHONY : huffman_tree.cpp.i
 
@@ -350,7 +339,6 @@ huffman_tree.s: huffman_tree.cpp.s
 
 # target to generate assembly for a file
 huffman_tree.cpp.s:
-	$(MAKE) -f CMakeFiles/Huffman.dir/build.make CMakeFiles/Huffman.dir/huffman_tree.cpp.s
 	$(MAKE) -f CMakeFiles/huffman_lib.dir/build.make CMakeFiles/huffman_lib.dir/huffman_tree.cpp.s
 .PHONY : huffman_tree.cpp.s
 
@@ -380,6 +368,33 @@ main.s: main.cpp.s
 main.cpp.s:
 	$(MAKE) -f CMakeFiles/Huffman.dir/build.make CMakeFiles/Huffman.dir/main.cpp.s
 .PHONY : main.cpp.s
+
+my_buffered_reader.o: my_buffered_reader.cpp.o
+
+.PHONY : my_buffered_reader.o
+
+# target to build an object file
+my_buffered_reader.cpp.o:
+	$(MAKE) -f CMakeFiles/huffman_lib.dir/build.make CMakeFiles/huffman_lib.dir/my_buffered_reader.cpp.o
+.PHONY : my_buffered_reader.cpp.o
+
+my_buffered_reader.i: my_buffered_reader.cpp.i
+
+.PHONY : my_buffered_reader.i
+
+# target to preprocess a source file
+my_buffered_reader.cpp.i:
+	$(MAKE) -f CMakeFiles/huffman_lib.dir/build.make CMakeFiles/huffman_lib.dir/my_buffered_reader.cpp.i
+.PHONY : my_buffered_reader.cpp.i
+
+my_buffered_reader.s: my_buffered_reader.cpp.s
+
+.PHONY : my_buffered_reader.s
+
+# target to generate assembly for a file
+my_buffered_reader.cpp.s:
+	$(MAKE) -f CMakeFiles/huffman_lib.dir/build.make CMakeFiles/huffman_lib.dir/my_buffered_reader.cpp.s
+.PHONY : my_buffered_reader.cpp.s
 
 # Help Target
 help:
@@ -416,6 +431,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... my_buffered_reader.o"
+	@echo "... my_buffered_reader.i"
+	@echo "... my_buffered_reader.s"
 .PHONY : help
 
 

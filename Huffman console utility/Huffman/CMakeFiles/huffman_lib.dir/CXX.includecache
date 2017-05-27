@@ -7,14 +7,36 @@
 #IncludeRegexTransform: 
 
 /Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/binary_code.cpp
+iostream
+-
 binary_code.h
 /Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/binary_code.h
+exceptions.h
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/exceptions.h
+cstdlib
+-
 
 /Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/binary_code.h
 vector
 -
+cstdint
+-
+
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/exceptions.cpp
+exceptions.h
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/exceptions.h
+
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/exceptions.h
+exception
+-
+string
+-
 
 /Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_archiver.cpp
+iostream
+-
+string
+-
 huffman_archiver.h
 /Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_archiver.h
 
@@ -25,6 +47,42 @@ binary_code.h
 /Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/binary_code.h
 vector
 -
+iostream
+-
+fstream
+-
+stdexcept
+-
+exception
+-
+huffman_data.h
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_data.h
+
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_data.cpp
+huffman_data.h
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_data.h
+exceptions.h
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/exceptions.h
+
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_data.h
+cstdio
+-
+iostream
+-
+fstream
+-
+binary_code.h
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/binary_code.h
+my_buffered_reader.h
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/my_buffered_reader.h
+
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_tester.cpp
+huffman_tester.h
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_tester.h
+
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_tester.h
+huffman_archiver.h
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_archiver.h
 
 /Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_tree.cpp
 vector
@@ -33,6 +91,8 @@ iostream
 -
 huffman_tree.h
 /Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_tree.h
+exceptions.h
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/exceptions.h
 
 /Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_tree.h
 cstdint
@@ -43,4 +103,18 @@ set
 -
 binary_code.h
 /Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/binary_code.h
+huffman_data.h
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_data.h
+
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/my_buffered_reader.cpp
+my_buffered_reader.h
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/my_buffered_reader.h
+
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/my_buffered_reader.h
+fstream
+-
+iostream
+-
+string
+-
 

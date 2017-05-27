@@ -41,6 +41,7 @@ private:
 	void to_letters_in_dfs_order(node*, std::vector<uint8_t>&) const;
 	void from_letters_in_dfs_order(node*, std::vector<uint8_t> const&, size_t&);
 	void from_tree_code(node*, binary_code&);
+	void destruct_dfs(node*);
 public:
 	friend bool compareNodes(node* l, node* r);
 	huffman_tree(std::vector<uint64_t>&);
@@ -49,6 +50,7 @@ public:
 	tree_code_t get_code() const;
 	huffman_data encode(std::vector<uint8_t> const&) const;
 	std::vector<uint8_t> decode(huffman_data&) const;
+	~huffman_tree();
 };
 
 

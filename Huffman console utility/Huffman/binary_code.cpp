@@ -5,6 +5,7 @@
 #include <iostream>
 #include "binary_code.h"
 #include "exceptions.h"
+#include <cstdlib>
 
 binary_code::binary_code() 
 		: data(std::vector<bool>())

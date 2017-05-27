@@ -14,7 +14,10 @@ add_library(huffman_lib
         huffman_archiver.cpp
         huffman_data.cpp 
         huffman_data.h
-        huffman_tester.cpp huffman_tester.h)
+        huffman_tester.cpp 
+        huffman_tester.h
+        exceptions.h
+        exceptions.cpp my_buffered_reader.cpp my_buffered_reader.h)
 
 install(TARGETS huffman_lib DESTINATION lib)
 install (FILES
@@ -24,18 +27,10 @@ install (FILES
         DESTINATION include/huffman_lib)
 
 add_executable(Huffman
-	main.cpp
-        binary_code.h
-        binary_code.cpp
-        huffman_tree.h
-        huffman_tree.cpp
-        huffman_archiver.h
-        huffman_archiver.cpp
-        exceptions.cpp
-        exceptions.h
-        huffman_data.cpp huffman_data.h)
+	main.cpp)
+
 if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -Wall -std=c++14 -pedantic")
-    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g -fsanitize=address,undefined")
+    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g -fsanitize=address,undefined,memory")
 endif()
-target_link_libraries(huffman_lib)
+target_link_libraries(Huffman huffman_lib)

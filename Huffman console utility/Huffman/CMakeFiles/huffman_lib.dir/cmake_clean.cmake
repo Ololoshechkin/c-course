@@ -4,6 +4,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/huffman_lib.dir/huffman_archiver.cpp.o"
   "CMakeFiles/huffman_lib.dir/huffman_data.cpp.o"
   "CMakeFiles/huffman_lib.dir/huffman_tester.cpp.o"
+  "CMakeFiles/huffman_lib.dir/exceptions.cpp.o"
+  "CMakeFiles/huffman_lib.dir/my_buffered_reader.cpp.o"
   "libhuffman_lib.pdb"
   "libhuffman_lib.a"
 )

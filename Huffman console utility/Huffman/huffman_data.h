@@ -10,10 +10,11 @@
 #include <iostream>
 #include <fstream>
 #include "binary_code.h"
+#include "my_buffered_reader.h"
 
 class huffman_data {
 private:
-	size_t get_size(std::istream&);
+	size_t get_size(my_buffered_reader&);
 public:
 	size_t size;
 	binary_code bin;
@@ -22,8 +23,8 @@ public:
 	huffman_data(const binary_code&);
 	//friend std::istream& operator>>(std::istream&, huffman_data&);
 	//friend std::ostream& operator<<(std::ostream&, huffman_data const&);
-	void read(std::istream&);
-	void print(std::ostream&) const;
+	void read(my_buffered_reader&);
+	void print(my_buffered_writer&) const;
 };
 
 struct tree_code_t {
@@ -32,9 +33,9 @@ struct tree_code_t {
 	tree_code_t();
 	tree_code_t(huffman_data const&, huffman_data const&);
 	//friend std::istream& operator>>(std::istream&, tree_code_t&);
-	//friend std::ostream& operator<<(std::ostream&, tree_code_t const&);
-	void read(std::istream&);
-	void print(std::ostream&) const;
+	//friend std::ostream& operator<<(std::ostream&, tree_code_t&);
+	void read(my_buffered_reader&);
+	void print(my_buffered_writer&) const;
 };
 
 

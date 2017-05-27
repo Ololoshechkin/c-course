@@ -167,33 +167,27 @@
 			</Target>
 		</Build>
 		<Unit filename="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/binary_code.cpp">
-			<Option target="Huffman"/>
 			<Option target="huffman_lib"/>
 		</Unit>
 		<Unit filename="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/binary_code.h">
-			<Option target="Huffman"/>
 			<Option target="huffman_lib"/>
 		</Unit>
 		<Unit filename="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/exceptions.cpp">
-			<Option target="Huffman"/>
+			<Option target="huffman_lib"/>
 		</Unit>
 		<Unit filename="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/exceptions.h">
-			<Option target="Huffman"/>
+			<Option target="huffman_lib"/>
 		</Unit>
 		<Unit filename="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_archiver.cpp">
-			<Option target="Huffman"/>
 			<Option target="huffman_lib"/>
 		</Unit>
 		<Unit filename="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_archiver.h">
-			<Option target="Huffman"/>
 			<Option target="huffman_lib"/>
 		</Unit>
 		<Unit filename="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_data.cpp">
-			<Option target="Huffman"/>
 			<Option target="huffman_lib"/>
 		</Unit>
 		<Unit filename="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_data.h">
-			<Option target="Huffman"/>
 			<Option target="huffman_lib"/>
 		</Unit>
 		<Unit filename="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_tester.cpp">
@@ -203,15 +197,19 @@
 			<Option target="huffman_lib"/>
 		</Unit>
 		<Unit filename="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_tree.cpp">
-			<Option target="Huffman"/>
 			<Option target="huffman_lib"/>
 		</Unit>
 		<Unit filename="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_tree.h">
-			<Option target="Huffman"/>
 			<Option target="huffman_lib"/>
 		</Unit>
 		<Unit filename="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/main.cpp">
 			<Option target="Huffman"/>
+		</Unit>
+		<Unit filename="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/my_buffered_reader.cpp">
+			<Option target="huffman_lib"/>
+		</Unit>
+		<Unit filename="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/my_buffered_reader.h">
+			<Option target="huffman_lib"/>
 		</Unit>
 		<Unit filename="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>

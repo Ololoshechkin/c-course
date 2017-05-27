@@ -177,13 +177,63 @@ CMakeFiles/huffman_lib.dir/huffman_tester.cpp.o.provides: CMakeFiles/huffman_lib
 CMakeFiles/huffman_lib.dir/huffman_tester.cpp.o.provides.build: CMakeFiles/huffman_lib.dir/huffman_tester.cpp.o
 
 
+CMakeFiles/huffman_lib.dir/exceptions.cpp.o: CMakeFiles/huffman_lib.dir/flags.make
+CMakeFiles/huffman_lib.dir/exceptions.cpp.o: exceptions.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/huffman_lib.dir/exceptions.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/huffman_lib.dir/exceptions.cpp.o -c "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/exceptions.cpp"
+
+CMakeFiles/huffman_lib.dir/exceptions.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/huffman_lib.dir/exceptions.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/exceptions.cpp" > CMakeFiles/huffman_lib.dir/exceptions.cpp.i
+
+CMakeFiles/huffman_lib.dir/exceptions.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/huffman_lib.dir/exceptions.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/exceptions.cpp" -o CMakeFiles/huffman_lib.dir/exceptions.cpp.s
+
+CMakeFiles/huffman_lib.dir/exceptions.cpp.o.requires:
+
+.PHONY : CMakeFiles/huffman_lib.dir/exceptions.cpp.o.requires
+
+CMakeFiles/huffman_lib.dir/exceptions.cpp.o.provides: CMakeFiles/huffman_lib.dir/exceptions.cpp.o.requires
+	$(MAKE) -f CMakeFiles/huffman_lib.dir/build.make CMakeFiles/huffman_lib.dir/exceptions.cpp.o.provides.build
+.PHONY : CMakeFiles/huffman_lib.dir/exceptions.cpp.o.provides
+
+CMakeFiles/huffman_lib.dir/exceptions.cpp.o.provides.build: CMakeFiles/huffman_lib.dir/exceptions.cpp.o
+
+
+CMakeFiles/huffman_lib.dir/my_buffered_reader.cpp.o: CMakeFiles/huffman_lib.dir/flags.make
+CMakeFiles/huffman_lib.dir/my_buffered_reader.cpp.o: my_buffered_reader.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/huffman_lib.dir/my_buffered_reader.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/huffman_lib.dir/my_buffered_reader.cpp.o -c "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/my_buffered_reader.cpp"
+
+CMakeFiles/huffman_lib.dir/my_buffered_reader.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/huffman_lib.dir/my_buffered_reader.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/my_buffered_reader.cpp" > CMakeFiles/huffman_lib.dir/my_buffered_reader.cpp.i
+
+CMakeFiles/huffman_lib.dir/my_buffered_reader.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/huffman_lib.dir/my_buffered_reader.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/my_buffered_reader.cpp" -o CMakeFiles/huffman_lib.dir/my_buffered_reader.cpp.s
+
+CMakeFiles/huffman_lib.dir/my_buffered_reader.cpp.o.requires:
+
+.PHONY : CMakeFiles/huffman_lib.dir/my_buffered_reader.cpp.o.requires
+
+CMakeFiles/huffman_lib.dir/my_buffered_reader.cpp.o.provides: CMakeFiles/huffman_lib.dir/my_buffered_reader.cpp.o.requires
+	$(MAKE) -f CMakeFiles/huffman_lib.dir/build.make CMakeFiles/huffman_lib.dir/my_buffered_reader.cpp.o.provides.build
+.PHONY : CMakeFiles/huffman_lib.dir/my_buffered_reader.cpp.o.provides
+
+CMakeFiles/huffman_lib.dir/my_buffered_reader.cpp.o.provides.build: CMakeFiles/huffman_lib.dir/my_buffered_reader.cpp.o
+
+
 # Object files for target huffman_lib
 huffman_lib_OBJECTS = \
 "CMakeFiles/huffman_lib.dir/binary_code.cpp.o" \
 "CMakeFiles/huffman_lib.dir/huffman_tree.cpp.o" \
 "CMakeFiles/huffman_lib.dir/huffman_archiver.cpp.o" \
 "CMakeFiles/huffman_lib.dir/huffman_data.cpp.o" \
-"CMakeFiles/huffman_lib.dir/huffman_tester.cpp.o"
+"CMakeFiles/huffman_lib.dir/huffman_tester.cpp.o" \
+"CMakeFiles/huffman_lib.dir/exceptions.cpp.o" \
+"CMakeFiles/huffman_lib.dir/my_buffered_reader.cpp.o"
 
 # External object files for target huffman_lib
 huffman_lib_EXTERNAL_OBJECTS =
@@ -193,9 +243,11 @@ libhuffman_lib.a: CMakeFiles/huffman_lib.dir/huffman_tree.cpp.o
 libhuffman_lib.a: CMakeFiles/huffman_lib.dir/huffman_archiver.cpp.o
 libhuffman_lib.a: CMakeFiles/huffman_lib.dir/huffman_data.cpp.o
 libhuffman_lib.a: CMakeFiles/huffman_lib.dir/huffman_tester.cpp.o
+libhuffman_lib.a: CMakeFiles/huffman_lib.dir/exceptions.cpp.o
+libhuffman_lib.a: CMakeFiles/huffman_lib.dir/my_buffered_reader.cpp.o
 libhuffman_lib.a: CMakeFiles/huffman_lib.dir/build.make
 libhuffman_lib.a: CMakeFiles/huffman_lib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX static library libhuffman_lib.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX static library libhuffman_lib.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/huffman_lib.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/huffman_lib.dir/link.txt --verbose=$(VERBOSE)
 
@@ -209,6 +261,8 @@ CMakeFiles/huffman_lib.dir/requires: CMakeFiles/huffman_lib.dir/huffman_tree.cpp
 CMakeFiles/huffman_lib.dir/requires: CMakeFiles/huffman_lib.dir/huffman_archiver.cpp.o.requires
 CMakeFiles/huffman_lib.dir/requires: CMakeFiles/huffman_lib.dir/huffman_data.cpp.o.requires
 CMakeFiles/huffman_lib.dir/requires: CMakeFiles/huffman_lib.dir/huffman_tester.cpp.o.requires
+CMakeFiles/huffman_lib.dir/requires: CMakeFiles/huffman_lib.dir/exceptions.cpp.o.requires
+CMakeFiles/huffman_lib.dir/requires: CMakeFiles/huffman_lib.dir/my_buffered_reader.cpp.o.requires
 
 .PHONY : CMakeFiles/huffman_lib.dir/requires
 

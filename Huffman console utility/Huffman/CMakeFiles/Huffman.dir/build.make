@@ -81,147 +81,18 @@ CMakeFiles/Huffman.dir/main.cpp.o.provides: CMakeFiles/Huffman.dir/main.cpp.o.re
 CMakeFiles/Huffman.dir/main.cpp.o.provides.build: CMakeFiles/Huffman.dir/main.cpp.o
 
 
-CMakeFiles/Huffman.dir/binary_code.cpp.o: CMakeFiles/Huffman.dir/flags.make
-CMakeFiles/Huffman.dir/binary_code.cpp.o: binary_code.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Huffman.dir/binary_code.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Huffman.dir/binary_code.cpp.o -c "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/binary_code.cpp"
-
-CMakeFiles/Huffman.dir/binary_code.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Huffman.dir/binary_code.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/binary_code.cpp" > CMakeFiles/Huffman.dir/binary_code.cpp.i
-
-CMakeFiles/Huffman.dir/binary_code.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Huffman.dir/binary_code.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/binary_code.cpp" -o CMakeFiles/Huffman.dir/binary_code.cpp.s
-
-CMakeFiles/Huffman.dir/binary_code.cpp.o.requires:
-
-.PHONY : CMakeFiles/Huffman.dir/binary_code.cpp.o.requires
-
-CMakeFiles/Huffman.dir/binary_code.cpp.o.provides: CMakeFiles/Huffman.dir/binary_code.cpp.o.requires
-	$(MAKE) -f CMakeFiles/Huffman.dir/build.make CMakeFiles/Huffman.dir/binary_code.cpp.o.provides.build
-.PHONY : CMakeFiles/Huffman.dir/binary_code.cpp.o.provides
-
-CMakeFiles/Huffman.dir/binary_code.cpp.o.provides.build: CMakeFiles/Huffman.dir/binary_code.cpp.o
-
-
-CMakeFiles/Huffman.dir/huffman_tree.cpp.o: CMakeFiles/Huffman.dir/flags.make
-CMakeFiles/Huffman.dir/huffman_tree.cpp.o: huffman_tree.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Huffman.dir/huffman_tree.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Huffman.dir/huffman_tree.cpp.o -c "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_tree.cpp"
-
-CMakeFiles/Huffman.dir/huffman_tree.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Huffman.dir/huffman_tree.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_tree.cpp" > CMakeFiles/Huffman.dir/huffman_tree.cpp.i
-
-CMakeFiles/Huffman.dir/huffman_tree.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Huffman.dir/huffman_tree.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_tree.cpp" -o CMakeFiles/Huffman.dir/huffman_tree.cpp.s
-
-CMakeFiles/Huffman.dir/huffman_tree.cpp.o.requires:
-
-.PHONY : CMakeFiles/Huffman.dir/huffman_tree.cpp.o.requires
-
-CMakeFiles/Huffman.dir/huffman_tree.cpp.o.provides: CMakeFiles/Huffman.dir/huffman_tree.cpp.o.requires
-	$(MAKE) -f CMakeFiles/Huffman.dir/build.make CMakeFiles/Huffman.dir/huffman_tree.cpp.o.provides.build
-.PHONY : CMakeFiles/Huffman.dir/huffman_tree.cpp.o.provides
-
-CMakeFiles/Huffman.dir/huffman_tree.cpp.o.provides.build: CMakeFiles/Huffman.dir/huffman_tree.cpp.o
-
-
-CMakeFiles/Huffman.dir/huffman_archiver.cpp.o: CMakeFiles/Huffman.dir/flags.make
-CMakeFiles/Huffman.dir/huffman_archiver.cpp.o: huffman_archiver.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Huffman.dir/huffman_archiver.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Huffman.dir/huffman_archiver.cpp.o -c "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_archiver.cpp"
-
-CMakeFiles/Huffman.dir/huffman_archiver.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Huffman.dir/huffman_archiver.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_archiver.cpp" > CMakeFiles/Huffman.dir/huffman_archiver.cpp.i
-
-CMakeFiles/Huffman.dir/huffman_archiver.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Huffman.dir/huffman_archiver.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_archiver.cpp" -o CMakeFiles/Huffman.dir/huffman_archiver.cpp.s
-
-CMakeFiles/Huffman.dir/huffman_archiver.cpp.o.requires:
-
-.PHONY : CMakeFiles/Huffman.dir/huffman_archiver.cpp.o.requires
-
-CMakeFiles/Huffman.dir/huffman_archiver.cpp.o.provides: CMakeFiles/Huffman.dir/huffman_archiver.cpp.o.requires
-	$(MAKE) -f CMakeFiles/Huffman.dir/build.make CMakeFiles/Huffman.dir/huffman_archiver.cpp.o.provides.build
-.PHONY : CMakeFiles/Huffman.dir/huffman_archiver.cpp.o.provides
-
-CMakeFiles/Huffman.dir/huffman_archiver.cpp.o.provides.build: CMakeFiles/Huffman.dir/huffman_archiver.cpp.o
-
-
-CMakeFiles/Huffman.dir/exceptions.cpp.o: CMakeFiles/Huffman.dir/flags.make
-CMakeFiles/Huffman.dir/exceptions.cpp.o: exceptions.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Huffman.dir/exceptions.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Huffman.dir/exceptions.cpp.o -c "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/exceptions.cpp"
-
-CMakeFiles/Huffman.dir/exceptions.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Huffman.dir/exceptions.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/exceptions.cpp" > CMakeFiles/Huffman.dir/exceptions.cpp.i
-
-CMakeFiles/Huffman.dir/exceptions.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Huffman.dir/exceptions.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/exceptions.cpp" -o CMakeFiles/Huffman.dir/exceptions.cpp.s
-
-CMakeFiles/Huffman.dir/exceptions.cpp.o.requires:
-
-.PHONY : CMakeFiles/Huffman.dir/exceptions.cpp.o.requires
-
-CMakeFiles/Huffman.dir/exceptions.cpp.o.provides: CMakeFiles/Huffman.dir/exceptions.cpp.o.requires
-	$(MAKE) -f CMakeFiles/Huffman.dir/build.make CMakeFiles/Huffman.dir/exceptions.cpp.o.provides.build
-.PHONY : CMakeFiles/Huffman.dir/exceptions.cpp.o.provides
-
-CMakeFiles/Huffman.dir/exceptions.cpp.o.provides.build: CMakeFiles/Huffman.dir/exceptions.cpp.o
-
-
-CMakeFiles/Huffman.dir/huffman_data.cpp.o: CMakeFiles/Huffman.dir/flags.make
-CMakeFiles/Huffman.dir/huffman_data.cpp.o: huffman_data.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Huffman.dir/huffman_data.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Huffman.dir/huffman_data.cpp.o -c "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_data.cpp"
-
-CMakeFiles/Huffman.dir/huffman_data.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Huffman.dir/huffman_data.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_data.cpp" > CMakeFiles/Huffman.dir/huffman_data.cpp.i
-
-CMakeFiles/Huffman.dir/huffman_data.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Huffman.dir/huffman_data.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_data.cpp" -o CMakeFiles/Huffman.dir/huffman_data.cpp.s
-
-CMakeFiles/Huffman.dir/huffman_data.cpp.o.requires:
-
-.PHONY : CMakeFiles/Huffman.dir/huffman_data.cpp.o.requires
-
-CMakeFiles/Huffman.dir/huffman_data.cpp.o.provides: CMakeFiles/Huffman.dir/huffman_data.cpp.o.requires
-	$(MAKE) -f CMakeFiles/Huffman.dir/build.make CMakeFiles/Huffman.dir/huffman_data.cpp.o.provides.build
-.PHONY : CMakeFiles/Huffman.dir/huffman_data.cpp.o.provides
-
-CMakeFiles/Huffman.dir/huffman_data.cpp.o.provides.build: CMakeFiles/Huffman.dir/huffman_data.cpp.o
-
-
 # Object files for target Huffman
 Huffman_OBJECTS = \
-"CMakeFiles/Huffman.dir/main.cpp.o" \
-"CMakeFiles/Huffman.dir/binary_code.cpp.o" \
-"CMakeFiles/Huffman.dir/huffman_tree.cpp.o" \
-"CMakeFiles/Huffman.dir/huffman_archiver.cpp.o" \
-"CMakeFiles/Huffman.dir/exceptions.cpp.o" \
-"CMakeFiles/Huffman.dir/huffman_data.cpp.o"
+"CMakeFiles/Huffman.dir/main.cpp.o"
 
 # External object files for target Huffman
 Huffman_EXTERNAL_OBJECTS =
 
 Huffman: CMakeFiles/Huffman.dir/main.cpp.o
-Huffman: CMakeFiles/Huffman.dir/binary_code.cpp.o
-Huffman: CMakeFiles/Huffman.dir/huffman_tree.cpp.o
-Huffman: CMakeFiles/Huffman.dir/huffman_archiver.cpp.o
-Huffman: CMakeFiles/Huffman.dir/exceptions.cpp.o
-Huffman: CMakeFiles/Huffman.dir/huffman_data.cpp.o
 Huffman: CMakeFiles/Huffman.dir/build.make
+Huffman: libhuffman_lib.a
 Huffman: CMakeFiles/Huffman.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable Huffman"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable Huffman"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Huffman.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -230,11 +101,6 @@ CMakeFiles/Huffman.dir/build: Huffman
 .PHONY : CMakeFiles/Huffman.dir/build
 
 CMakeFiles/Huffman.dir/requires: CMakeFiles/Huffman.dir/main.cpp.o.requires
-CMakeFiles/Huffman.dir/requires: CMakeFiles/Huffman.dir/binary_code.cpp.o.requires
-CMakeFiles/Huffman.dir/requires: CMakeFiles/Huffman.dir/huffman_tree.cpp.o.requires
-CMakeFiles/Huffman.dir/requires: CMakeFiles/Huffman.dir/huffman_archiver.cpp.o.requires
-CMakeFiles/Huffman.dir/requires: CMakeFiles/Huffman.dir/exceptions.cpp.o.requires
-CMakeFiles/Huffman.dir/requires: CMakeFiles/Huffman.dir/huffman_data.cpp.o.requires
 
 .PHONY : CMakeFiles/Huffman.dir/requires
 
