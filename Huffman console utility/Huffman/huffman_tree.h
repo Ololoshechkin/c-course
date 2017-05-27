@@ -9,6 +9,7 @@
 #include <cstdint>
 #include <climits>
 #include <set>
+#include <cstdlib>
 #include "binary_code.h"
 #include "huffman_data.h"
 

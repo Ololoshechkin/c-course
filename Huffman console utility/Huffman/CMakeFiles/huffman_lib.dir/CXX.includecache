@@ -105,6 +105,8 @@ climits
 -
 set
 -
+cstdlib
+-
 binary_code.h
 /Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/binary_code.h
 huffman_data.h

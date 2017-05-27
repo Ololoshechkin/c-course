@@ -12,7 +12,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_tree.cpp" "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/CMakeFiles/huffman_lib.dir/huffman_tree.cpp.o"
   "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/my_buffered_reader.cpp" "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/CMakeFiles/huffman_lib.dir/my_buffered_reader.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "AppleClang")
+set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
