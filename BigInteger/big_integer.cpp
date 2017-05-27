@@ -703,5 +703,3 @@ big_integer::~big_integer()
 std::string to_string(big_integer const& b)  {
     return b.to_string();
 }
-
-

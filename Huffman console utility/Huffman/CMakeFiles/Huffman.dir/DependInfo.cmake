@@ -7,6 +7,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/binary_code.cpp" "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/CMakeFiles/Huffman.dir/binary_code.cpp.o"
   "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/exceptions.cpp" "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/CMakeFiles/Huffman.dir/exceptions.cpp.o"
   "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_archiver.cpp" "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/CMakeFiles/Huffman.dir/huffman_archiver.cpp.o"
+  "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_data.cpp" "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/CMakeFiles/Huffman.dir/huffman_data.cpp.o"
   "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_tree.cpp" "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/CMakeFiles/Huffman.dir/huffman_tree.cpp.o"
   "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/main.cpp" "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/CMakeFiles/Huffman.dir/main.cpp.o"
   )

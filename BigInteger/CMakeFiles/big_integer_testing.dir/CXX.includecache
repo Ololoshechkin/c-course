@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/Users/Vadim/Downloads/cpp-course-master/bigint/big_integer.cpp
+/Users/Vadim/Documents/coding/c++ course/BigInteger/big_integer.cpp
 big_integer.h
-/Users/Vadim/Downloads/cpp-course-master/bigint/big_integer.h
+/Users/Vadim/Documents/coding/c++ course/BigInteger/big_integer.h
 stdexcept
 -
 exception
@@ -16,7 +16,7 @@ exception
 algorithm
 -
 
-/Users/Vadim/Downloads/cpp-course-master/bigint/big_integer.h
+/Users/Vadim/Documents/coding/c++ course/BigInteger/big_integer.h
 vector
 -
 string
@@ -32,7 +32,7 @@ cmath
 functional
 -
 
-/Users/Vadim/Downloads/cpp-course-master/bigint/big_integer_testing.cpp
+/Users/Vadim/Documents/coding/c++ course/BigInteger/big_integer_testing.cpp
 algorithm
 -
 cassert
@@ -46,9 +46,9 @@ utility
 gtest/gtest.h
 -
 big_integer.h
-/Users/Vadim/Downloads/cpp-course-master/bigint/big_integer.h
+/Users/Vadim/Documents/coding/c++ course/BigInteger/big_integer.h
 
-/Users/Vadim/Downloads/cpp-course-master/bigint/gtest/gtest-all.cc
+/Users/Vadim/Documents/coding/c++ course/BigInteger/gtest/gtest-all.cc
 gtest/gtest.h
 -
 ctype.h
@@ -214,7 +214,7 @@ ostream
 string
 -
 
-/Users/Vadim/Downloads/cpp-course-master/bigint/gtest/gtest_main.cc
+/Users/Vadim/Documents/coding/c++ course/BigInteger/gtest/gtest_main.cc
 stdio.h
 -
 gtest/gtest.h

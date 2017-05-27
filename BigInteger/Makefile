@@ -48,10 +48,10 @@ RM = /usr/local/Cellar/cmake/3.6.1/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/Vadim/Downloads/cpp-course-master/bigint
+CMAKE_SOURCE_DIR = "/Users/Vadim/Documents/coding/c++ course/BigInteger"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/Vadim/Downloads/cpp-course-master/bigint
+CMAKE_BINARY_DIR = "/Users/Vadim/Documents/coding/c++ course/BigInteger"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/Vadim/Downloads/cpp-course-master/bigint/CMakeFiles /Users/Vadim/Downloads/cpp-course-master/bigint/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/Vadim/Documents/coding/c++ course/BigInteger/CMakeFiles" "/Users/Vadim/Documents/coding/c++ course/BigInteger/CMakeFiles/progress.marks"
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/Vadim/Downloads/cpp-course-master/bigint/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/Vadim/Documents/coding/c++ course/BigInteger/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target

@@ -12,6 +12,8 @@ add_library(huffman_lib
         huffman_tree.cpp
         huffman_archiver.h
         huffman_archiver.cpp
+        huffman_data.cpp 
+        huffman_data.h
         )
 
 install(TARGETS huffman_lib DESTINATION lib)
@@ -31,7 +33,7 @@ add_executable(Huffman
         huffman_archiver.cpp
         exceptions.cpp
         exceptions.h
-        )
+        huffman_data.cpp huffman_data.h)
 if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -Wall -std=c++14 -pedantic")
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g -fsanitize=address,undefined")

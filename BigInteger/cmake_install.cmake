@@ -1,4 +1,4 @@
-# Install script for directory: /Users/Vadim/Downloads/cpp-course-master/bigint
+# Install script for directory: /Users/Vadim/Documents/coding/c++ course/BigInteger
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -35,5 +35,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/Vadim/Downloads/cpp-course-master/bigint/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/Vadim/Documents/coding/c++ course/BigInteger/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

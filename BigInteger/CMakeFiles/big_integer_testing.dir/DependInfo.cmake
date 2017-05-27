@@ -4,10 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/Vadim/Downloads/cpp-course-master/bigint/big_integer.cpp" "/Users/Vadim/Downloads/cpp-course-master/bigint/CMakeFiles/big_integer_testing.dir/big_integer.cpp.o"
-  "/Users/Vadim/Downloads/cpp-course-master/bigint/big_integer_testing.cpp" "/Users/Vadim/Downloads/cpp-course-master/bigint/CMakeFiles/big_integer_testing.dir/big_integer_testing.cpp.o"
-  "/Users/Vadim/Downloads/cpp-course-master/bigint/gtest/gtest-all.cc" "/Users/Vadim/Downloads/cpp-course-master/bigint/CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.o"
-  "/Users/Vadim/Downloads/cpp-course-master/bigint/gtest/gtest_main.cc" "/Users/Vadim/Downloads/cpp-course-master/bigint/CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.o"
+  "/Users/Vadim/Documents/coding/c++ course/BigInteger/big_integer.cpp" "/Users/Vadim/Documents/coding/c++ course/BigInteger/CMakeFiles/big_integer_testing.dir/big_integer.cpp.o"
+  "/Users/Vadim/Documents/coding/c++ course/BigInteger/big_integer_testing.cpp" "/Users/Vadim/Documents/coding/c++ course/BigInteger/CMakeFiles/big_integer_testing.dir/big_integer_testing.cpp.o"
+  "/Users/Vadim/Documents/coding/c++ course/BigInteger/gtest/gtest-all.cc" "/Users/Vadim/Documents/coding/c++ course/BigInteger/CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.o"
+  "/Users/Vadim/Documents/coding/c++ course/BigInteger/gtest/gtest_main.cc" "/Users/Vadim/Documents/coding/c++ course/BigInteger/CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "Clang")
 

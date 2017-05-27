@@ -188,6 +188,14 @@
 			<Option target="Huffman"/>
 			<Option target="huffman_lib"/>
 		</Unit>
+		<Unit filename="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_data.cpp">
+			<Option target="Huffman"/>
+			<Option target="huffman_lib"/>
+		</Unit>
+		<Unit filename="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_data.h">
+			<Option target="Huffman"/>
+			<Option target="huffman_lib"/>
+		</Unit>
 		<Unit filename="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_tree.cpp">
 			<Option target="Huffman"/>
 			<Option target="huffman_lib"/>

@@ -267,6 +267,36 @@ huffman_archiver.cpp.s:
 	$(MAKE) -f CMakeFiles/huffman_lib.dir/build.make CMakeFiles/huffman_lib.dir/huffman_archiver.cpp.s
 .PHONY : huffman_archiver.cpp.s
 
+huffman_data.o: huffman_data.cpp.o
+
+.PHONY : huffman_data.o
+
+# target to build an object file
+huffman_data.cpp.o:
+	$(MAKE) -f CMakeFiles/Huffman.dir/build.make CMakeFiles/Huffman.dir/huffman_data.cpp.o
+	$(MAKE) -f CMakeFiles/huffman_lib.dir/build.make CMakeFiles/huffman_lib.dir/huffman_data.cpp.o
+.PHONY : huffman_data.cpp.o
+
+huffman_data.i: huffman_data.cpp.i
+
+.PHONY : huffman_data.i
+
+# target to preprocess a source file
+huffman_data.cpp.i:
+	$(MAKE) -f CMakeFiles/Huffman.dir/build.make CMakeFiles/Huffman.dir/huffman_data.cpp.i
+	$(MAKE) -f CMakeFiles/huffman_lib.dir/build.make CMakeFiles/huffman_lib.dir/huffman_data.cpp.i
+.PHONY : huffman_data.cpp.i
+
+huffman_data.s: huffman_data.cpp.s
+
+.PHONY : huffman_data.s
+
+# target to generate assembly for a file
+huffman_data.cpp.s:
+	$(MAKE) -f CMakeFiles/Huffman.dir/build.make CMakeFiles/Huffman.dir/huffman_data.cpp.s
+	$(MAKE) -f CMakeFiles/huffman_lib.dir/build.make CMakeFiles/huffman_lib.dir/huffman_data.cpp.s
+.PHONY : huffman_data.cpp.s
+
 huffman_tree.o: huffman_tree.cpp.o
 
 .PHONY : huffman_tree.o
@@ -347,6 +377,9 @@ help:
 	@echo "... huffman_archiver.o"
 	@echo "... huffman_archiver.i"
 	@echo "... huffman_archiver.s"
+	@echo "... huffman_data.o"
+	@echo "... huffman_data.i"
+	@echo "... huffman_data.s"
 	@echo "... huffman_tree.o"
 	@echo "... huffman_tree.i"
 	@echo "... huffman_tree.s"

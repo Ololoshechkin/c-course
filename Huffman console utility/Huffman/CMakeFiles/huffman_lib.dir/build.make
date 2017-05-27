@@ -129,11 +129,36 @@ CMakeFiles/huffman_lib.dir/huffman_archiver.cpp.o.provides: CMakeFiles/huffman_l
 CMakeFiles/huffman_lib.dir/huffman_archiver.cpp.o.provides.build: CMakeFiles/huffman_lib.dir/huffman_archiver.cpp.o
 
 
+CMakeFiles/huffman_lib.dir/huffman_data.cpp.o: CMakeFiles/huffman_lib.dir/flags.make
+CMakeFiles/huffman_lib.dir/huffman_data.cpp.o: huffman_data.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/huffman_lib.dir/huffman_data.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/huffman_lib.dir/huffman_data.cpp.o -c "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_data.cpp"
+
+CMakeFiles/huffman_lib.dir/huffman_data.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/huffman_lib.dir/huffman_data.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_data.cpp" > CMakeFiles/huffman_lib.dir/huffman_data.cpp.i
+
+CMakeFiles/huffman_lib.dir/huffman_data.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/huffman_lib.dir/huffman_data.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_data.cpp" -o CMakeFiles/huffman_lib.dir/huffman_data.cpp.s
+
+CMakeFiles/huffman_lib.dir/huffman_data.cpp.o.requires:
+
+.PHONY : CMakeFiles/huffman_lib.dir/huffman_data.cpp.o.requires
+
+CMakeFiles/huffman_lib.dir/huffman_data.cpp.o.provides: CMakeFiles/huffman_lib.dir/huffman_data.cpp.o.requires
+	$(MAKE) -f CMakeFiles/huffman_lib.dir/build.make CMakeFiles/huffman_lib.dir/huffman_data.cpp.o.provides.build
+.PHONY : CMakeFiles/huffman_lib.dir/huffman_data.cpp.o.provides
+
+CMakeFiles/huffman_lib.dir/huffman_data.cpp.o.provides.build: CMakeFiles/huffman_lib.dir/huffman_data.cpp.o
+
+
 # Object files for target huffman_lib
 huffman_lib_OBJECTS = \
 "CMakeFiles/huffman_lib.dir/binary_code.cpp.o" \
 "CMakeFiles/huffman_lib.dir/huffman_tree.cpp.o" \
-"CMakeFiles/huffman_lib.dir/huffman_archiver.cpp.o"
+"CMakeFiles/huffman_lib.dir/huffman_archiver.cpp.o" \
+"CMakeFiles/huffman_lib.dir/huffman_data.cpp.o"
 
 # External object files for target huffman_lib
 huffman_lib_EXTERNAL_OBJECTS =
@@ -141,9 +166,10 @@ huffman_lib_EXTERNAL_OBJECTS =
 libhuffman_lib.a: CMakeFiles/huffman_lib.dir/binary_code.cpp.o
 libhuffman_lib.a: CMakeFiles/huffman_lib.dir/huffman_tree.cpp.o
 libhuffman_lib.a: CMakeFiles/huffman_lib.dir/huffman_archiver.cpp.o
+libhuffman_lib.a: CMakeFiles/huffman_lib.dir/huffman_data.cpp.o
 libhuffman_lib.a: CMakeFiles/huffman_lib.dir/build.make
 libhuffman_lib.a: CMakeFiles/huffman_lib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library libhuffman_lib.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX static library libhuffman_lib.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/huffman_lib.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/huffman_lib.dir/link.txt --verbose=$(VERBOSE)
 
@@ -155,6 +181,7 @@ CMakeFiles/huffman_lib.dir/build: libhuffman_lib.a
 CMakeFiles/huffman_lib.dir/requires: CMakeFiles/huffman_lib.dir/binary_code.cpp.o.requires
 CMakeFiles/huffman_lib.dir/requires: CMakeFiles/huffman_lib.dir/huffman_tree.cpp.o.requires
 CMakeFiles/huffman_lib.dir/requires: CMakeFiles/huffman_lib.dir/huffman_archiver.cpp.o.requires
+CMakeFiles/huffman_lib.dir/requires: CMakeFiles/huffman_lib.dir/huffman_data.cpp.o.requires
 
 .PHONY : CMakeFiles/huffman_lib.dir/requires
 

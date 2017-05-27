@@ -1,2 +1,2 @@
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar qc libhuffman_lib.a  CMakeFiles/huffman_lib.dir/binary_code.cpp.o CMakeFiles/huffman_lib.dir/huffman_tree.cpp.o CMakeFiles/huffman_lib.dir/huffman_archiver.cpp.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar qc libhuffman_lib.a  CMakeFiles/huffman_lib.dir/binary_code.cpp.o CMakeFiles/huffman_lib.dir/huffman_tree.cpp.o CMakeFiles/huffman_lib.dir/huffman_archiver.cpp.o CMakeFiles/huffman_lib.dir/huffman_data.cpp.o
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib libhuffman_lib.a

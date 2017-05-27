@@ -4,57 +4,47 @@
 
 #include <iostream>
 #include "binary_code.h"
+#include "exceptions.h"
 
 binary_code::binary_code() 
 		: data(std::vector<bool>())
 		, pos(0)
 {}
 
-void binary_code::insert_symbol(uchar c)
+void binary_code::insert_symbol(uint8_t c)
 {
-	bool code_started = false;
 	for (int i = 7; i >= 0; --i) 
 	{
-		if (c & (1 << i))
-			code_started = true;
-		if (code_started)
-			data.push_back((c & (1 << i)) != 0);
+		data.push_back((c & (1 << i)) != 0);
 	}
-	if (!code_started)
-		data.push_back(0);
 }
 
-void binary_code::build(std::vector<uchar>& symbols, size_t length)
+void binary_code::build(std::vector<uint8_t>& symbols)
 {
 	data.clear();
 	for (size_t i = 0; i < symbols.size(); ++i)
 		insert_symbol(symbols[i]);
-	while (data.size() > length) data.pop_back();
 }
 
-std::vector<uchar> binary_code::get_code()
+std::vector<uint8_t> binary_code::get_code()
 {
-	std::vector <uchar> code;
-	uchar max_deg = (uchar)(1 << 7);
-	uchar cur_deg = max_deg;
-	uchar cur = 0;
-	while (pos & 7) ++pos;
-	for (; pos < data.size(); ++pos) {
-		bool x = data[pos];
-		std::cout << "bool : " << x << '\n';
-		if (x)
-			cur += cur_deg;
-		cur_deg >>= 1;
-		if (!cur_deg) 
-		{
-			code.push_back(cur);
-			cur_deg = max_deg;
-			cur = 0;
-		}
+	std::vector <uint8_t> code;
+	uint8_t cur = 0;
+	int deg = 7;
+	for (bool bit : data) {
+		cur += (((int) bit) << deg);
+		--deg;
+		if (deg < 0) 
+			deg = 7, code.push_back(cur), cur = 0;
 	}
-	uchar cnt = (uchar) (7 - (data.size() & 7));
-	if (cnt)
+	if (data.size() & 7) {
 		code.push_back(cur);
+		std::cout << "suffix : ";
+		for (int i = 7; i > 0; --i) {
+			std::cout << (int) (bool)(cur & (1 << i)) << ' ';
+		}
+		std::cout << '\n';
+	}
 	return code;
 }
 
@@ -65,6 +55,8 @@ void binary_code::start_encoding()
 
 bool binary_code::get_next_data() 
 {
+	if (pos == data.size())
+		throw bad_file_format_exception();
 	return data[pos++];
 }
 
@@ -83,7 +75,8 @@ void binary_code::insert_bool(bool bit)
 	data.push_back(bit);
 }
 
-size_t binary_code::get_size() {
+size_t binary_code::get_size() const
+{
 	return data.size();
 }
 

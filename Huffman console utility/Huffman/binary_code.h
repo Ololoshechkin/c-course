@@ -6,8 +6,8 @@
 #define HUFFMANLIBRARY_BINARY_CODE_H
 
 #include <vector>
+#include <cstdint>
 
-#define uchar unsigned char
 
 class binary_code
 {
@@ -16,16 +16,21 @@ private:
 	size_t pos;
 public:
 	binary_code();
-	void insert_symbol(uchar);
-	void build(std::vector<uchar>&, size_t);
-	std::vector<uchar> get_code();
+	void insert_symbol(uint8_t);
+	void build(std::vector<uint8_t>&);
+	std::vector<uint8_t> get_code();
 	void start_encoding();
 	bool get_next_data();
 	bool get_cur_data();
 	bool empty();
 	void insert_bool(bool);
-	size_t get_size();
+	size_t get_size() const;
 	~binary_code();
+	
+	// TODO : delete that shit>
+	std::vector<bool> get_data() {
+		return data;
+	}
 };
 
 

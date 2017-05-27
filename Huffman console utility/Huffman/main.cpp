@@ -29,18 +29,7 @@ void print(char c)
 	std::cout << c << std::endl;
 }
 
-size_t get_size(std::ifstream& fin) {
-	size_t size = 0;
-	char c;
-	while (fin.get(c)) {
-		if (c == ' ')
-			break;
-		size = 10 * size + (c - '0');
-	}
-	return size;
-}
-
-int main(int argc, char* argv[])
+void solve(int argc, char* argv[]) 
 {
 	// TODO : delete this mesh...
 	print("program started");
@@ -62,88 +51,48 @@ int main(int argc, char* argv[])
 	if (!fout)
 		throw std::runtime_error("output file open failed");
 	huffman_archiver archiver;
-	if (cmp(argv[1], "-encrypt")) 
+	if (cmp(argv[1], "-encrypt"))
 	{
 		print("gonna encrypt");
 		char symbol;
 		while (fin.get(symbol))
 			archiver.inc_letter_cnt(symbol, 1);
-		print("fin is read!");
-		std::vector<char> tree_code = archiver.get_tree_code();
-		print("get_tree_code is finnished!");
-		binary_code bin;
-		for (char c : tree_code) {
-			unsigned char uc = ((int) c - CHAR_MIN);
-			bin.insert_symbol(uc);
-		}
-		bin.start_encoding();
-		int balance = 0;
-		while (!bin.empty()) {
-			balance += bin.get_cur_data() ? 1 : -1;
-			std::cout << " tree(next) : " << bin.get_next_data() << '\n';
-			if (!balance)
-				break;
-		}
-		uchar ctz = 0, d = 7;
-		while (!bin.empty()) {
-			ctz += bin.get_next_data() << d;
-			--d;
-			if (d < 0) {
-				d = 7;
-				std::cout << " tree(symbol-next) : " << (char) ((int) ctz - CHAR_MIN) << '\n';
-				ctz = 0;
-			}
-		}
-		for (char c : tree_code)
-			fout << c;
-		print("tree_code is written to out!");
-		std::vector<char> block_code;
 		fin.close();
-		print("fin closed");
 		fin.open(argv[2]);
-		print("fin opened again");
-		print("get_tree_code is finnished!");
-		while (!fin.eof()) {
-			block_code.clear();
-			for (size_t i = 0; i < block_size && fin.get(symbol); ++i)
-				block_code.push_back(symbol);
-			std::cout << "block.size : " << block_code.size() << std::endl;
-			block_code = archiver.encrypt(block_code);
-			std::cout << "block.size' : " << block_code.size() << std::endl;
-			for (char c : block_code)
-				fout << c;
+		for (int c = CHAR_MIN; c <= CHAR_MAX; ++c) {
+			if (archiver.get_letter_cnt((char) c))
+				std::cout << "cnt[" << (char)  c << "] = " << archiver.get_letter_cnt(c) << '\n';
 		}
+		print("fin is read!");
+		fout << archiver.get_tree_code();
+		print("get_tree_code is finnished!");
+		std::vector<char> symbols_block;
+		while (!fin.eof())
+		{
+			symbols_block.clear();
+			for (size_t i = 0; i < block_size && fin.get(symbol); ++i)
+				symbols_block.push_back(symbol);
+			fout << archiver.encrypt(symbols_block);
+		}
+		print("it's ok!");
 	}
 	else if (cmp(argv[1], "-decrypt"))
 	{
 		print("gonna decrypt");
-		std::vector<char> tree_code;
-		int sharp_cnt = 0;
-		char symbol;
-		fin.close();
-		fin.open(argv[2]);
-		while (fin.get(symbol) && sharp_cnt != 3)
-		{
-			if (symbol == '#')
-				++sharp_cnt;
-			else
-				sharp_cnt = 0;
-			tree_code.push_back(symbol);
-		}
-		if (sharp_cnt != 3) 
-			throw bad_file_format_exception();
+		tree_code_t tree_code;
+		fin >> tree_code;
+		print("tree code is obtained");
 		archiver.set_tree_code(tree_code);
-		std::cout << "tree built!\n";
-		std::vector<char> data_block;
-		while (!fin.eof()) {
-			data_block.clear();
-			size_t block_size = get_size(fin);
-			for (size_t i = 0; i < block_size && fin.get(symbol); ++i)
-				data_block.push_back(symbol);
-			data_block = archiver.decrypt(block_size, data_block);
-			for (char c : data_block)
+		print("tree code is set to archiver");
+		huffman_data data_block;
+		while (!fin.eof())
+		{
+			fin >> data_block;
+			std::vector<char> symbols = archiver.decrypt(data_block);
+			for (char c : symbols)
 				fout << c;
 		}
+		print("it's ok!");
 	}
 	else
 	{
@@ -151,5 +100,15 @@ int main(int argc, char* argv[])
 	}
 	fin.close();
 	fout.close();
+}
+
+int main(int argc, char* argv[])
+{
+	std::cout << (uint8_t) (200) << ' ' << (char) (200) << '\n';
+	char* arguments[4];
+	arguments[0] = "huffman", arguments[1] = "-encrypt", arguments[2] = "file.txt", arguments[3] = "code.txt";
+	solve(4, arguments);
+	arguments[0] = "huffman", arguments[1] = "-decrypt", arguments[2] = "code.txt", arguments[3] = "2.txt";
+	solve(4, arguments);
 	return 0;
 }

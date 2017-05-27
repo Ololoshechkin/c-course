@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/binary_code.cpp" "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/CMakeFiles/huffman_lib.dir/binary_code.cpp.o"
   "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_archiver.cpp" "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/CMakeFiles/huffman_lib.dir/huffman_archiver.cpp.o"
+  "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_data.cpp" "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/CMakeFiles/huffman_lib.dir/huffman_data.cpp.o"
   "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_tree.cpp" "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/CMakeFiles/huffman_lib.dir/huffman_tree.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")

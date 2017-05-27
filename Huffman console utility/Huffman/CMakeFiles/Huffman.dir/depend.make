@@ -3,6 +3,7 @@
 
 CMakeFiles/Huffman.dir/binary_code.cpp.o: binary_code.cpp
 CMakeFiles/Huffman.dir/binary_code.cpp.o: binary_code.h
+CMakeFiles/Huffman.dir/binary_code.cpp.o: exceptions.h
 
 CMakeFiles/Huffman.dir/exceptions.cpp.o: exceptions.cpp
 CMakeFiles/Huffman.dir/exceptions.cpp.o: exceptions.h
@@ -10,15 +11,24 @@ CMakeFiles/Huffman.dir/exceptions.cpp.o: exceptions.h
 CMakeFiles/Huffman.dir/huffman_archiver.cpp.o: binary_code.h
 CMakeFiles/Huffman.dir/huffman_archiver.cpp.o: huffman_archiver.cpp
 CMakeFiles/Huffman.dir/huffman_archiver.cpp.o: huffman_archiver.h
+CMakeFiles/Huffman.dir/huffman_archiver.cpp.o: huffman_data.h
 CMakeFiles/Huffman.dir/huffman_archiver.cpp.o: huffman_tree.h
 
+CMakeFiles/Huffman.dir/huffman_data.cpp.o: binary_code.h
+CMakeFiles/Huffman.dir/huffman_data.cpp.o: exceptions.h
+CMakeFiles/Huffman.dir/huffman_data.cpp.o: huffman_data.cpp
+CMakeFiles/Huffman.dir/huffman_data.cpp.o: huffman_data.h
+
 CMakeFiles/Huffman.dir/huffman_tree.cpp.o: binary_code.h
+CMakeFiles/Huffman.dir/huffman_tree.cpp.o: exceptions.h
+CMakeFiles/Huffman.dir/huffman_tree.cpp.o: huffman_data.h
 CMakeFiles/Huffman.dir/huffman_tree.cpp.o: huffman_tree.cpp
 CMakeFiles/Huffman.dir/huffman_tree.cpp.o: huffman_tree.h
 
 CMakeFiles/Huffman.dir/main.cpp.o: binary_code.h
 CMakeFiles/Huffman.dir/main.cpp.o: exceptions.h
 CMakeFiles/Huffman.dir/main.cpp.o: huffman_archiver.h
+CMakeFiles/Huffman.dir/main.cpp.o: huffman_data.h
 CMakeFiles/Huffman.dir/main.cpp.o: huffman_tree.h
 CMakeFiles/Huffman.dir/main.cpp.o: main.cpp
 
