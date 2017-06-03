@@ -107,7 +107,7 @@ void huffman_tester::test()
 	}
 	file.close();
 	std::cout << "big block size test: " << (test_item(false) == -1 ? "ok" : "feelsbadman =(") << '\n';
-	file << 16 << ' ' << (char) ((1 << 128) - 1) << ' ' << (char) ((1 << 128) - 1) << 1 << 'a';
+	file << 16 << " \x7f \x7f" << 1 << 'a';
 	file.close();
 	std::cout << "bad tree test: " << (test_item(false) == -1 ? "ok" : "feelsbadman =(") << '\n';
 	file.close();
