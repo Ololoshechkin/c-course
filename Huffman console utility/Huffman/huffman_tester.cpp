@@ -4,7 +4,7 @@
 
 #include "huffman_tester.h"
 
-void huffman_tester::encrypt(std::string name1, std::string name2)
+void huffman_tester::encrypt(std::string const& name1, std::string const& name2)
 {
 	my_buffered_reader fin;
 	fin.open(name1);
@@ -39,7 +39,7 @@ void huffman_tester::encrypt(std::string name1, std::string name2)
 	fout.close();
 }
 
-void huffman_tester::decrypt(std::string name1, std::string name2) 
+void huffman_tester::decrypt(std::string const& name1, std::string const& name2) 
 {
 	my_buffered_reader fin;
 	fin.open(name1);

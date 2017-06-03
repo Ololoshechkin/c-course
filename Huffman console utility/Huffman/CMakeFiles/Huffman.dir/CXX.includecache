@@ -55,6 +55,8 @@ iostream
 -
 fstream
 -
+functional
+-
 
 /Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_tree.h
 cstdint
