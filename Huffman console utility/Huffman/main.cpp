@@ -8,6 +8,7 @@
 #include "my_buffered_reader.h"
 #include <cstring>
 #include "binary_code.h"
+#include "huffman_tester.h"
 
 const size_t block_size = 128 * 1024 * 8;
 
@@ -119,6 +120,11 @@ void solve(int argc, char* argv[])
 int main(int argc, char* argv[])
 {
 	std::ios_base::sync_with_stdio(0);
+	if (argc == 2 && !strcmp(argv[1], "-test")) {
+		huffman_tester tester;
+		tester.test();
+		return 0;
+	}
 	try {
 		solve(argc, argv);
 	} 

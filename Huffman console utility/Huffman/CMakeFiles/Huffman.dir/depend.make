@@ -5,6 +5,7 @@ CMakeFiles/Huffman.dir/main.cpp.o: binary_code.h
 CMakeFiles/Huffman.dir/main.cpp.o: exceptions.h
 CMakeFiles/Huffman.dir/main.cpp.o: huffman_archiver.h
 CMakeFiles/Huffman.dir/main.cpp.o: huffman_data.h
+CMakeFiles/Huffman.dir/main.cpp.o: huffman_tester.h
 CMakeFiles/Huffman.dir/main.cpp.o: huffman_tree.h
 CMakeFiles/Huffman.dir/main.cpp.o: main.cpp
 CMakeFiles/Huffman.dir/main.cpp.o: my_buffered_reader.h

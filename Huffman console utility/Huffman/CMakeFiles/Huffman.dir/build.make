@@ -60,15 +60,15 @@ include CMakeFiles/Huffman.dir/flags.make
 CMakeFiles/Huffman.dir/main.cpp.o: CMakeFiles/Huffman.dir/flags.make
 CMakeFiles/Huffman.dir/main.cpp.o: main.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Huffman.dir/main.cpp.o"
-	/usr/local/bin/g++-6   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Huffman.dir/main.cpp.o -c "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/main.cpp"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Huffman.dir/main.cpp.o -c "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/main.cpp"
 
 CMakeFiles/Huffman.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Huffman.dir/main.cpp.i"
-	/usr/local/bin/g++-6  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/main.cpp" > CMakeFiles/Huffman.dir/main.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/main.cpp" > CMakeFiles/Huffman.dir/main.cpp.i
 
 CMakeFiles/Huffman.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Huffman.dir/main.cpp.s"
-	/usr/local/bin/g++-6  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/main.cpp" -o CMakeFiles/Huffman.dir/main.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/main.cpp" -o CMakeFiles/Huffman.dir/main.cpp.s
 
 CMakeFiles/Huffman.dir/main.cpp.o.requires:
 

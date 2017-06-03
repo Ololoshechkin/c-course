@@ -26,7 +26,6 @@ private:
 			throw std::runtime_error("output file open failed");
 		huffman_archiver archiver;
 		
-		std::cout << "encrypting...\n";
 		
 		char symbol;
 		while (fin.get(symbol))
@@ -61,7 +60,6 @@ private:
 			throw std::runtime_error("output file open failed");
 		huffman_archiver archiver;
 		
-		std::cout << "decrypting...\n";
 		tree_code_t tree_code;
 		tree_code.read(fin);
 		archiver.set_tree_code(tree_code);
@@ -75,23 +73,50 @@ private:
 			for (char c : symbols)
 				fout.put(c);
 		}
-		std::cout << "done.\ntime : " << (double) clock() / 1000000.0 << " sec.\n";
 		fin.close();
 		fout.close();
 	}
-public:
-	bool test() {
-		encrypt("file", "code");
-		decrypt("code", "file2");
+	int test_item(bool should_encrypt) {
+		try {
+			if (should_encrypt) {
+				encrypt("file", "code");
+			}
+			decrypt("code", "file2");
+		} catch (...) {
+			return -1;
+		}
 		std::ifstream fin1("file");
 		std::ifstream fin2("file2");
 		char c1, c2;
-		while (fin1.get(c1) && fin2.get(c2))
-			if (c1 != c2)
+		while (fin1.get(c1) && fin2.get(c2)) {
+			if (c1 != c2) {
 				return 0;
-		if (!fin1.eof() || !fin2.eof())
+			}
+		}
+		if (fin1.get(c1) || fin2.get(c2)) {
 			return 0;
+		}
 		return 1;
+	}
+public:
+	void test() {
+		std::ofstream file("file");
+		for (int i = 0; i < 100500; ++i) { 
+			file << char(rand() % 128);
+		}
+		file.close();
+		file.open("code");
+		std::cout << "random file test: " << (test_item(true) == 1 ? "ok" : "feelsbadman =(") << '\n';
+		file << (int) (1e10) << ' ';
+		for (int i = 0; i < (int) (1e10) / 8; ++i) {
+			file << 'a';
+		}
+		file.close();
+		std::cout << "big block size test: " << (test_item(false) == -1 ? "ok" : "feelsbadman =(") << '\n';
+		file << 16 << ' ' << (char) ((1 << 128) - 1) << ' ' << (char) ((1 << 128) - 1) << 1 << 'a';
+		file.close();
+		std::cout << "bad tree test: " << (test_item(false) == -1 ? "ok" : "feelsbadman =(") << '\n';
+		file.close();
 	}
 };
 

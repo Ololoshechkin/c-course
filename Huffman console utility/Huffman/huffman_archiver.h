@@ -32,6 +32,7 @@ public:
 	huffman_data encrypt(std::vector<char> const&) const;
 	void set_tree_code(tree_code_t&);
 	std::vector<char> decrypt(huffman_data&) const;
+	~huffman_archiver();
 };
 
 

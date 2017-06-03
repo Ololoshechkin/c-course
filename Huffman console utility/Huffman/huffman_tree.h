@@ -14,7 +14,6 @@
 #include "huffman_data.h"
 
 
-
 const bool LEFT_CODE = false;
 const bool RIGHT_CODE = true;
 const bool DOWN_CODE = false;

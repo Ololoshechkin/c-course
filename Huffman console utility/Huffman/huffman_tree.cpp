@@ -198,4 +198,7 @@ std::vector<uint8_t> huffman_tree::decode(huffman_data& code) const
 huffman_tree::~huffman_tree() 
 {
 	destruct_dfs(root);
+	letter_cnt.clear();
+	letter_code.clear();
+	letter_exists.clear();
 }

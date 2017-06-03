@@ -72,3 +72,8 @@ std::vector<char> huffman_archiver::decrypt(huffman_data& code) const
 {
 	return to_signed(tree.decode(code));
 }
+
+huffman_archiver::~huffman_archiver() 
+{
+	letter_cnt.clear();
+}

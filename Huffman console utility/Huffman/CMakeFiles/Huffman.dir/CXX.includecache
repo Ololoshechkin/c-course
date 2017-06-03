@@ -48,6 +48,14 @@ binary_code.h
 my_buffered_reader.h
 /Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/my_buffered_reader.h
 
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_tester.h
+huffman_archiver.h
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_archiver.h
+iostream
+-
+fstream
+-
+
 /Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_tree.h
 cstdint
 -
@@ -83,6 +91,8 @@ cstring
 -
 binary_code.h
 /Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/binary_code.h
+huffman_tester.h
+/Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/huffman_tester.h
 
 /Users/Vadim/Documents/coding/c++ course/Huffman console utility/Huffman/my_buffered_reader.h
 fstream

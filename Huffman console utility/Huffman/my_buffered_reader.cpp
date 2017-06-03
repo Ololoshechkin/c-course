@@ -4,6 +4,11 @@
 
 #include "my_buffered_reader.h"
 
+my_buffered_reader::my_buffered_reader()
+{
+	buffer = new char[buffer_size];
+}
+
 bool my_buffered_reader::get(char& c) 
 {
 	if (pos == size)
@@ -38,7 +43,17 @@ bool operator!(my_buffered_reader const& r)
 	return !r.fin;
 }
 
+my_buffered_reader::~my_buffered_reader() 
+{
+	delete[] buffer;
+}
 
+
+
+my_buffered_writer::my_buffered_writer() 
+{
+	buffer = new char[buffer_size];
+}
 
 void my_buffered_writer::put(char c) 
 {
@@ -74,4 +89,9 @@ void my_buffered_writer::close()
 bool operator!(my_buffered_writer const& w)
 {
 	return !w.fout;
+}
+
+my_buffered_writer::~my_buffered_writer() 
+{
+	delete [] buffer;
 }

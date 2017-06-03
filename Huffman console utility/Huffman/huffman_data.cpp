@@ -28,9 +28,9 @@ size_t huffman_data::get_size(my_buffered_reader& fin)
 		if (c == ' ')
 			break;
 		size = 10 * size + (c - '0');
-	}
-	if (size > max_block_size) {
-		throw bad_file_format_exception("incorrect block size");
+		if (size > max_block_size) {
+			throw bad_file_format_exception("incorrect block size");
+		}
 	}
 	return size;
 }
