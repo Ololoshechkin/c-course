@@ -60,15 +60,15 @@ include CMakeFiles/big_integer_testing.dir/flags.make
 CMakeFiles/big_integer_testing.dir/big_integer_testing.cpp.o: CMakeFiles/big_integer_testing.dir/flags.make
 CMakeFiles/big_integer_testing.dir/big_integer_testing.cpp.o: big_integer_testing.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/big_integer_testing.dir/big_integer_testing.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/big_integer_testing.dir/big_integer_testing.cpp.o -c "/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/big_integer_testing.cpp"
+	/usr/local/bin/g++-6   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/big_integer_testing.dir/big_integer_testing.cpp.o -c "/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/big_integer_testing.cpp"
 
 CMakeFiles/big_integer_testing.dir/big_integer_testing.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/big_integer_testing.dir/big_integer_testing.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/big_integer_testing.cpp" > CMakeFiles/big_integer_testing.dir/big_integer_testing.cpp.i
+	/usr/local/bin/g++-6  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/big_integer_testing.cpp" > CMakeFiles/big_integer_testing.dir/big_integer_testing.cpp.i
 
 CMakeFiles/big_integer_testing.dir/big_integer_testing.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/big_integer_testing.dir/big_integer_testing.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/big_integer_testing.cpp" -o CMakeFiles/big_integer_testing.dir/big_integer_testing.cpp.s
+	/usr/local/bin/g++-6  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/big_integer_testing.cpp" -o CMakeFiles/big_integer_testing.dir/big_integer_testing.cpp.s
 
 CMakeFiles/big_integer_testing.dir/big_integer_testing.cpp.o.requires:
 
@@ -84,15 +84,15 @@ CMakeFiles/big_integer_testing.dir/big_integer_testing.cpp.o.provides.build: CMa
 CMakeFiles/big_integer_testing.dir/big_integer.cpp.o: CMakeFiles/big_integer_testing.dir/flags.make
 CMakeFiles/big_integer_testing.dir/big_integer.cpp.o: big_integer.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/big_integer_testing.dir/big_integer.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/big_integer_testing.dir/big_integer.cpp.o -c "/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/big_integer.cpp"
+	/usr/local/bin/g++-6   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/big_integer_testing.dir/big_integer.cpp.o -c "/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/big_integer.cpp"
 
 CMakeFiles/big_integer_testing.dir/big_integer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/big_integer_testing.dir/big_integer.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/big_integer.cpp" > CMakeFiles/big_integer_testing.dir/big_integer.cpp.i
+	/usr/local/bin/g++-6  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/big_integer.cpp" > CMakeFiles/big_integer_testing.dir/big_integer.cpp.i
 
 CMakeFiles/big_integer_testing.dir/big_integer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/big_integer_testing.dir/big_integer.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/big_integer.cpp" -o CMakeFiles/big_integer_testing.dir/big_integer.cpp.s
+	/usr/local/bin/g++-6  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/big_integer.cpp" -o CMakeFiles/big_integer_testing.dir/big_integer.cpp.s
 
 CMakeFiles/big_integer_testing.dir/big_integer.cpp.o.requires:
 
@@ -108,15 +108,15 @@ CMakeFiles/big_integer_testing.dir/big_integer.cpp.o.provides.build: CMakeFiles/
 CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.o: CMakeFiles/big_integer_testing.dir/flags.make
 CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.o: gtest/gtest-all.cc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.o -c "/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/gtest/gtest-all.cc"
+	/usr/local/bin/g++-6   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.o -c "/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/gtest/gtest-all.cc"
 
 CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/gtest/gtest-all.cc" > CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.i
+	/usr/local/bin/g++-6  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/gtest/gtest-all.cc" > CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.i
 
 CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/gtest/gtest-all.cc" -o CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.s
+	/usr/local/bin/g++-6  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/gtest/gtest-all.cc" -o CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.s
 
 CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.o.requires:
 
@@ -132,15 +132,15 @@ CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.o.provides.build: CMakeFil
 CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.o: CMakeFiles/big_integer_testing.dir/flags.make
 CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.o: gtest/gtest_main.cc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.o -c "/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/gtest/gtest_main.cc"
+	/usr/local/bin/g++-6   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.o -c "/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/gtest/gtest_main.cc"
 
 CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/gtest/gtest_main.cc" > CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.i
+	/usr/local/bin/g++-6  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/gtest/gtest_main.cc" > CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.i
 
 CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/gtest/gtest_main.cc" -o CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.s
+	/usr/local/bin/g++-6  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/gtest/gtest_main.cc" -o CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.s
 
 CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.o.requires:
 

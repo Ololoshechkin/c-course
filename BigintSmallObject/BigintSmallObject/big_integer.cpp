@@ -226,6 +226,12 @@ bool big_integer::empty() const
     return data.empty();
 }
 
+void big_integer::swap(big_integer &other)
+{
+    data.swap(other.data);
+    std::swap(signum, other.signum);
+}
+
 
 //constructors :
 
@@ -235,9 +241,10 @@ big_integer::big_integer()
 {}
 
 big_integer::big_integer(data_t&v, short signum = 1)
-: data(v)
-, signum(signum)
-{}
+: signum(signum)
+{
+    data = v;
+}
 
 big_integer::big_integer(int val)
 {
@@ -290,17 +297,12 @@ big_integer::big_integer(std::string const& s)
 
 // copy constructor
 big_integer::big_integer(big_integer const& other)
-{
-    data = other.data;
-    signum = other.signum;
-}
+: data(other.data)
+, signum(other.signum)
+{}
 
 std::string big_integer::to_string() const
 {
-    /*std::cout << "signum = " << signum << "\ndata : ";
-    for (size_t i = 0; i < data.size(); ++i)
-        std::cout << data[i] << ' ';
-    std::cout << '\n';*/
     std::string answer = "";
     big_integer cur = *this;
     while (cur.signum != 0)
@@ -326,8 +328,8 @@ bool big_integer::is_deg2() const {
 
 big_integer& big_integer::operator=(const big_integer& other)
 {
-    data = other.data;
-    signum = other.signum;
+    big_integer tmp(other);
+    swap(tmp);
     return *this;
 }
 
@@ -508,7 +510,7 @@ big_integer operator/(big_integer const& a, big_integer const& b) {
     right.mul(normalization);
     size_t n = left.size(), m = right.size();
     std::vector<uint32_t> q(n);
-    big_integer beta = big_integer::base_deg(n - m) * right, tmp;
+    big_integer beta = big_integer::base_deg(n - m) * right, tmp(1);
     for (size_t j = n - m; ; --j) {
         uint64_t q_star = 0;
         if (m + j - 1 < left.size())
@@ -516,6 +518,7 @@ big_integer operator/(big_integer const& a, big_integer const& b) {
         if (m + j < left.size())
             q_star = ((uint64_t) left[m + j] * base + left[m + j - 1]) / right.back();
         q[j] = (uint32_t) std::min(q_star, (uint64_t) max_int32);
+        //std::cout << "tmp = " << tmp << " , beta = " << beta << '\n';
         tmp = beta;
         tmp.mul(q[j]);
         tmp.correct_size();
@@ -529,7 +532,7 @@ big_integer operator/(big_integer const& a, big_integer const& b) {
         beta.div_max_int32();
         if (!j) break;
     }
-    data_t q_data = data_t(q);
+    data_t q_data(q);
     big_integer answer(q_data, 1);
     answer.correct_size();
     answer.signum = signum;
@@ -688,8 +691,9 @@ big_integer big_integer::absolute() const {
 }
 
 big_integer big_integer::base_deg(size_t n) {
-    data_t res_data(n);
-    res_data.push_back(1);
+    std::vector<uint32_t> v(n + 1);
+    v.back() = 1;
+    data_t res_data(v);
     return big_integer(res_data, 1);
 }
 
@@ -697,7 +701,6 @@ big_integer big_integer::base_deg(size_t n) {
 // destructor:
 big_integer::~big_integer()
 {
-    data.clear();
 }
 
 std::string to_string(big_integer const& b)  {

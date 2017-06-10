@@ -12,7 +12,7 @@
 #include <memory>
 #include <algorithm>
 #include <vector>
-#include <cstdlib>
+#include <string.h>
 
 const size_t SMALL_SIZE = 4;
 
@@ -22,7 +22,7 @@ struct bigint_data {
     {
         if (is_small())
         {
-            memset(small_data, 0, SMALL_SIZE * sizeof(uint32_t));
+            memset(small_data, 0, sizeof(small_data));
         }
         else
         {
@@ -34,13 +34,11 @@ struct bigint_data {
             memset(data.get() + 1, 0, capacity() * sizeof(uint32_t));
         }
     }
-    bigint_data(bigint_data const & other)
+    bigint_data(bigint_data const& other)
     : sz(other.sz)
     {
         if (other.is_small())
-            std::copy(other.small_data,
-                      other.small_data + SMALL_SIZE,
-                      small_data);
+            std::copy(other.small_data, other.small_data + SMALL_SIZE, small_data);
         else
             new (&data) std::shared_ptr<uint32_t> (other.data);
     }
@@ -75,7 +73,7 @@ struct bigint_data {
         --sz;
         if (is_small() && wasnt_small) {
             uint32_t tmp[SMALL_SIZE];
-            std::copy(data.get() + 1, data.get() + sz + 1, tmp);
+            std::copy(data.get() + 1, data.get() + SMALL_SIZE + 1, tmp);
             data.~shared_ptr();
             std::copy(tmp, tmp + SMALL_SIZE, small_data);
         }
@@ -96,7 +94,8 @@ struct bigint_data {
     }
     void clear()
     {
-        sz = 0;
+        while (sz)
+            pop_back();
     }
     bool empty() const
     {
@@ -106,8 +105,13 @@ struct bigint_data {
     {
         if (is_small() || data.unique()) return;
         auto tmp_data = data_factory(sz + 1);
-        std::copy(data.get(), data.get() + sz + 1, tmp_data.get());
+        std::copy(data.get(), data.get() + sz + 2, tmp_data.get());
         data.swap(tmp_data);
+    }
+    void swap(bigint_data& other)
+    {
+        std::swap(sz, other.sz);
+        std::swap(small_data, other.small_data);
     }
     ~bigint_data() {
         if (!is_small())
@@ -132,7 +136,7 @@ private:
     {
         if (n <= capacity())
             return;
-        size_t new_size = (n << 1) - (n >> 1) + 1;
+        size_t new_size = 1.5 * n + 1;
         auto n_data = data_factory(new_size + 1);
         n_data.get()[0] = (uint32_t) new_size;
         if (is_small()) {
@@ -150,14 +154,6 @@ private:
         return std::shared_ptr<uint32_t>(
                    new uint32_t[size],
                    std::default_delete<uint32_t[]>());
-    }
-    void swap(bigint_data& other)
-    {
-        std::swap(sz, other.sz);
-        if (is_small())
-            std::swap(small_data, other.small_data);
-        else
-            data.swap(other.data);
     }
 };
 

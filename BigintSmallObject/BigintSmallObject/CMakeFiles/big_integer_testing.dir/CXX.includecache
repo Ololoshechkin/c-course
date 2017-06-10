@@ -57,6 +57,8 @@ algorithm
 -
 vector
 -
+string.h
+-
 
 /Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/bigint_data_std.h
 stdio.h

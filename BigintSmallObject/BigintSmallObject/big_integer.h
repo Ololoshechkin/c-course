@@ -53,6 +53,7 @@ private:
     void pop_back();
     void push_back(uint32_t);
     bool empty() const;
+    void swap(big_integer&);
     
 public:
     
