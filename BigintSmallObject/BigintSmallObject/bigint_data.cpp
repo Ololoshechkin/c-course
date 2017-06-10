@@ -13,13 +13,17 @@ bigint_data::bigint_data(size_t n)
 {
     if (is_small())
     {
-        memset(small_data, 0, sizeof(small_data));
+        for (size_t i = 0; i < SMALL_SIZE; ++i)
+            small_data[i] = 0;
     }
     else
     {
-        new (&data) my_shared_ptr(new uint32_t[n + 1]);
+        new (&data) std::shared_ptr<uint32_t>(
+                        new uint32_t[n + 1],
+                        std::default_delete<uint32_t[]>());
         data.get()[0] = (uint32_t) n;
-        memset(data.get() + 1, 0, capacity() * sizeof(uint32_t));
+        for (size_t i = 1; i <= n; ++i)
+            data.get()[i] = 0;
     }
 }
 
@@ -27,21 +31,26 @@ bigint_data::bigint_data(bigint_data const& other)
 : sz(other.sz)
 {
     if (other.is_small())
-        std::copy(other.small_data, other.small_data + SMALL_SIZE, small_data);
+        for (size_t i = 0; i < SMALL_SIZE; ++i)
+            small_data[i] = other.small_data[i];
     else
-        new (&data) my_shared_ptr(other.data);
+        new (&data) std::shared_ptr<uint32_t>(other.data);
 }
 
 bigint_data::bigint_data(std::vector<uint32_t> const& v)
 : sz(v.size())
 {
     if (is_small())
-        std::copy(v.begin(), v.end(), small_data);
+        for (size_t i = 0; i < v.size(); ++i)
+            small_data[i] = v[i];
     else
     {
-        new (&data) my_shared_ptr(new uint32_t[v.size() + 1]);
+        new (&data) std::shared_ptr<uint32_t>(
+                     new uint32_t[v.size() + 1],
+                     std::default_delete<uint32_t[]>());
         data.get()[0] = (uint32_t) v.size();
-        std::copy(v.begin(), v.end(), data.get() + 1);
+        for (size_t i = 0; i < v.size(); ++i)
+            data.get()[i + 1] = v[i];
     }
 }
 
@@ -80,9 +89,11 @@ void bigint_data::pop_back()
     --sz;
     if (is_small() && wasnt_small) {
         uint32_t tmp[SMALL_SIZE];
-        std::copy(data.get() + 1, data.get() + SMALL_SIZE + 1, tmp);
-        data.~my_shared_ptr();
-        std::copy(tmp, tmp + SMALL_SIZE, small_data);
+        for (size_t i = 0; i < SMALL_SIZE; ++i)
+            tmp[i] = data.get()[i + 1];
+        data.~shared_ptr();
+        for (size_t i = 0; i < SMALL_SIZE; ++i)
+            small_data[i] = tmp[i];
     }
 }
 
@@ -117,21 +128,23 @@ bool bigint_data::empty() const
 void bigint_data::detach()
 {
     if (is_small() || data.unique()) return;
-    auto tmp_data = data_factory(sz + 1);
-    std::copy(data.get(), data.get() + sz + 1, tmp_data.get());
-    std::swap(data, tmp_data);
+    std::shared_ptr<uint32_t> tmp_data = data_factory(sz + 1);
+    for (size_t i = 0; i < sz + 1; ++i)
+        tmp_data.get()[i] = data.get()[i];
+    data.swap(tmp_data);
 }
 
 void bigint_data::swap(bigint_data &other)
 {
     std::swap(sz, other.sz);
-    std::swap(small_data, other.small_data);
+    for (size_t i = 0; i < SMALL_SIZE; ++i)
+        std::swap(small_data[i], other.small_data[i]);
 }
 
 bigint_data::~bigint_data()
 {
     if (!is_small())
-        data.~my_shared_ptr();
+        data.~shared_ptr();
 }
 
 bool bigint_data::is_small() const
@@ -152,17 +165,21 @@ void bigint_data::ensure(size_t n)
     auto n_data = data_factory(new_size + 1);
     n_data.get()[0] = (uint32_t) new_size;
     if (is_small()) {
-        std::copy(small_data, small_data + SMALL_SIZE, n_data.get() + 1);
+        for (size_t i = 0; i < sz; ++i)
+            n_data.get()[i + 1] = small_data[i];
     }
     else
     {
-        std::copy(data.get() + 1, data.get() + sz + 1, n_data.get() + 1);
+        for (size_t i = 0; i < sz; ++i)
+            n_data.get()[i + 1] = data.get()[i + 1];
     }
-    new (&data) my_shared_ptr(n_data);
+    new (&data) std::shared_ptr<uint32_t>(n_data);
 }
 
-my_shared_ptr bigint_data::data_factory(size_t size)
+std::shared_ptr<uint32_t> bigint_data::data_factory(size_t size)
 {
-    return my_shared_ptr(new uint32_t[size]);
+    return std::shared_ptr<uint32_t>(
+                new uint32_t[size],
+                std::default_delete<uint32_t[]>());
 }
 

@@ -13,7 +13,8 @@
 #include <algorithm>
 #include <vector>
 #include <string.h>
-#include "my_shared_ptr.h"
+#include <memory>
+//#include "my_shared_ptr.h"
 
 const size_t SMALL_SIZE = 4;
 
@@ -39,12 +40,12 @@ private:
     union
     {
         uint32_t small_data[SMALL_SIZE];
-        my_shared_ptr data;
+        std::shared_ptr<uint32_t> data;
     };
     bool is_small() const;
     size_t capacity() const;
     void ensure(size_t);
-    my_shared_ptr data_factory(size_t);
+    std::shared_ptr<uint32_t> data_factory(size_t);
 };
 
 #endif /* BigintData_h */

@@ -512,7 +512,7 @@ big_integer operator/(big_integer const& a, big_integer const& b) {
     right.mul(normalization);
     size_t n = left.size(), m = right.size();
     std::vector<uint32_t> q(n);
-    big_integer beta = big_integer::base_deg(n - m) * right, tmp(1);
+    big_integer beta = big_integer::base_deg(n - m) * right, tmp;
     for (size_t j = n - m; ; --j) {
         uint64_t q_star = 0;
         if (m + j - 1 < left.size())

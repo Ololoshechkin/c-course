@@ -377,6 +377,8 @@ my_shared_ptr.h
 /Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/my_shared_ptr.h
 algorithm
 -
+iostream
+-
 
 /Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/my_shared_ptr.h
 cstdint

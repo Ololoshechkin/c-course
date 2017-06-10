@@ -8,13 +8,14 @@
 
 #include "my_shared_ptr.h"
 #include <algorithm>
+#include <iostream>
 
 my_shared_ptr::my_shared_ptr(uint32_t* ptr)
 : cnt(nullptr)
 , ptr(ptr)
 {
     if (ptr)
-        cnt = new size_t(1);
+        cnt = new size_t(1);//, std::cout << "alloc : " << ptr << '\n';
 }
 
 my_shared_ptr::my_shared_ptr(my_shared_ptr const& other)
@@ -45,23 +46,28 @@ bool my_shared_ptr::unique() const
 
 uint32_t* my_shared_ptr::get() const
 {
+    //std::cout << "access : " << ptr << '\n';
     return ptr;
 }
 
 uint32_t& my_shared_ptr::operator*() const
 {
+    //std::cout << "access : " << ptr << '\n';
     return *ptr;
 }
 
 uint32_t* my_shared_ptr::operator->() const
 {
+    //std::cout << "access : " << ptr << '\n';
     return ptr;
 }
 
 my_shared_ptr::~my_shared_ptr()
 {
-    if (cnt && !(--*cnt))
+    if (cnt && !(--*cnt)) {
+        //std::cout << "delete : " << ptr << '\n';
         delete[] ptr, delete cnt;
+    }
 }
 
 

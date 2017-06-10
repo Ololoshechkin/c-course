@@ -19,8 +19,8 @@ add_executable(big_integer_testing
                gtest/gtest-all.cc
                gtest/gtest.h
                gtest/gtest_main.cc)
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++11 -O2 -pedantic")
-  set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -fsanitize=address,undefined -D_GLIBCXX_DEBUG")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++11 -pedantic")
+  set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -std=c++11 -fsanitize=address,undefined")
 
 
 target_link_libraries(big_integer_testing -lpthread)
