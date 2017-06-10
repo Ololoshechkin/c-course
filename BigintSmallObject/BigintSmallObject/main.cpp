@@ -13,8 +13,9 @@
 using namespace std;
 
 int main(int argc, const char * argv[]) {
+    cout << sizeof(my_shared_ptr) / sizeof(uint32_t) << endl;
     big_integer a("10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000");
-    big_integer b(                                                     "100000000000000000000000000000000000000");
+    big_integer b("100000000000000000000000000000000000000");
     big_integer c("100000000000000000000000000000000000000000000000000000");
     if (a / b == c)
         cout << "ok\n";

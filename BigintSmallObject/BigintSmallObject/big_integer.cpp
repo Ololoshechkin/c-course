@@ -169,10 +169,12 @@ void big_integer::mul_max_int32()
 
 void big_integer::div_max_int32()
 {
+    //std::cout << "div max int32 (enter)\n";
     for (size_t i = 0; i < data.size() - 1; ++i)
         data.set(i, data[i + 1]);
     data.set(data.size() - 1, 0);
     correct_size();
+    //std::cout << "div max int32 (exit)\n";
 }
 
 void big_integer::invert()
@@ -696,7 +698,6 @@ big_integer big_integer::base_deg(size_t n) {
     data_t res_data(v);
     return big_integer(res_data, 1);
 }
-
 
 // destructor:
 big_integer::~big_integer()

@@ -50,6 +50,10 @@ gtest/gtest.h
 big_integer.h
 /Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/big_integer.h
 
+/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/bigint_data.cpp
+bigint_data.h
+/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/bigint_data.h
+
 /Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/bigint_data.h
 memory
 -
@@ -59,6 +63,8 @@ vector
 -
 string.h
 -
+my_shared_ptr.h
+/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/my_shared_ptr.h
 
 /Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/bigint_data_std.h
 stdio.h
@@ -365,4 +371,16 @@ stdio.h
 -
 gtest.h
 /Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/gtest/gtest.h
+
+/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/my_shared_ptr.cpp
+my_shared_ptr.h
+/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/my_shared_ptr.h
+algorithm
+-
+
+/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/my_shared_ptr.h
+cstdint
+-
+cstddef
+-
 

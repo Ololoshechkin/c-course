@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		DD3366021EEAE87400E7657B /* bigint_data_std.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD3366001EEAE87400E7657B /* bigint_data_std.cpp */; };
+		DD3366051EEC67D300E7657B /* bigint_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD3366031EEC67D300E7657B /* bigint_data.cpp */; };
+		DD3366081EEC795D00E7657B /* my_shared_ptr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD3366061EEC795D00E7657B /* my_shared_ptr.cpp */; };
 		DD9F6EC61EE2D56800980FB0 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD9F6EC51EE2D56800980FB0 /* main.cpp */; };
 		DD9F6ECE1EE2D64300980FB0 /* big_integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD9F6ECC1EE2D64300980FB0 /* big_integer.cpp */; };
 /* End PBXBuildFile section */
@@ -27,6 +29,9 @@
 /* Begin PBXFileReference section */
 		DD3366001EEAE87400E7657B /* bigint_data_std.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bigint_data_std.cpp; sourceTree = "<group>"; };
 		DD3366011EEAE87400E7657B /* bigint_data_std.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bigint_data_std.h; sourceTree = "<group>"; };
+		DD3366031EEC67D300E7657B /* bigint_data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bigint_data.cpp; sourceTree = "<group>"; };
+		DD3366061EEC795D00E7657B /* my_shared_ptr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = my_shared_ptr.cpp; sourceTree = "<group>"; };
+		DD3366071EEC795D00E7657B /* my_shared_ptr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = my_shared_ptr.h; sourceTree = "<group>"; };
 		DD9F6EC21EE2D56800980FB0 /* BigintSmallObject */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BigintSmallObject; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD9F6EC51EE2D56800980FB0 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		DD9F6ECC1EE2D64300980FB0 /* big_integer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = big_integer.cpp; sourceTree = "<group>"; };
@@ -70,6 +75,9 @@
 				DDA7ECA21EE2ECAD00AE1418 /* bigint_data.h */,
 				DD3366001EEAE87400E7657B /* bigint_data_std.cpp */,
 				DD3366011EEAE87400E7657B /* bigint_data_std.h */,
+				DD3366031EEC67D300E7657B /* bigint_data.cpp */,
+				DD3366061EEC795D00E7657B /* my_shared_ptr.cpp */,
+				DD3366071EEC795D00E7657B /* my_shared_ptr.h */,
 			);
 			path = BigintSmallObject;
 			sourceTree = "<group>";
@@ -133,7 +141,9 @@
 			files = (
 				DD9F6EC61EE2D56800980FB0 /* main.cpp in Sources */,
 				DD3366021EEAE87400E7657B /* bigint_data_std.cpp in Sources */,
+				DD3366051EEC67D300E7657B /* bigint_data.cpp in Sources */,
 				DD9F6ECE1EE2D64300980FB0 /* big_integer.cpp in Sources */,
+				DD3366081EEC795D00E7657B /* my_shared_ptr.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

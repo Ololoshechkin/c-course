@@ -177,6 +177,33 @@ big_integer_testing.cpp.s:
 	$(MAKE) -f CMakeFiles/big_integer_testing.dir/build.make CMakeFiles/big_integer_testing.dir/big_integer_testing.cpp.s
 .PHONY : big_integer_testing.cpp.s
 
+bigint_data.o: bigint_data.cpp.o
+
+.PHONY : bigint_data.o
+
+# target to build an object file
+bigint_data.cpp.o:
+	$(MAKE) -f CMakeFiles/big_integer_testing.dir/build.make CMakeFiles/big_integer_testing.dir/bigint_data.cpp.o
+.PHONY : bigint_data.cpp.o
+
+bigint_data.i: bigint_data.cpp.i
+
+.PHONY : bigint_data.i
+
+# target to preprocess a source file
+bigint_data.cpp.i:
+	$(MAKE) -f CMakeFiles/big_integer_testing.dir/build.make CMakeFiles/big_integer_testing.dir/bigint_data.cpp.i
+.PHONY : bigint_data.cpp.i
+
+bigint_data.s: bigint_data.cpp.s
+
+.PHONY : bigint_data.s
+
+# target to generate assembly for a file
+bigint_data.cpp.s:
+	$(MAKE) -f CMakeFiles/big_integer_testing.dir/build.make CMakeFiles/big_integer_testing.dir/bigint_data.cpp.s
+.PHONY : bigint_data.cpp.s
+
 gtest/gtest-all.o: gtest/gtest-all.cc.o
 
 .PHONY : gtest/gtest-all.o
@@ -231,6 +258,33 @@ gtest/gtest_main.cc.s:
 	$(MAKE) -f CMakeFiles/big_integer_testing.dir/build.make CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.s
 .PHONY : gtest/gtest_main.cc.s
 
+my_shared_ptr.o: my_shared_ptr.cpp.o
+
+.PHONY : my_shared_ptr.o
+
+# target to build an object file
+my_shared_ptr.cpp.o:
+	$(MAKE) -f CMakeFiles/big_integer_testing.dir/build.make CMakeFiles/big_integer_testing.dir/my_shared_ptr.cpp.o
+.PHONY : my_shared_ptr.cpp.o
+
+my_shared_ptr.i: my_shared_ptr.cpp.i
+
+.PHONY : my_shared_ptr.i
+
+# target to preprocess a source file
+my_shared_ptr.cpp.i:
+	$(MAKE) -f CMakeFiles/big_integer_testing.dir/build.make CMakeFiles/big_integer_testing.dir/my_shared_ptr.cpp.i
+.PHONY : my_shared_ptr.cpp.i
+
+my_shared_ptr.s: my_shared_ptr.cpp.s
+
+.PHONY : my_shared_ptr.s
+
+# target to generate assembly for a file
+my_shared_ptr.cpp.s:
+	$(MAKE) -f CMakeFiles/big_integer_testing.dir/build.make CMakeFiles/big_integer_testing.dir/my_shared_ptr.cpp.s
+.PHONY : my_shared_ptr.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -246,12 +300,18 @@ help:
 	@echo "... big_integer_testing.o"
 	@echo "... big_integer_testing.i"
 	@echo "... big_integer_testing.s"
+	@echo "... bigint_data.o"
+	@echo "... bigint_data.i"
+	@echo "... bigint_data.s"
 	@echo "... gtest/gtest-all.o"
 	@echo "... gtest/gtest-all.i"
 	@echo "... gtest/gtest-all.s"
 	@echo "... gtest/gtest_main.o"
 	@echo "... gtest/gtest_main.i"
 	@echo "... gtest/gtest_main.s"
+	@echo "... my_shared_ptr.o"
+	@echo "... my_shared_ptr.i"
+	@echo "... my_shared_ptr.s"
 .PHONY : help
 
 

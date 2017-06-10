@@ -105,9 +105,57 @@ CMakeFiles/big_integer_testing.dir/big_integer.cpp.o.provides: CMakeFiles/big_in
 CMakeFiles/big_integer_testing.dir/big_integer.cpp.o.provides.build: CMakeFiles/big_integer_testing.dir/big_integer.cpp.o
 
 
+CMakeFiles/big_integer_testing.dir/bigint_data.cpp.o: CMakeFiles/big_integer_testing.dir/flags.make
+CMakeFiles/big_integer_testing.dir/bigint_data.cpp.o: bigint_data.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/big_integer_testing.dir/bigint_data.cpp.o"
+	/usr/local/bin/g++-6   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/big_integer_testing.dir/bigint_data.cpp.o -c "/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/bigint_data.cpp"
+
+CMakeFiles/big_integer_testing.dir/bigint_data.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/big_integer_testing.dir/bigint_data.cpp.i"
+	/usr/local/bin/g++-6  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/bigint_data.cpp" > CMakeFiles/big_integer_testing.dir/bigint_data.cpp.i
+
+CMakeFiles/big_integer_testing.dir/bigint_data.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/big_integer_testing.dir/bigint_data.cpp.s"
+	/usr/local/bin/g++-6  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/bigint_data.cpp" -o CMakeFiles/big_integer_testing.dir/bigint_data.cpp.s
+
+CMakeFiles/big_integer_testing.dir/bigint_data.cpp.o.requires:
+
+.PHONY : CMakeFiles/big_integer_testing.dir/bigint_data.cpp.o.requires
+
+CMakeFiles/big_integer_testing.dir/bigint_data.cpp.o.provides: CMakeFiles/big_integer_testing.dir/bigint_data.cpp.o.requires
+	$(MAKE) -f CMakeFiles/big_integer_testing.dir/build.make CMakeFiles/big_integer_testing.dir/bigint_data.cpp.o.provides.build
+.PHONY : CMakeFiles/big_integer_testing.dir/bigint_data.cpp.o.provides
+
+CMakeFiles/big_integer_testing.dir/bigint_data.cpp.o.provides.build: CMakeFiles/big_integer_testing.dir/bigint_data.cpp.o
+
+
+CMakeFiles/big_integer_testing.dir/my_shared_ptr.cpp.o: CMakeFiles/big_integer_testing.dir/flags.make
+CMakeFiles/big_integer_testing.dir/my_shared_ptr.cpp.o: my_shared_ptr.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/big_integer_testing.dir/my_shared_ptr.cpp.o"
+	/usr/local/bin/g++-6   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/big_integer_testing.dir/my_shared_ptr.cpp.o -c "/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/my_shared_ptr.cpp"
+
+CMakeFiles/big_integer_testing.dir/my_shared_ptr.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/big_integer_testing.dir/my_shared_ptr.cpp.i"
+	/usr/local/bin/g++-6  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/my_shared_ptr.cpp" > CMakeFiles/big_integer_testing.dir/my_shared_ptr.cpp.i
+
+CMakeFiles/big_integer_testing.dir/my_shared_ptr.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/big_integer_testing.dir/my_shared_ptr.cpp.s"
+	/usr/local/bin/g++-6  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/my_shared_ptr.cpp" -o CMakeFiles/big_integer_testing.dir/my_shared_ptr.cpp.s
+
+CMakeFiles/big_integer_testing.dir/my_shared_ptr.cpp.o.requires:
+
+.PHONY : CMakeFiles/big_integer_testing.dir/my_shared_ptr.cpp.o.requires
+
+CMakeFiles/big_integer_testing.dir/my_shared_ptr.cpp.o.provides: CMakeFiles/big_integer_testing.dir/my_shared_ptr.cpp.o.requires
+	$(MAKE) -f CMakeFiles/big_integer_testing.dir/build.make CMakeFiles/big_integer_testing.dir/my_shared_ptr.cpp.o.provides.build
+.PHONY : CMakeFiles/big_integer_testing.dir/my_shared_ptr.cpp.o.provides
+
+CMakeFiles/big_integer_testing.dir/my_shared_ptr.cpp.o.provides.build: CMakeFiles/big_integer_testing.dir/my_shared_ptr.cpp.o
+
+
 CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.o: CMakeFiles/big_integer_testing.dir/flags.make
 CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.o: gtest/gtest-all.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.o"
 	/usr/local/bin/g++-6   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.o -c "/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/gtest/gtest-all.cc"
 
 CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.i: cmake_force
@@ -131,7 +179,7 @@ CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.o.provides.build: CMakeFil
 
 CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.o: CMakeFiles/big_integer_testing.dir/flags.make
 CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.o: gtest/gtest_main.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.o"
 	/usr/local/bin/g++-6   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.o -c "/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/gtest/gtest_main.cc"
 
 CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.i: cmake_force
@@ -157,6 +205,8 @@ CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.o.provides.build: CMakeFi
 big_integer_testing_OBJECTS = \
 "CMakeFiles/big_integer_testing.dir/big_integer_testing.cpp.o" \
 "CMakeFiles/big_integer_testing.dir/big_integer.cpp.o" \
+"CMakeFiles/big_integer_testing.dir/bigint_data.cpp.o" \
+"CMakeFiles/big_integer_testing.dir/my_shared_ptr.cpp.o" \
 "CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.o" \
 "CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.o"
 
@@ -165,11 +215,13 @@ big_integer_testing_EXTERNAL_OBJECTS =
 
 big_integer_testing: CMakeFiles/big_integer_testing.dir/big_integer_testing.cpp.o
 big_integer_testing: CMakeFiles/big_integer_testing.dir/big_integer.cpp.o
+big_integer_testing: CMakeFiles/big_integer_testing.dir/bigint_data.cpp.o
+big_integer_testing: CMakeFiles/big_integer_testing.dir/my_shared_ptr.cpp.o
 big_integer_testing: CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.o
 big_integer_testing: CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.o
 big_integer_testing: CMakeFiles/big_integer_testing.dir/build.make
 big_integer_testing: CMakeFiles/big_integer_testing.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable big_integer_testing"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable big_integer_testing"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/big_integer_testing.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -179,6 +231,8 @@ CMakeFiles/big_integer_testing.dir/build: big_integer_testing
 
 CMakeFiles/big_integer_testing.dir/requires: CMakeFiles/big_integer_testing.dir/big_integer_testing.cpp.o.requires
 CMakeFiles/big_integer_testing.dir/requires: CMakeFiles/big_integer_testing.dir/big_integer.cpp.o.requires
+CMakeFiles/big_integer_testing.dir/requires: CMakeFiles/big_integer_testing.dir/bigint_data.cpp.o.requires
+CMakeFiles/big_integer_testing.dir/requires: CMakeFiles/big_integer_testing.dir/my_shared_ptr.cpp.o.requires
 CMakeFiles/big_integer_testing.dir/requires: CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.o.requires
 CMakeFiles/big_integer_testing.dir/requires: CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.o.requires
 
