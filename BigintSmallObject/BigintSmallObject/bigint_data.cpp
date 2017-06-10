@@ -88,6 +88,7 @@ void bigint_data::pop_back()
     bool wasnt_small = !is_small();
     --sz;
     if (is_small() && wasnt_small) {
+        detach();
         uint32_t tmp[SMALL_SIZE];
         for (size_t i = 0; i < SMALL_SIZE; ++i)
             tmp[i] = data.get()[i + 1];
@@ -100,6 +101,7 @@ void bigint_data::pop_back()
 void bigint_data::push_back(uint32_t val)
 {
     ensure(sz + 1);
+    detach();
     ++sz;
     set(sz - 1, val);
 }

@@ -63,8 +63,8 @@ vector
 -
 string.h
 -
-my_shared_ptr.h
-/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/my_shared_ptr.h
+memory
+-
 
 /Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/bigint_data_std.h
 stdio.h
