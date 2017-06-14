@@ -29,8 +29,10 @@ struct bigint_data
         size_t get_capacity() const;
         shared_ptr_t data;
         void inplace_create(size_t);
+        void fill_zero();
         void inplace_copy(big_data const&);
         big_data();
+        big_data(size_t);
         void swap(big_data&);
         ~big_data();
     };

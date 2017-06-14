@@ -204,6 +204,33 @@ bigint_data.cpp.s:
 	$(MAKE) -f CMakeFiles/big_integer_testing.dir/build.make CMakeFiles/big_integer_testing.dir/bigint_data.cpp.s
 .PHONY : bigint_data.cpp.s
 
+bigint_data_std.o: bigint_data_std.cpp.o
+
+.PHONY : bigint_data_std.o
+
+# target to build an object file
+bigint_data_std.cpp.o:
+	$(MAKE) -f CMakeFiles/big_integer_testing.dir/build.make CMakeFiles/big_integer_testing.dir/bigint_data_std.cpp.o
+.PHONY : bigint_data_std.cpp.o
+
+bigint_data_std.i: bigint_data_std.cpp.i
+
+.PHONY : bigint_data_std.i
+
+# target to preprocess a source file
+bigint_data_std.cpp.i:
+	$(MAKE) -f CMakeFiles/big_integer_testing.dir/build.make CMakeFiles/big_integer_testing.dir/bigint_data_std.cpp.i
+.PHONY : bigint_data_std.cpp.i
+
+bigint_data_std.s: bigint_data_std.cpp.s
+
+.PHONY : bigint_data_std.s
+
+# target to generate assembly for a file
+bigint_data_std.cpp.s:
+	$(MAKE) -f CMakeFiles/big_integer_testing.dir/build.make CMakeFiles/big_integer_testing.dir/bigint_data_std.cpp.s
+.PHONY : bigint_data_std.cpp.s
+
 gtest/gtest-all.o: gtest/gtest-all.cc.o
 
 .PHONY : gtest/gtest-all.o
@@ -303,6 +330,9 @@ help:
 	@echo "... bigint_data.o"
 	@echo "... bigint_data.i"
 	@echo "... bigint_data.s"
+	@echo "... bigint_data_std.o"
+	@echo "... bigint_data_std.i"
+	@echo "... bigint_data_std.s"
 	@echo "... gtest/gtest-all.o"
 	@echo "... gtest/gtest-all.i"
 	@echo "... gtest/gtest-all.s"

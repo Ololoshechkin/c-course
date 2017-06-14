@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/big_integer_testing.dir/big_integer_testing.cpp.o"
   "CMakeFiles/big_integer_testing.dir/big_integer.cpp.o"
   "CMakeFiles/big_integer_testing.dir/bigint_data.cpp.o"
+  "CMakeFiles/big_integer_testing.dir/bigint_data_std.cpp.o"
   "CMakeFiles/big_integer_testing.dir/my_shared_ptr.cpp.o"
   "CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.o"
   "CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.o"

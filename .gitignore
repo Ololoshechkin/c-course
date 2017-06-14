@@ -1,0 +1,15 @@
+classesLection1/
+template_lection_withDefines/
+constructor_new_delete_lection/
+terminal compiling/
+Exceptions/
+inheritance_lection/
+undefined_behaviour/
+Headers/
+Makefile
+*.cmake
+CMakeCache.txt
+CMakeFiles/
+big_integer_testing
+Huffman
+*.o

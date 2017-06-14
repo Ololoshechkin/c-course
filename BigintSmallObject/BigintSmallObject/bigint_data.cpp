@@ -18,6 +18,10 @@ void bigint_data::big_data::inplace_create(size_t start_capacity)
 {
     capacity = start_capacity;
     new (&data) shared_ptr_t_create(capacity);
+}
+
+void bigint_data::big_data::fill_zero()
+{
     memset(data.get(), 0, sizeof(uint32_t) * capacity);
 }
 
@@ -32,6 +36,11 @@ bigint_data::big_data::big_data()
 , data(shared_ptr_t())
 {}
 
+bigint_data::big_data::big_data(size_t capacity)
+: capacity(capacity)
+, data(shared_ptr_t_create(capacity))
+{}
+
 void bigint_data::big_data::swap(bigint_data::big_data& other)
 {
     std::swap(capacity, other.capacity);
@@ -39,17 +48,15 @@ void bigint_data::big_data::swap(bigint_data::big_data& other)
 }
 
 bigint_data::big_data::~big_data()
-{
-    capacity = 0;
-}
+{}
 
 bigint_data::bigint_data(size_t n)
 : sz(n)
 {
     if (is_small())
-        memset(small_data, 0, sizeof(small_data));//std::fill(small_data, small_data + SMALL_SIZE, 0);
+        memset(small_data, 0, sizeof(small_data));
     else
-        big.inplace_create(n);
+        big.inplace_create(n), big.fill_zero();
 }
 
 bigint_data::bigint_data(bigint_data const& other)
@@ -144,8 +151,7 @@ bool bigint_data::empty() const
 void bigint_data::detach()
 {
     if (is_small() || big.data.unique()) return;
-    big_data new_bigdata;
-    new_bigdata.inplace_create(big.get_capacity());
+    big_data new_bigdata(big.get_capacity());
     std::copy(big.data.get(), big.data.get() + sz, new_bigdata.data.get());
     big.swap(new_bigdata);
 }
@@ -153,8 +159,7 @@ void bigint_data::detach()
 void bigint_data::swap(bigint_data &other)
 {
     std::swap(sz, other.sz);
-    for (size_t i = 0; i < SMALL_SIZE; ++i)
-        std::swap(small_data[i], other.small_data[i]);
+    std::swap(small_data, other.small_data);
 }
 
 bigint_data::~bigint_data()
@@ -177,9 +182,7 @@ void bigint_data::ensure(size_t n)
 {
     if (n <= capacity())
         return;
-    size_t new_capacity = std::max((n << 1) - (n >> 1) + 1, SMALL_SIZE);
-    big_data new_bigdata;
-    new_bigdata.inplace_create(new_capacity);
+    big_data new_bigdata(n << 1);
     if (is_small()) {
         std::copy(small_data, small_data + sz, new_bigdata.data.get());
         big.inplace_copy(new_bigdata);

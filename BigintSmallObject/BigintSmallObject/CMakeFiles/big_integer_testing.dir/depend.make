@@ -18,6 +18,9 @@ CMakeFiles/big_integer_testing.dir/bigint_data.cpp.o: bigint_data.cpp
 CMakeFiles/big_integer_testing.dir/bigint_data.cpp.o: bigint_data.h
 CMakeFiles/big_integer_testing.dir/bigint_data.cpp.o: my_shared_ptr.h
 
+CMakeFiles/big_integer_testing.dir/bigint_data_std.cpp.o: bigint_data_std.cpp
+CMakeFiles/big_integer_testing.dir/bigint_data_std.cpp.o: bigint_data_std.h
+
 CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.o: gtest/gtest-all.cc
 CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.o: gtest/gtest.h
 
