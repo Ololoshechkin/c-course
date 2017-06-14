@@ -17,10 +17,11 @@ void big_integer::negate()
 void big_integer::mul(uint32_t val)
 {
     uint64_t tmp = 0;
+    data.detach();
     for (size_t i = 0; i < data.size(); ++i)
     {
         tmp += (uint64_t) data[i] * (uint64_t) val;
-        data.set(i, (uint32_t) (tmp & max_int32));
+        data.no_detach_set(i, (uint32_t) (tmp & max_int32));
         tmp >>= log_int32;
     }
     while (tmp)
@@ -33,10 +34,11 @@ void big_integer::mul(uint32_t val)
 void big_integer::add(uint32_t val) // suppose : BigInt  >= 0
 {
     uint64_t tmp = val;
+    data.detach();
     for (size_t i = 0; i < data.size(); ++i)
     {
         tmp += (uint64_t) data[i];
-        data.set(i, (uint32_t) (tmp & max_int32));
+        data.no_detach_set(i, (uint32_t) (tmp & max_int32));
         tmp >>= log_int32;
         if (!tmp)
             break;
@@ -51,11 +53,12 @@ uint32_t big_integer::div(uint32_t val)
 {
     uint32_t mod = 0, base_mod_val = (uint32_t) (base % val);
     uint64_t carry = 0, tmp = 0;
+    data.detach();
     for (size_t i = data.size() - 1;; --i)
     {
         mod = (uint32_t) ((uint64_t) mod * base_mod_val + (uint64_t) data[i]) % val;
         tmp = carry * base + (uint64_t) data[i];
-        data.set(i, (uint32_t) (tmp / val));
+        data.no_detach_set(i, (uint32_t) (tmp / val));
         carry = tmp % val;
         if (!i)
             break;
@@ -68,11 +71,12 @@ uint32_t big_integer::div10()
 {
     uint32_t mod = 0;
     uint64_t carry = 0, tmp = 0;
+    data.detach();
     for (size_t i = data.size() - 1; ; --i)
     {
         mod = (uint32_t) ((uint64_t) mod * base_mod_ten + (uint64_t) data[i]) % 10;
         tmp = carry * base + (uint64_t) data[i];
-        data.set(i, (uint32_t) (tmp / 10ll));
+        data.no_detach_set(i, (uint32_t) (tmp / 10ll));
         carry = tmp % 10ll;
         if (!i)
             break;
@@ -113,18 +117,19 @@ void big_integer::add(big_integer const& b)  // suppose : sign(this) == sign(b)
 {
     uint64_t tmp = 0;
     correct_size(b.size());
+    data.detach();
     for (size_t i = 0; i < b.size(); ++i)
     {
         tmp += (uint64_t) data[i] + (uint64_t) b[i];
-        data.set(i, (uint32_t) (tmp & max_int32));
+        data.no_detach_set(i, (uint32_t) (tmp & max_int32));
         tmp >>= log_int32;
     }
     size_t pos = b.size();
-    while (tmp)
+    if (tmp)
     {
         correct_size(pos + 1);
         tmp += (uint64_t) data[pos];
-        data.set(pos, (uint32_t) (tmp & max_int32));
+        data.no_detach_set(pos, (uint32_t) (tmp & max_int32));
         tmp >>= log_int32;
     }
     correct_size();
@@ -133,26 +138,27 @@ void big_integer::add(big_integer const& b)  // suppose : sign(this) == sign(b)
 void big_integer::subtract(big_integer const& b)  // suppose : sign(this) == sign(b), |this| >= |b|
 {
     int64_t tmp = 0;
+    data.detach();
     for (size_t i = 0; i < b.size(); ++i)
     {
         tmp += (int64_t) data[i] - (int64_t) b[i];
         if (tmp < 0) {
-            data.set(i, (uint32_t) (tmp + (int64_t) base));
+            data.no_detach_set(i, (uint32_t) (tmp + (int64_t) base));
             tmp = -1;
         } else {
-            data.set(i, (uint32_t) (tmp));
+            data.no_detach_set(i, (uint32_t) (tmp));
             tmp = 0;
         }
     }
     size_t pos = b.size();
-    while (tmp != 0)
+    if (tmp != 0)
     {
         tmp += (int64_t) data[pos];
         if (tmp < 0) {
-            data.set(pos, (uint32_t) (tmp + base));
+            data.no_detach_set(pos, (uint32_t) (tmp + base));
             tmp = -1;
         } else {
-            data.set(pos, (uint32_t) (tmp));
+            data.no_detach_set(pos, (uint32_t) (tmp));
             tmp = 0;
         }
     }
@@ -163,24 +169,24 @@ void big_integer::mul_max_int32()
 {
     data.push_back(0);
     for (size_t i = data.size() - 1; i > 0; --i)
-        data.set(i, data[i - 1]);
-    data.set(0, 0);
+        data.no_detach_set(i, data[i - 1]);
+    data.no_detach_set(0, 0);
 }
 
 void big_integer::div_max_int32()
 {
-    //std::cout << "div max int32 (enter)\n";
+    data.detach();
     for (size_t i = 0; i < data.size() - 1; ++i)
-        data.set(i, data[i + 1]);
-    data.set(data.size() - 1, 0);
+        data.no_detach_set(i, data[i + 1]);
+    data.no_detach_set(data.size() - 1, 0);
     correct_size();
-    //std::cout << "div max int32 (exit)\n";
 }
 
 void big_integer::invert()
 {
+    data.detach();
     for (size_t i = 0; i < size(); ++i)
-        data.set(i, ~data[i]);
+        data.no_detach_set(i, ~data[i]);
 }
 
 void big_integer::to_add_code()
@@ -474,13 +480,13 @@ big_integer operator*(big_integer const& a, big_integer const& b)
         for (size_t j = 0; j < b.size(); ++j)
         {
             tmp += (uint64_t) res[i + j] + (uint64_t) a[i] * (uint64_t) b[j];
-            res.data.set(i + j, tmp & max_int32);
+            res.data.no_detach_set(i + j, tmp & max_int32);
             tmp >>= log_int32;
         }
         size_t pos = i + b.size();
         while (tmp) {
             tmp += (uint64_t) res[pos];
-            res.data.set(pos++, tmp & max_int32);
+            res.data.no_detach_set(pos++, tmp & max_int32);
             tmp >>= log_int32;
         }
     }
@@ -512,7 +518,7 @@ big_integer operator/(big_integer const& a, big_integer const& b) {
     right.mul(normalization);
     size_t n = left.size(), m = right.size();
     std::vector<uint32_t> q(n);
-    big_integer beta = big_integer::base_deg(n - m) * right, tmp;
+    big_integer beta(big_integer::base_deg(n - m) * right), tmp;
     for (size_t j = n - m; ; --j) {
         uint64_t q_star = 0;
         if (m + j - 1 < left.size())
@@ -520,7 +526,6 @@ big_integer operator/(big_integer const& a, big_integer const& b) {
         if (m + j < left.size())
             q_star = ((uint64_t) left[m + j] * base + left[m + j - 1]) / right.back();
         q[j] = (uint32_t) std::min(q_star, (uint64_t) max_int32);
-        //std::cout << "tmp = " << tmp << " , beta = " << beta << '\n';
         tmp = beta;
         tmp.mul(q[j]);
         tmp.correct_size();
@@ -605,8 +610,9 @@ big_integer big_integer::any_binary(big_integer const& a,
     tmp.correct_size(answer.size());
     answer.to_add_code();
     tmp.to_add_code();
+    answer.data.detach();
     for (size_t i = 0; i < tmp.size(); ++i)
-        answer.data.set(i, f(answer[i], tmp[i]));
+        answer.data.no_detach_set(i, f(answer[i], tmp[i]));
     answer.to_simple_code();
     return answer;
 }
@@ -629,37 +635,39 @@ big_integer operator&(big_integer const& a, big_integer const& b)
 big_integer operator<<(big_integer const& a, int rhs)
 {
     if (rhs < 0) return a >> rhs;
-    int complete = rhs >> 5;
+    //int complete = rhs >> 5;
     rhs &= 31;
     big_integer ans = a;
     ans.to_add_code();
     uint64_t tmp = 0;
+    ans.data.detach();
     for (size_t i = 0; i < a.size(); ++i) {
         tmp |= ((uint64_t) a[i] << rhs);
-        ans.data.set(i, tmp & max_int32);
+        ans.data.no_detach_set(i, tmp & max_int32);
         tmp >>= log_int32;
     }
     if (tmp) ans.push_back((uint32_t) tmp);
     ans.correct_size();
-    return ans * big_integer::base_deg((size_t) complete);
+    return ans;// * big_integer::base_deg((size_t) complete);
 }
 
 big_integer operator>>(big_integer const& a, int rhs)
 {
     if (rhs < 0) return a << rhs;
-    int complete = rhs >> 5;
+    //int complete = rhs >> 5;
     rhs &= 31;
     big_integer ans = a;
     uint32_t tmp = 0;
+    ans.data.detach();
     for (size_t i = a.size() - 1; ; --i) {
         uint32_t digit = ans[i];
-        ans.data.set(i, (tmp << (log_int32 - rhs)) + (ans[i] >> rhs));
+        ans.data.no_detach_set(i, (tmp << (log_int32 - rhs)) + (ans[i] >> rhs));
         tmp = digit & ((1ll << rhs) - 1);
         if (!i) break;
     }
     ans.correct_size();
     if (!a.is_deg2() && a.signum == -1) ans -= 1;
-    return ans * big_integer::base_deg((size_t) complete);
+    return ans;// big_integer::base_deg((size_t) complete);
 }
 
 

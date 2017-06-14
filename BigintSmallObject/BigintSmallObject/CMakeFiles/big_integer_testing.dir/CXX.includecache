@@ -53,6 +53,8 @@ big_integer.h
 /Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/bigint_data.cpp
 bigint_data.h
 /Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/bigint_data.h
+iostream
+-
 
 /Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/bigint_data.h
 memory
@@ -65,6 +67,8 @@ string.h
 -
 memory
 -
+my_shared_ptr.h
+/Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/my_shared_ptr.h
 
 /Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/bigint_data_std.h
 stdio.h

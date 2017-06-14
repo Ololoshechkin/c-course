@@ -6,15 +6,18 @@ CMakeFiles/big_integer_testing.dir/big_integer.cpp.o
  /Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/big_integer.h
  /Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/bigint_data.h
  /Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/bigint_data_std.h
+ /Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/my_shared_ptr.h
 CMakeFiles/big_integer_testing.dir/big_integer_testing.cpp.o
  /Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/big_integer.h
  /Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/big_integer_testing.cpp
  /Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/bigint_data.h
  /Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/bigint_data_std.h
  /Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/gtest/gtest.h
+ /Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/my_shared_ptr.h
 CMakeFiles/big_integer_testing.dir/bigint_data.cpp.o
  /Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/bigint_data.cpp
  /Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/bigint_data.h
+ /Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/my_shared_ptr.h
 CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.o
  /Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/gtest/gtest-all.cc
  /Users/Vadim/Documents/coding/c++ course/BigintSmallObject/BigintSmallObject/gtest/gtest.h

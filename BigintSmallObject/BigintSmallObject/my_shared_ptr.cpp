@@ -15,7 +15,7 @@ my_shared_ptr::my_shared_ptr(uint32_t* ptr)
 , ptr(ptr)
 {
     if (ptr)
-        cnt = new size_t(1);//, std::cout << "alloc : " << ptr << '\n';
+        cnt = new size_t(1);
 }
 
 my_shared_ptr::my_shared_ptr(my_shared_ptr const& other)
@@ -34,6 +34,7 @@ void my_shared_ptr::swap(my_shared_ptr& other)
 
 my_shared_ptr& my_shared_ptr::operator=(my_shared_ptr const&other)
 {
+    --(*cnt);
     my_shared_ptr tmp(other);
     swap(tmp);
     return *this;
@@ -46,26 +47,17 @@ bool my_shared_ptr::unique() const
 
 uint32_t* my_shared_ptr::get() const
 {
-    //std::cout << "access : " << ptr << '\n';
     return ptr;
 }
 
 uint32_t& my_shared_ptr::operator*() const
 {
-    //std::cout << "access : " << ptr << '\n';
     return *ptr;
-}
-
-uint32_t* my_shared_ptr::operator->() const
-{
-    //std::cout << "access : " << ptr << '\n';
-    return ptr;
 }
 
 my_shared_ptr::~my_shared_ptr()
 {
     if (cnt && !(--*cnt)) {
-        //std::cout << "delete : " << ptr << '\n';
         delete[] ptr, delete cnt;
     }
 }
