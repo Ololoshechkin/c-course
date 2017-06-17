@@ -1,4 +1,3 @@
-
 //
 //  bigint_data.cpp
 //  BigintSmallObject
@@ -55,29 +54,46 @@ bigint_data::bigint_data(size_t n)
 : sz(n)
 {
     if (is_small())
+    {
         memset(small_data, 0, sizeof(small_data));
+        cur_ptr = small_data;
+    }
     else
-        big.inplace_create(n), big.fill_zero();
+    {
+        big.inplace_create(n);
+        big.fill_zero();
+        cur_ptr = big.data.get();
+    }
 }
 
 bigint_data::bigint_data(bigint_data const& other)
 : sz(other.sz)
 {
     if (other.is_small())
+    {
         std::copy(other.small_data, other.small_data + SMALL_SIZE, small_data);
+        cur_ptr = small_data;
+    }
     else
+    {
         big.inplace_copy(other.big);
+        cur_ptr = big.data.get();
+    }
 }
 
 bigint_data::bigint_data(std::vector<uint32_t> const& v)
 : sz(v.size())
 {
-    if (is_small())
+    if (is_small()) 
+    {
         std::copy(v.begin(), v.end(), small_data);
+        cur_ptr = small_data;
+    }
     else
     {
         big.inplace_create(v.size());
         std::copy(v.begin(), v.end(), big.data.get());
+        cur_ptr = big.data.get();
     }
 }
 
@@ -91,7 +107,7 @@ bigint_data& bigint_data::operator=(const bigint_data &other)
 
 uint32_t bigint_data::operator[](size_t i) const
 {
-    return is_small() ? small_data[i] : big.data.get()[i];
+    return cur_ptr[i];
 }
 
 void bigint_data::set(size_t i, uint32_t val)
@@ -102,10 +118,7 @@ void bigint_data::set(size_t i, uint32_t val)
 
 void bigint_data::no_detach_set(size_t i, uint32_t val)
 {
-    if (is_small())
-        small_data[i] = val;
-    else
-        big.data.get()[i] = val;
+    cur_ptr[i] = val;
 }
 
 void bigint_data::pop_back()
@@ -117,6 +130,7 @@ void bigint_data::pop_back()
         std::copy(big.data.get(), big.data.get() + sz, tmp);
         big.~big_data();
         std::copy(tmp, tmp + SMALL_SIZE, small_data);
+        cur_ptr = small_data;
     }
 }
 
@@ -129,7 +143,7 @@ void bigint_data::push_back(uint32_t val)
 
 uint32_t bigint_data::back() const
 {
-    return is_small() ? small_data[sz - 1] : big.data.get()[sz - 1];
+    return operator[](sz - 1); //cur_ptr[sz - 1];
 }
 
 size_t bigint_data::size() const
@@ -155,12 +169,16 @@ void bigint_data::detach()
     big_data new_bigdata(big.get_capacity());
     std::copy(big.data.get(), big.data.get() + sz, new_bigdata.data.get());
     big.swap(new_bigdata);
+    cur_ptr = big.data.get();
 }
 
 void bigint_data::swap(bigint_data &other)
 {
     std::swap(sz, other.sz);
     std::swap(small_data, other.small_data);
+    //std::swap(cur_ptr, other.cur_ptr);
+    cur_ptr = get_cur_ptr();
+    other.cur_ptr = other.get_cur_ptr();
 }
 
 bigint_data::~bigint_data()
@@ -183,7 +201,7 @@ void bigint_data::ensure(size_t n)
 {
     if (n <= capacity())
         return;
-    big_data new_bigdata(n << 1);
+    big_data new_bigdata((n << 1) - (n >> 1));
     if (is_small()) {
         std::copy(small_data, small_data + sz, new_bigdata.data.get());
         big.inplace_copy(new_bigdata);
@@ -193,4 +211,15 @@ void bigint_data::ensure(size_t n)
         std::copy(big.data.get(), big.data.get() + sz, new_bigdata.data.get());
         big.swap(new_bigdata);
     }
+    cur_ptr = big.data.get();
+}
+
+const uint32_t* bigint_data::get_cur_ptr() const
+{
+    return is_small()? small_data : big.data.get();
+}
+
+uint32_t* bigint_data::get_cur_ptr()
+{
+    return is_small()? small_data : big.data.get();
 }
