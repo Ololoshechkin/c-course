@@ -517,7 +517,7 @@ big_integer operator/(big_integer const& a, big_integer const& b) {
     left.mul(normalization);
     right.mul(normalization);
     size_t n = left.size(), m = right.size();
-    std::vector<uint32_t> q(n);
+    data_t q(n);
     big_integer beta(big_integer::base_deg(n - m) * right), tmp;
     for (size_t j = n - m; ; --j) {
         uint64_t q_star = 0;
@@ -525,22 +525,21 @@ big_integer operator/(big_integer const& a, big_integer const& b) {
             q_star = left[m + j - 1] / right.back();
         if (m + j < left.size())
             q_star = ((uint64_t) left[m + j] * base + left[m + j - 1]) / right.back();
-        q[j] = (uint32_t) std::min(q_star, (uint64_t) max_int32);
+        q.set(j, (uint32_t) std::min(q_star, (uint64_t) max_int32));
         tmp = beta;
         tmp.mul(q[j]);
         tmp.correct_size();
         left -= tmp;
         int cnt = 0;
         while (left.signum == -1) {
-            --q[j];
+            q.set(j, q[j] - 1);
             left += beta;
             ++cnt;
         }
         beta.div_max_int32();
         if (!j) break;
     }
-    data_t q_data(q);
-    big_integer answer(q_data, 1);
+    big_integer answer(q, 1);
     answer.correct_size();
     answer.signum = signum;
     return answer;
@@ -701,10 +700,9 @@ big_integer big_integer::absolute() const {
 }
 
 big_integer big_integer::base_deg(size_t n) {
-    std::vector<uint32_t> v(n + 1);
-    v.back() = 1;
-    data_t res_data(v);
-    return big_integer(res_data, 1);
+    data_t v(n + 1);
+    v.set(v.size() - 1, 1);
+    return big_integer(v, 1);
 }
 
 // destructor:
