@@ -84,6 +84,15 @@ private:
             }
         }
         
+        void node_dfs_delete()
+        {
+           if (left)
+               left->node_dfs_delete();
+            if (right)
+                right->node_dfs_delete();
+            
+        }
+        
         ~node()
         {
             delete left;
