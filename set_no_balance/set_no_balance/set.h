@@ -414,17 +414,22 @@ public:
         if (found.is_end)
             return found;
         node* exact = found.n;
+        bool was_left_son = exact->is_left_son();
+        bool was_root = exact->is_root();
         node* merged = merge(exact->left, exact->right);
         merged->parent = exact->parent;
-        if (exact->is_root())
+        if (was_root)
             root = merged;
         else
         {
-            if (exact->is_left_son())
+            if (was_left_son)
                 exact->parent->left = merged;
             else
                 exact->parent->right = merged;
         }
+        exact->left = nullptr;
+        exact->right = nullptr;
+        delete exact;
         return lower_bound(value);
     }
     
