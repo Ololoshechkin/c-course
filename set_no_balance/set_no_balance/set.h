@@ -432,6 +432,11 @@ public:
         print(root);
     }
     
+    ~set()
+    {
+        root->~node();
+    }
+    
 };
 
 #endif /* set_h */
