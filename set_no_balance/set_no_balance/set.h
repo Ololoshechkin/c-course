@@ -131,7 +131,7 @@ private:
     
     node* build_copy(node* const& cur_node)
     {
-        if (!cur_node) return;
+        if (!cur_node) return nullptr;
         node* left_son = build_copy(cur_node->left);
         node* right_son;
         node* copy_node;
@@ -140,12 +140,14 @@ private:
         } catch(...)
         {
             delete left_son;
+            throw;
         }
         try {
             copy_node = new node();
         } catch(...) {
             delete left_son;
             delete right_son;
+            throw;
         }
         copy_node->left = left_son;
         copy_node->right = right_son;
