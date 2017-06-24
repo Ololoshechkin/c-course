@@ -189,26 +189,6 @@ private:
         return cur_node;
     }
     
-    node* merge(node* l, node* r)
-    {
-        if (!l)
-            return r;
-        if (!r)
-            return l;
-        if (l->user_data < r->user_data)
-        {
-            l->right = merge(l->right, r);
-            l->right->parent = l;
-            return l;
-        }
-        else
-        {
-            r->left = merge(l, r->left);
-            r->left->parent = r;
-            return r;
-        }
-    }
-    
     void print(node* cur_node)
     {
         if (!cur_node)
