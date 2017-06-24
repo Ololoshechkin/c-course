@@ -11,8 +11,8 @@
 
 int main(int argc, const char * argv[]) {
     set<int> s;
-    for (int i = 0; i < 7; ++i)
-        s.insert(i);
+    for (int i = 0; i < 10; ++i)
+        s.insert(-i);
     for (set<int>::iterator it = s.begin(); it != s.end(); ++it)
         std::cout << *it << ' ';
     std::cout << '\n';

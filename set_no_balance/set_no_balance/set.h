@@ -54,13 +54,14 @@ private:
             return is_root() ? false : parent->right == this;
         }
         
-        node* next() const
+        node* next(bool should_skip_right = 0) const
         {
-            if (!right)
+            if (!right || should_skip_right)
             {
-                if (!parent || is_right_son())
-                    return nullptr;
-                return parent->next();
+                if (!parent) return nullptr;
+                if (is_right_son())
+                    return parent->next(1);
+                return parent->right ? parent->next(0) : parent;
             }
             else
             {
@@ -68,13 +69,14 @@ private:
             }
         }
         
-        node* prev() const
+        node* prev(bool should_skip_left = 0) const
         {
-            if (!left)
+            if (!left || should_skip_left)
             {
-                if (!parent || is_left_son())
-                    return parent->prev();
-                return parent;
+                if (!parent) return nullptr;
+                if (is_left_son())
+                    return parent->prev(1);
+                return parent->left ? parent->prev(0) : parent;
             }
             else
             {
