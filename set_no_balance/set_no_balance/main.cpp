@@ -11,8 +11,8 @@
 
 int main(int argc, const char * argv[]) {
     set<int> s;
-    for (int i = 0; i < 20; ++i)
-        s.insert(i);
+    for (int i = 0; i < 200; ++i)
+        s.insert(rand() % 200);
     for (set<int>::iterator it = s.begin(); it != s.end(); ++it)
         std::cout << *it << ' ';
     std::cout << '\n';
