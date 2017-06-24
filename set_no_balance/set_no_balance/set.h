@@ -189,7 +189,7 @@ private:
         return cur_node;
     }
     
-    node* merge(node*& l, node*& r)
+    node* merge(node* l, node* r)
     {
         if (!l)
             return r;
@@ -213,11 +213,31 @@ private:
     {
         if (!cur_node)
             return;
+        if (cur_node->left && cur_node->left->parent != cur_node)
+        {
+            std::cout << " FAIL PARENT(of l) IN : " << cur_node->user_data << '\n';
+        }
+        if (cur_node->right && cur_node->right->parent != cur_node)
+        {
+            std::cout << " FAIL PARENT(of r) IN : " << cur_node->user_data << '\n';
+            std::cout << " Actual parent (of" << cur_node->right->user_data << " is : " << cur_node->right->parent->user_data << '\n';
+        }
         std::cout << "(";
         print(cur_node->left);
         std::cout << " <- " << cur_node->user_data << " -> ";
         print(cur_node->right);
         std::cout << ")";
+    }
+    
+    void definite_delete(node* n)
+    {
+        if (n->parent->left == n)
+            n->parent->left = nullptr;
+        if (n->parent->right== n)
+            n->parent->right = nullptr;
+        n->left = nullptr;
+        n->right = nullptr;
+        delete n;
     }
    
 public:
@@ -416,20 +436,40 @@ public:
         node* exact = found.n;
         bool was_left_son = exact->is_left_son();
         bool was_root = exact->is_root();
-        node* merged = merge(exact->left, exact->right);
-        merged->parent = exact->parent;
-        if (was_root)
-            root = merged;
+        if (!exact->left)
+        {
+            if (was_root)
+                root = exact->right;
+            else {
+                if (was_left_son)
+                    exact->parent->left = exact->right;
+                else
+                    exact->parent->right = exact->right;
+            }
+            if (exact->right)
+                exact->right->parent = exact->parent;
+            definite_delete(exact);
+        }
+        else if (!exact->right)
+        {
+            if (was_root)
+                root = exact->left;
+            else {
+                if (was_left_son)
+                    exact->parent->left = exact->left;
+                else
+                    exact->parent->right = exact->left;
+            }
+            if (exact->left)
+                exact->left->parent = exact->parent;
+            definite_delete(exact);
+        }
         else
         {
-            if (was_left_son)
-                exact->parent->left = merged;
-            else
-                exact->parent->right = merged;
+            node* r_min = min_node(exact->right);
+            exact->user_data = r_min->user_data;
+            definite_delete(r_min);
         }
-        exact->left = nullptr;
-        exact->right = nullptr;
-        delete exact;
         return lower_bound(value);
     }
     

@@ -10,16 +10,17 @@
 #include "set.h"
 
 int main(int argc, const char * argv[]) {
+    srand(time(NULL));
     set<int> s;
-    for (int i = 0; i < 200; ++i)
-        s.insert(rand() % 200);
+    for (int i = 0; i < 2000; ++i)
+        s.insert(rand() % 2000);
     for (set<int>::iterator it = s.begin(); it != s.end(); ++it)
         std::cout << *it << ' ';
     std::cout << '\n';
     std::cout << "*(--end()) = " << *(--s.end());
     std::cout << '\n';
     s.erase(1);
-    s.erase(3);
+    //s.erase(3);
     s.insert(5);
     s.insert(10);
     for (set<int>::iterator it = s.begin(); it != s.end(); ++it)
