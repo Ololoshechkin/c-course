@@ -24,8 +24,8 @@ add_executable(big_integer_testing
                gtest/gtest-all.cc
                gtest/gtest.h
                gtest/gtest_main.cc)
-  set(CMAKE_CXX_FLAGS_Release "${CMAKE_CXX_FLAGS_Release} -std=c++11 -O2")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O2")
+  set(CMAKE_CXX_FLAGS_Release "${CMAKE_CXX_FLAGS_Release} -flto -std=c++11 -O2")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O2 -flto")
   set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -std=c++11 -fsanitize=address,undefined")
 
 
