@@ -86,11 +86,15 @@ private:
         
         void node_dfs_delete()
         {
-           if (left)
-               left->node_dfs_delete();
+            if (left) {
+                left->node_dfs_delete();
+                delete left;
+            }
             if (right)
+            {
                 right->node_dfs_delete();
-            
+                delete right;
+            }
         }
         
         ~node()
@@ -443,7 +447,7 @@ public:
     
     ~set()
     {
-        root->~node();
+        delete root;
     }
     
 };
