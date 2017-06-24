@@ -11,17 +11,15 @@
 
 int main(int argc, const char * argv[]) {
     set<int> s;
-    for (int i = 0; i < 10; ++i)
-        s.insert(-i);
+    for (int i = 0; i < 20; ++i)
+        s.insert(rand() % 20);
     for (set<int>::iterator it = s.begin(); it != s.end(); ++it)
         std::cout << *it << ' ';
     std::cout << '\n';
     std::cout << "*(--end()) = " << *(--s.end());
     std::cout << '\n';
     s.erase(1);
-    s.erase(2);
     s.erase(3);
-    s.erase(2);
     s.insert(5);
     s.insert(10);
     for (set<int>::iterator it = s.begin(); it != s.end(); ++it)
