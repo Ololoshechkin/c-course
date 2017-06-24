@@ -132,10 +132,23 @@ private:
     node* build_copy(node* const& cur_node)
     {
         if (!cur_node) return;
-        node* copy_node = new node(cur_node->user_data,
-                     build_copy(cur_node->left),
-                     build_copy(cur_node->right)
-        );
+        node* left_son = build_copy(cur_node->left);
+        node* right_son;
+        node* copy_node;
+        try {
+            right_son = build_copy(cur_node->right);
+        } catch(...)
+        {
+            delete left_son;
+        }
+        try {
+            copy_node = new node();
+        } catch(...) {
+            delete left_son;
+            delete right_son;
+        }
+        copy_node->left = left_son;
+        copy_node->right = right_son;
         copy_node->left->parent = copy_node;
         copy_node->right->parent = copy_node;
         return copy_node;
