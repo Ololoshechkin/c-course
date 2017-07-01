@@ -35,8 +35,8 @@ private:
         if (!expected_size) clear();
         if (expected_size >= capacity) {
             deque<T> tmp((capacity << 1) + 2);
-            for (size_t i = 0; i < sz; ++i)
-                tmp.push_back(data[i]);
+            for (size_t i = 0, pos = left; i < sz; ++i, ++pos)
+                tmp.push_back(data[pos]);
             swap(tmp);
         }
     }
@@ -60,6 +60,7 @@ public:
     void swap(deque& other)
     {
         std::swap(sz, other.sz);
+        std::swap(left, other.left);
         std::swap(capacity, other.capacity);
         std::swap(data, other.data);
     }
@@ -119,7 +120,8 @@ public:
     void push_front(T const& element)
     {
         ensure_capacity(sz + 1);
-        left = (left - 1 + capacity) % capacity;
+        left = (capacity + left - 1) % capacity;
+        std::cout << "left = " << left << ", capacity = " << capacity << '\n';
         new (&data[left]) T(element);
         sz++;
     }
@@ -138,22 +140,22 @@ public:
     
     T const& front() const
     {
-        return data[exact_right()];
+        return data[left];
     }
     
     T const& back() const
     {
-        return data[left];
+        return data[exact_right()];
     }
     
     T& front()
     {
-        return data[exact_right()];
+        return data[left];
     }
     
     T& back()
     {
-        return data[left];
+        return data[exact_right()];
     }
     
     T& operator[](size_t i)
@@ -196,7 +198,7 @@ public:
         }
         friend bool operator==(generic_iterator const& it, generic_iterator const& other)
         {
-            return it.begin == other.begin && it.get_pos() == other.get_pos();
+            return it.begin == other.begin && it.left == other.left && it.capacity == other.capacity && it.index == other.index;
         }
         friend bool operator!=(generic_iterator const& it, generic_iterator const& other)
         {

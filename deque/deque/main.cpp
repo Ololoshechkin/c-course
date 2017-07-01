@@ -12,6 +12,7 @@ using namespace std;
 
 void sashas_test()
 {
+    cout << "sashas :\n";
     deque<int> q;
     for (int i = 0; i < 10; ++i)
         q.push_back(i);
@@ -29,8 +30,21 @@ void sashas_test()
     cout << '\n' << '\n';
 }
 
+void pf()
+{
+    cout << "push front :\n";
+    deque<int> q;
+    for (int i = 0; i < 10; ++i)
+        q.push_front(i);
+    for (deque<int>::iterator it = q.begin(); it != q.end(); ++it)
+        cout << *it << ' ';
+    cout << endl << endl;
+}
+
 int main(int argc, const char * argv[]) {
     sashas_test();
+    pf();
+    cout << "main :\n";
     deque<int> q;
     for (int i = 0; i < 20; ++i)
         q.push_back(i);
