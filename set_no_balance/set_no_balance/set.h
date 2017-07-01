@@ -262,24 +262,20 @@ public:
     {
         iterator()
         : n(nullptr)
-        , is_end(0)
+        , s(nullptr)
         {}
         iterator& operator++()
         {
-            if (is_end)
+            if (!n)
                 throw std::runtime_error("operator++ from end-iterator is depricated");
-            node* nxt = n->next();
-            if (!nxt)
-                is_end = 1;
-            else
-                n = nxt;
+            n = n->next();
             return *this;
         }
         iterator& operator--()
         {
-            if (is_end)
+            if (!n)
             {
-                is_end = 0;
+                n = max_node(s->root);
                 return *this;
             }
             n = n->prev();
@@ -289,11 +285,15 @@ public:
         }
         iterator& operator++(int)
         {
-            return operator++();
+            iterator& answer = *this;
+            operator++();
+            return answer;
         }
         iterator& operator--(int)
         {
-            return operator--();
+            iterator& answer = *this;
+            --*this;
+            return answer;
         }
         T const& operator*() const
         {
@@ -301,7 +301,11 @@ public:
         }
         bool operator==(iterator const& other) const
         {
-            return is_end == other.is_end && n->user_data == other.n->user_data;
+            if (!n)
+                return !other.n;
+            if (!other.n)
+                return 0;
+            return n->user_data == other.n->user_data;
         }
         bool operator!=(iterator const& other) const
         {
@@ -316,26 +320,26 @@ public:
     private:
         friend set;
         node* n;
-        bool is_end;
-        iterator(node* n, bool is_end = 0)
+        const set* s;
+        iterator(node* n, const set* s)
         : n(n)
-        , is_end(is_end)
+        , s(s)
         {}
         
     };
     
-#define const_iterator iterator
+    typedef iterator const_iterator;
     
     const_iterator end() const
     {
-        return iterator(max_node(root), 1);
+        return iterator(nullptr, this);
     }
     
     const_iterator begin() const
     {
         if (!root)
             return end();
-        return iterator(min_node(root));
+        return iterator(min_node(root), this);
     }
     
     iterator insert(T const& value)
@@ -353,7 +357,7 @@ public:
             {
                 if (cur_node->user_data == value)
                 {
-                    return iterator(cur_node);
+                    return iterator(cur_node, this);
                 }
                 if (cur_node->user_data < value)
                 {
@@ -388,7 +392,7 @@ public:
         node* ans_node = lower_bound(root, value);
         if (!ans_node)
             return end();
-        return iterator(ans_node);
+        return iterator(ans_node, this);
     }
     
     const_iterator find(T const& value) const
@@ -411,7 +415,7 @@ public:
     {
         if (!root) return end();
         iterator found = find(value);
-        if (found.is_end)
+        if (found == end())
             return found;
         node* exact = found.n;
         bool was_left_son = exact->is_left_son();
