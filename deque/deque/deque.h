@@ -35,7 +35,7 @@ private:
         if (!expected_size) clear();
         if (expected_size >= capacity) {
             deque<T> tmp((capacity << 1) + 2);
-            for (size_t i = 0, pos = left; i < sz; ++i, ++pos)
+            for (size_t i = 0, pos = left; i < sz; ++i, pos = (pos + 1) % capacity)
                 tmp.push_back(data[pos]);
             swap(tmp);
         }
@@ -361,7 +361,9 @@ public:
 
     ~deque()
     {
-        for (size_t i = 0; i < sz; ++i)
+        if (!capacity)
+            return;
+        for (size_t i = 0, pos = left; i < sz; ++i, pos = (pos + 1) % capacity)
             data[i].~T();
         operator delete(data);
     }
