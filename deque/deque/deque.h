@@ -121,8 +121,9 @@ public:
     void push_front(T const& element)
     {
         ensure_capacity(sz + 1);
-        left = (capacity + left - 1) % capacity;
-        new (&data[left]) T(element);
+        size_t n_left = (capacity + left - 1) % capacity;
+        new (&data[n_left]) T(element);
+        left = n_left;
         sz++;
     }
     

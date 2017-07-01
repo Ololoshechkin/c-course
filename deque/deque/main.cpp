@@ -92,5 +92,11 @@ int main(int argc, const char * argv[]) {
         cout << *it << ' ';
     deque<int> q2;
     q2 = q;
+    cout << '\n' << '\n';
+    for (deque<int>::iterator it = q2.begin(); it != q2.end(); ++it)
+        cout << *it << ' ';
+    cout << '\n';
+    for (deque<int>::reverse_iterator it = q2.rbegin(); it != q2.rend(); ++it)
+        cout << *it << ' ';
     return 0;
 }
