@@ -73,7 +73,7 @@ public:
     {
         if (!capacity)
             return;
-        data(static_cast<T*>(operator new(other.capacity * sizeof(T))));
+        data = static_cast<T*>(operator new(other.capacity * sizeof(T)));
         for (size_t i = 0, pos = left; i < sz; ++i, pos = (pos + 1) % capacity) {
             try {
                new (&data[pos]) T(other.data[pos]);
