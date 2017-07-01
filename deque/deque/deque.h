@@ -112,7 +112,7 @@ public:
     void push_back(T const& element)
     {
         ensure_capacity(sz + 1);
-        data[right()] = element;
+        new (&data[right()]) T(element);
         sz++;
     }
     
@@ -120,7 +120,7 @@ public:
     {
         ensure_capacity(sz + 1);
         left = (left - 1 + capacity) % capacity;
-        data[left] = element;
+        new (&data[left]) T(element);
         sz++;
     }
     
