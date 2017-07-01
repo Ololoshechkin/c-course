@@ -25,7 +25,7 @@ private:
         return (left + sz) % capacity;
     }
     
-    size_t exact_right()
+    size_t exact_right() const
     {
         return (left + sz - 1) % capacity;
     }
@@ -178,13 +178,13 @@ public:
             --index;
             return *this;
         }
-        generic_iterator& operator++(int)
+        generic_iterator operator++(int)
         {
             generic_iterator answer = *this;
             ++(*this);
             return answer;
         }
-        generic_iterator& operator--(int)
+        generic_iterator operator--(int)
         {
             generic_iterator answer = *this;
             --(*this);
@@ -361,8 +361,13 @@ public:
             data[i].~T();
         operator delete(data);
     }
-    
+   
 };
 
+template<typename T>
+void swap(deque<T>& l, deque<T>& r)
+{
+    l.swap(r);
+}
 
 #endif /* deque_h */
