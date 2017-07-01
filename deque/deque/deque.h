@@ -68,6 +68,7 @@ public:
     deque(deque const& other)
     : sz(other.sz)
     , capacity(other.capacity)
+    , left(other.left)
     , data(static_cast<T*>(operator new(other.capacity * sizeof(T))))
     {
         for (size_t i = 0; i < sz; ++i) {
@@ -121,13 +122,13 @@ public:
     {
         ensure_capacity(sz + 1);
         left = (capacity + left - 1) % capacity;
-        std::cout << "left = " << left << ", capacity = " << capacity << '\n';
         new (&data[left]) T(element);
         sz++;
     }
     
     void pop_front()
     {
+        data[left].~T();
         left++;
         left %= capacity;
         sz--;
@@ -135,6 +136,7 @@ public:
     
     void pop_back()
     {
+        data[exact_right()].~T();
         sz--;
     }
     
