@@ -69,14 +69,17 @@ public:
     : sz(other.sz)
     , capacity(other.capacity)
     , left(other.left)
-    , data(static_cast<T*>(operator new(other.capacity * sizeof(T))))
+    , data(nullptr)
     {
-        for (size_t i = 0; i < sz; ++i) {
+        if (!capacity)
+            return;
+        data(static_cast<T*>(operator new(other.capacity * sizeof(T))));
+        for (size_t i = 0, pos = left; i < sz; ++i, pos = (pos + 1) % capacity) {
             try {
-               new (&data[i]) T(other.data[i]);
+               new (&data[pos]) T(other.data[pos]);
             } catch(...) {
-                for (size_t j = 0; j < i; ++j) {
-                    data[j].~T();
+                for (size_t j = 0, pos2 = left; j < i; ++j, pos2 = (pos2 + 1) % capacity) {
+                    data[pos2].~T();
                 }
                 delete (data);
                 throw;
@@ -103,12 +106,9 @@ public:
     
     void clear()
     {
-        for (size_t i = 0; i < capacity; ++i)
-            data[i].~T();
-        delete(data);
-        sz = 0;
-        capacity = 0;
-        data = nullptr;
+        while (size()) {
+            pop_back();
+        }
     }
     
     void push_back(T const& element)
@@ -364,7 +364,7 @@ public:
         if (!capacity)
             return;
         for (size_t i = 0, pos = left; i < sz; ++i, pos = (pos + 1) % capacity)
-            data[i].~T();
+            data[pos].~T();
         operator delete(data);
     }
    
