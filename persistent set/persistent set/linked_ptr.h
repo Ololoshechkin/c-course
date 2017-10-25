@@ -24,8 +24,8 @@ private:
     
     linked_ptr(T* payload,
                linked_ptr* prev = nullptr,
-               linked_ptr* next = nullptr) noexept :
-        prev(prev),
+               linked_ptr* next = nullptr) noexcept
+    :   prev(prev),
         next(next),
         payload(payload)
     {}
@@ -37,7 +37,11 @@ public:
         return linked_ptr(new T(std::forward<Args>(args)...));
     }
     
-    void swap(linked_ptr& other) noexept {
+    linked_ptr() noexcept
+    : linked_ptr(nullptr)
+    {}
+    
+    void swap(linked_ptr& other) noexcept {
         std::swap(payload, other.payload);
         std::swap(prev, other.prev);
         std::swap(next, other.next);
@@ -63,7 +67,11 @@ public:
         return payload;
     }
     
-    ~linked_ptr() noexept {
+    operator bool() const noexcept {
+        return (bool) payload;
+    }
+    
+    ~linked_ptr() noexcept {
         if (!payload) return;
         if (prev) prev->next = next;
         if (next) next->prev = prev;
@@ -71,6 +79,6 @@ public:
             delete payload;
     }
     
-}
+};
 
 #endif /* linked_ptr_h */

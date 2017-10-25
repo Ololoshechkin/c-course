@@ -23,6 +23,7 @@ huffman_tree::node::node(uint64_t cnt, uint8_t c)
 
 bool compareNodes(huffman_tree::node* l, huffman_tree::node* r)
 {
+	std::make_integer_sequence<int, 5>();
 	return std::pair<size_t, void*>(l->cnt, l) < std::pair<size_t, void*>(r->cnt, r);
 }
 

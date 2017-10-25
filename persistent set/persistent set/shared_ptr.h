@@ -17,7 +17,7 @@ private:
     
     struct connected_block {
         T payload;
-        int cnt;
+        size_t cnt;
         template<typename... Args>
         connected_block(Args&&... args) noexcept :
             payload(std::forward<Args>(args)...),
@@ -29,7 +29,7 @@ private:
         ptr->cnt++;
     }
     
-    int dec_count() noexcept {
+    size_t dec_count() noexcept {
         return --ptr->cnt;
     }
     
@@ -43,6 +43,10 @@ public:
     static shared_ptr of(Args&&... args) noexcept {
         return shared_ptr(new connected_block(std::forward<Args>(args)...));
     }
+    
+    shared_ptr() noexcept
+    : shared_ptr(nullptr)
+    {}
     
     void swap(shared_ptr& other) noexcept {
         std::swap(ptr, other.ptr);
@@ -68,8 +72,12 @@ public:
         return ptr->payload;
     }
     
+    operator bool() const noexcept {
+        return (bool) *this;
+    }
+    
     ~shared_ptr() noexcept {
-        if (!ptr) return
+        if (!ptr) return;
         if (!dec_count()) {
             delete ptr;
         }

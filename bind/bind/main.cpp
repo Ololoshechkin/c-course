@@ -7,9 +7,17 @@
 //
 
 #include <iostream>
+#include <string>
+#include "bind.h"
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+int f(int a, int b, int c) {
+    std::cout << a << b << c << std::endl;
+    return a + b + c;
+}
+
+int main() {
+    bind(&f, 1, 2, 3)();
+    bind(&f, _1, _3, _2)(4, 6, 5);
+    bind(&f, _1, bind(&f, _1, _1, _1), _2)(7, 8);
     return 0;
 }
