@@ -175,7 +175,7 @@ add_long_long:					;First += Second
 		lea             Second, [Second + 8]		
 		adc             [First], rax			
 		lea             First, [First + 8]		
-		dec             rcx			
+		dec             rax			
 		jnz             .loop			
 
 	pop 			rax

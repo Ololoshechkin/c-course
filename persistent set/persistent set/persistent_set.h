@@ -17,7 +17,6 @@
 #define List std::vector
 #define add push_back
 #define Node smart_ptr<node>
-#define a.last() a[a.size() - 1]
 
 template <typename T>
 List<T> reversedListOf(T last, T args...) {

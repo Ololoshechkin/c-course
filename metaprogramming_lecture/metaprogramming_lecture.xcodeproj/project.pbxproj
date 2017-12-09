@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DDA3735D1F922A5700A8A987 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDA3735C1F922A5700A8A987 /* main.cpp */; };
+		DD2C863B1FB6E10400A60D04 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD2C863A1FB6E10400A60D04 /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		DDA373571F922A5700A8A987 /* CopyFiles */ = {
+		DD2C86351FB6E10400A60D04 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -23,15 +23,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		DDA373591F922A5700A8A987 /* persistent set */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "persistent set"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DDA3735C1F922A5700A8A987 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		DDA373631F922A9C00A8A987 /* shared_ptr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shared_ptr.h; sourceTree = "<group>"; };
-		DDA373641F9238D200A8A987 /* linked_ptr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = linked_ptr.h; sourceTree = "<group>"; };
-		DDA373651F923DEC00A8A987 /* persistent_set.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = persistent_set.h; sourceTree = "<group>"; };
+		DD2C86371FB6E10400A60D04 /* metaprogramming_lecture */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = metaprogramming_lecture; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD2C863A1FB6E10400A60D04 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		DDA373561F922A5700A8A987 /* Frameworks */ = {
+		DD2C86341FB6E10400A60D04 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -41,104 +38,101 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		DDA373501F922A5700A8A987 = {
+		DD2C862E1FB6E10400A60D04 = {
 			isa = PBXGroup;
 			children = (
-				DDA3735B1F922A5700A8A987 /* persistent set */,
-				DDA3735A1F922A5700A8A987 /* Products */,
+				DD2C86391FB6E10400A60D04 /* metaprogramming_lecture */,
+				DD2C86381FB6E10400A60D04 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		DDA3735A1F922A5700A8A987 /* Products */ = {
+		DD2C86381FB6E10400A60D04 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DDA373591F922A5700A8A987 /* persistent set */,
+				DD2C86371FB6E10400A60D04 /* metaprogramming_lecture */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DDA3735B1F922A5700A8A987 /* persistent set */ = {
+		DD2C86391FB6E10400A60D04 /* metaprogramming_lecture */ = {
 			isa = PBXGroup;
 			children = (
-				DDA373641F9238D200A8A987 /* linked_ptr.h */,
-				DDA3735C1F922A5700A8A987 /* main.cpp */,
-				DDA373651F923DEC00A8A987 /* persistent_set.h */,
-				DDA373631F922A9C00A8A987 /* shared_ptr.h */,
+				DD2C863A1FB6E10400A60D04 /* main.cpp */,
 			);
-			path = "persistent set";
+			path = metaprogramming_lecture;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DDA373581F922A5700A8A987 /* persistent set */ = {
+		DD2C86361FB6E10400A60D04 /* metaprogramming_lecture */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DDA373601F922A5800A8A987 /* Build configuration list for PBXNativeTarget "persistent set" */;
+			buildConfigurationList = DD2C863E1FB6E10400A60D04 /* Build configuration list for PBXNativeTarget "metaprogramming_lecture" */;
 			buildPhases = (
-				DDA373551F922A5700A8A987 /* Sources */,
-				DDA373561F922A5700A8A987 /* Frameworks */,
-				DDA373571F922A5700A8A987 /* CopyFiles */,
+				DD2C86331FB6E10400A60D04 /* Sources */,
+				DD2C86341FB6E10400A60D04 /* Frameworks */,
+				DD2C86351FB6E10400A60D04 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "persistent set";
-			productName = "persistent set";
-			productReference = DDA373591F922A5700A8A987 /* persistent set */;
+			name = metaprogramming_lecture;
+			productName = metaprogramming_lecture;
+			productReference = DD2C86371FB6E10400A60D04 /* metaprogramming_lecture */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		DDA373511F922A5700A8A987 /* Project object */ = {
+		DD2C862F1FB6E10400A60D04 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = Vadim;
 				TargetAttributes = {
-					DDA373581F922A5700A8A987 = {
-						CreatedOnToolsVersion = 9.0;
+					DD2C86361FB6E10400A60D04 = {
+						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = DDA373541F922A5700A8A987 /* Build configuration list for PBXProject "persistent set" */;
+			buildConfigurationList = DD2C86321FB6E10400A60D04 /* Build configuration list for PBXProject "metaprogramming_lecture" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = DDA373501F922A5700A8A987;
-			productRefGroup = DDA3735A1F922A5700A8A987 /* Products */;
+			mainGroup = DD2C862E1FB6E10400A60D04;
+			productRefGroup = DD2C86381FB6E10400A60D04 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DDA373581F922A5700A8A987 /* persistent set */,
+				DD2C86361FB6E10400A60D04 /* metaprogramming_lecture */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		DDA373551F922A5700A8A987 /* Sources */ = {
+		DD2C86331FB6E10400A60D04 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDA3735D1F922A5700A8A987 /* main.cpp in Sources */,
+				DD2C863B1FB6E10400A60D04 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		DDA3735E1F922A5800A8A987 /* Debug */ = {
+		DD2C863C1FB6E10400A60D04 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -180,8 +174,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = /usr/local/Cellar/boost/1.65.1/include/boost/;
-				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/boost/1.65.1/include/boost/;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -189,13 +181,13 @@
 			};
 			name = Debug;
 		};
-		DDA3735F1F922A5800A8A987 /* Release */ = {
+		DD2C863D1FB6E10400A60D04 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -231,15 +223,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = /usr/local/Cellar/boost/1.65.1/include/boost/;
-				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/boost/1.65.1/include/boost/;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 			};
 			name = Release;
 		};
-		DDA373611F922A5800A8A987 /* Debug */ = {
+		DD2C863F1FB6E10400A60D04 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -247,7 +237,7 @@
 			};
 			name = Debug;
 		};
-		DDA373621F922A5800A8A987 /* Release */ = {
+		DD2C86401FB6E10400A60D04 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -258,25 +248,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DDA373541F922A5700A8A987 /* Build configuration list for PBXProject "persistent set" */ = {
+		DD2C86321FB6E10400A60D04 /* Build configuration list for PBXProject "metaprogramming_lecture" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DDA3735E1F922A5800A8A987 /* Debug */,
-				DDA3735F1F922A5800A8A987 /* Release */,
+				DD2C863C1FB6E10400A60D04 /* Debug */,
+				DD2C863D1FB6E10400A60D04 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DDA373601F922A5800A8A987 /* Build configuration list for PBXNativeTarget "persistent set" */ = {
+		DD2C863E1FB6E10400A60D04 /* Build configuration list for PBXNativeTarget "metaprogramming_lecture" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DDA373611F922A5800A8A987 /* Debug */,
-				DDA373621F922A5800A8A987 /* Release */,
+				DD2C863F1FB6E10400A60D04 /* Debug */,
+				DD2C86401FB6E10400A60D04 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = DDA373511F922A5700A8A987 /* Project object */;
+	rootObject = DD2C862F1FB6E10400A60D04 /* Project object */;
 }

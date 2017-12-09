@@ -146,7 +146,6 @@ public:
         root = merge(root->left, root->right);
         if (root)
             root->parent = std::shared_ptr<node>(nullptr);
-        
     }
     
     bool count(T const& data) override
