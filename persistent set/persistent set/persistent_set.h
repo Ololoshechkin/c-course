@@ -13,30 +13,9 @@
 #include <vector>
 #include <cassert>
 #include <algorithm>
-#define val auto
-#define List std::vector
-#define add push_back
+#include <ctime>
+#include <iostream>
 #define Node smart_ptr<node>
-
-template <typename T>
-List<T> reversedListOf(T last, T args...) {
-    val res = reversedListOf(args);
-    res.add(last);
-    return res;
-}
-
-template <typename T>
-
-List<T> reversedListOf() {
-    return List<T>();
-}
-
-template <typename T>
-List<T> listOf(T args...) {
-    val rev = reversedListOf(args);
-    std::reverse(rev.begin(), rev.end());
-    return rev;
-}
 
 template <typename T, template <typename> class smart_ptr = shared_ptr>
 class persistent_set {
@@ -45,101 +24,126 @@ private:
         T value;
         Node left, right;
         bool operator == (node other) const noexcept {
-            return left.get() == other.left.get() &&
-            right.get() == other.right.get();
-        }
-        friend bool operator == (Node left, Node right) noexcept {
-            return left.get() == right.get();
+            return left == other.left && right == other.right;
         }
         node(T value, Node left = Node(), Node right = Node())
         : value(value), left(left), right(right)
         {}
+        Node the_least_child() const noexcept {
+            return left ? left->the_least_child() : right->the_least_child();
+        }
     };
     Node root;
-    Node copy(Node other) {
+    Node copy(Node other) const {
         return Node::of(other->value, other->left, other->right);
     }
+    // inv : l.value <= r.value
+    Node merge(Node l, Node r) const {
+        if (!l) return r;
+        if (!r) return l;
+        if (rand() & 1) {
+            return merge(l->right, r);
+        } else {
+            return merge(l, r->left);
+        }
+    }
+    void print(Node v) {
+        if (!v) return;
+        print(v->left);
+        std::cout << " " << v->value << " ";
+        print(v->right);
+    }
 public:
+    
+    void print() {
+        print(root);
+        std::cout << '\n';
+    }
     // Bidirectional iterator.
     struct iterator {
         T const& operator*() const {
-            return *path.back();
+            Node n = path.back();
+            return n->value;
         }
         iterator& operator++() {
             assert(!path.empty());
-            Node last_node(nullptr);
-            while(true) {
-                if (path.empty()) break;
-                val cur = cur_node(), right = cur->right();
-                if (!right || right == last_node) break;
-                last_node = cur;
+            if (cur_node()->right) {
+                path.push_back(cur_node()->right);
+                go_left();
+            } else {
+                while(true) {
+                    if (path.size() == 1 || last_is_left_son())
+                        break;
+                    path.pop_back();
+                }
                 path.pop_back();
             }
-            if (cur_node()->right)
-                path.push_back(cur_node()->right);
-            go_left();
-            return this;
+            return *this;
         }
         iterator operator++(int) {
-            val ans = *this;
+            iterator res = *this;
             ++*this;
-            return ans;
+            return res;
         }
         iterator& operator--() {
             if (is_end()) {
-                path.push_back(root);
+                path.push_back(root());
                 go_right();
             } else {
-                Node last_node(nullptr);
-                while(true) {
-                    assert(!path.empty());
-                    val cur = cur_node(), left = cur->left();
-                    if (!left || left == last_node) break;
-                    last_node = cur;
+                if (cur_node()->left) {
+                    path.push_back(cur_node()->left);
+                    go_right();
+                } else {
+                    while(true) {
+                        if (path.size() != 1 && !last_is_left_son())
+                            break;
+                        path.pop_back();
+                    }
                     path.pop_back();
                 }
-                if (cur_node()->left)
-                    path.push_back(cur_node()->left);
-                go_right();
-                return this;
             }
+            return *this;
         }
         iterator operator--(int) {
-            val ans = *this;
+            iterator res = *this;
             --*this;
-            return ans;
+            return res;
         }
-        bool operator==(iterator const& other) {
-            return root == other.root &&
-            path.empty() == other.path.empty() &&
-            ((path.empty() && other.path.empty())
-             || cur_node() == other.cur_node());
+        bool operator==(iterator const& other) const  {
+            return root() == other.root() && path.empty() == other.path.empty() &&
+            ((path.empty() && other.path.empty()) || cur_node() == other.cur_node());
+        }
+        bool operator!=(iterator const& other) const noexcept {
+            return !(*this == other);
         }
     private:
-        List<Node> path;
-        Node root;
-        iterator(List<Node> path, Node root)
-        : path(path), root(root)
+        const persistent_set* s;
+        std::vector<Node> path;
+        Node root() const {
+            return s->root;
+        }
+        iterator(const persistent_set* s, std::vector<Node> path)
+            : s(s), path(path)
         {}
         bool is_end() const noexcept {
             return path.empty();
         }
         Node cur_node() const noexcept {
-            return *path.back();
+            return path.back();
         }
-        void go_left() {
-            val cur = cur_node();
-            while (cur->left) {
-                cur = cur->left;
-                path.push_back(cur);
-            }
+        Node cur_node_or_null() const noexcept {
+            return path.empty() ? Node() : cur_node();
         }
-        void go_right() {
-            val cur = cur_node();
-            while (cur->right) {
-                cur = cur->right;
-                path.push_back(cur);
-            }
+        void go_left() noexcept {
+            while (cur_node()->left)
+                path.push_back(cur_node()->left);
+        }
+        void go_right() noexcept {
+            while (cur_node()->right)
+                path.push_back(cur_node()->right);
+        }
+        bool last_is_left_son() {
+            return path[path.size() - 2]->left == cur_node();
         }
         friend persistent_set;
     };
@@ -160,21 +164,18 @@ public:
     // Возвращает итератор на найденный элемент, либо end(), если элемент
     // с указанным значением отсутвует.
     iterator find(T newVal) {
-        val cur = root;
-        val path = listOf(root);
-        while (true) {
-            val should_break = false;
-            if (cur->value < newVal) {
-                if (!cur->right) return end();
-                else cur = cur->right;
-            } else if (newVal < cur->value){
-                if (!cur->left) return end();
-                else cur = cur->left;
-            } else should_break = true;
-            path.add(cur);
-            if (should_break) break;
+        iterator found(this, {});
+        auto cur = root;
+        while (cur) {
+            found.path.push_back(cur);
+            if (newVal < cur->value)
+                cur = cur->left;
+            else if (cur->value < newVal)
+                cur = cur->right;
+            else
+                return found;
         }
-        return iterator(path, root);
+        return end();
     }
     // Вставка элемента.
     // 1. Если такой ключ уже присутствует, вставка не производиться, возвращается итератор
@@ -183,42 +184,80 @@ public:
     //    элемент и true.
     // Если вставка произведена, инвалидирует все итераторы, принадлежащие persistent_set'у this, включая end().
     std::pair<iterator, bool> insert(T newValue) {
-        val found = find(newValue);
-        if (found == end()) {
+        if (!root) {
+//            std::cerr << "!root\n";
+            root = Node::of(newValue);
+            return { iterator(this, { root }), true };
+        }
+//        std::cerr << "root\n";
+        auto found = find(newValue);
+        if (found != end()) {
+//            std::cerr << "found != end()\n";
             return { found, false };
         } else {
-            val newRoot = copy(root);
-            val cur = newRoot, cur_old = root;
-            val path = listOf(newRoot);
+//            std::cerr << "found == end()\n";
+            auto new_root = copy(root);
+            auto cur = new_root, cur_old = root;
+            std::vector<Node> path = { new_root };
             while (true) {
                 if (!cur_old) break;
-                val should_break = false;
+//                std::cerr << "val : " << cur_old->value << '\n';
                 if (cur_old->value < newValue) {
                     cur_old = cur_old->right;
-                    if (cur_old) cur->right = copy(cur_old);
-                    else cur->right = Node(newValue), should_break = 1;
-                } else if (newValue < cur->value) {
+                    cur->right = cur_old ? copy(cur_old) : Node::of(newValue);
+                    cur = cur->right;
+                } else {
                     cur_old = cur_old->left;
-                    if (cur_old) cur->left = copy(cur_old);
-                    else cur->left = Node(newValue), should_break = 1;
+                    cur->left = cur_old ? copy(cur_old) : Node::of(newValue);
+                    cur = cur->left;
                 }
-                path.add(cur);
-                if (should_break) break;
+                path.push_back(cur);
             }
-            return { iterator(path, newRoot), true };
+            root = new_root;
+            return { iterator(this, path), true };
         }
     }
     
     void erase(iterator it) {
-        
+        assert(!it.path.empty());
+        Node last = it.path.back();
+        std::function<T(Node)> get_min = [&get_min](Node v) {
+            return v->left ? get_min(v->left) : v->value;
+        };
+        std::function<Node(Node)> copy_path = [&copy_path](Node v) {
+            return v->left ? Node::of(v->value, copy_path(v->left), v->right) : v->right;
+        };
+        Node cur_v = !last->left ? last->right :
+                     !last->right ? last->left : Node::of(
+                            get_min(last->right),
+                            last->left,
+                            copy_path(last->right)
+                     );
+        for (auto i = it.path.size() - 1; i > 0;) {
+            Node parent = it.path[--i];
+            if (parent->left == last)
+                cur_v = Node::of(parent->value, cur_v, parent->right);
+            else
+                cur_v = Node::of(parent->value, parent->left, cur_v);
+            last = parent;
+        }
+        root = cur_v;
     }
     
     iterator begin() const {
-        val st = iterator(root, listOf<Node>());
-        st.go_left();
+        if (root) {
+            auto st = iterator(this, { root });
+            st.go_left();
+            return st;
+        }
+        return iterator(this, {});
     }
     iterator end() const {
-        return iterator(root, listOf<Node>());
+        return iterator(this, {});
+    }
+    iterator last() const {
+        iterator en = end();
+        return --en;
     }
 };
 
@@ -226,9 +265,14 @@ public:
 // Сравнение с невалидным итератором не определено.
 // Сравнение итераторов двух разных контейнеров не определено.
 template <typename T>
-bool operator==(typename persistent_set<T>::iterator, typename persistent_set<T>::iterator);
+bool operator==(typename persistent_set<T>::iterator it1, typename persistent_set<T>::iterator it2) {
+    return it1.path == it2.path && it1.root.get() == it2.root.get();
+}
+
 template <typename T>
-bool operator!=(typename persistent_set<T>::iterator, typename persistent_set<T>::iterator);
+bool operator!=(typename persistent_set<T>::iterator it1, typename persistent_set<T>::iterator it2) {
+    return !(it1 == it2);
+}
 
 
 

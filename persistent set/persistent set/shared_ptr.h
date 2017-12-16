@@ -26,7 +26,7 @@ private:
     }* ptr;
     
     void inc_count() noexcept {
-        ptr->cnt++;
+        if (ptr) ptr->cnt++;
     }
     
     size_t dec_count() noexcept {
@@ -52,8 +52,8 @@ public:
         std::swap(ptr, other.ptr);
     }
     
-    shared_ptr(shared_ptr const& other) noexcept :
-        ptr(other.ptr)
+    shared_ptr(shared_ptr const& other) noexcept
+    : ptr(other.ptr)
     {
         inc_count();
     }
@@ -72,8 +72,13 @@ public:
         return ptr->payload;
     }
     
+    T const& operator*() const {
+        if (!ptr) throw "NPE";
+        return ptr->payload;
+    }
+    
     operator bool() const noexcept {
-        return (bool) *this;
+        return (bool) ptr;
     }
     
     ~shared_ptr() noexcept {
@@ -83,6 +88,13 @@ public:
         }
     }
     
+    T* get() noexcept {
+        return &ptr->payload;
+    }
+    
+    friend bool operator==(shared_ptr<T> a, shared_ptr<T> b) {
+        return a.get() == b.get();
+    }
     
 };
 

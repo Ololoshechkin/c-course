@@ -8,10 +8,6 @@
 
 #ifndef linked_ptr_h
 #define linked_ptr_h
-
-#define prev _____prev_
-#define next _____next_
-
 #include <algorithm>
 
 template <typename T>
@@ -23,14 +19,18 @@ private:
     T* payload;
     
     linked_ptr(T* payload,
-               linked_ptr* prev = nullptr,
-               linked_ptr* next = nullptr) noexcept
+               linked_ptr* prev,
+               linked_ptr* next) noexcept
     :   prev(prev),
         next(next),
         payload(payload)
     {}
     
 public:
+    
+    linked_ptr(T* ptr) noexcept
+    : linked_ptr(ptr, nullptr, nullptr)
+    {}
     
     template <typename... Args>
     static linked_ptr of(Args&&... args) {
@@ -73,10 +73,16 @@ public:
     
     ~linked_ptr() noexcept {
         if (!payload) return;
-        if (prev) prev->next = next;
-        if (next) next->prev = prev;
-        if (next == prev /* == null */)
+        if (prev == this) {
             delete payload;
+        } else {
+            if (prev) prev->next = next;
+            if (next) next->prev = prev;
+        }
+    }
+    
+    friend bool operator==(linked_ptr<T> a, linked_ptr<T> b) {
+        return a.payload == b.payload;
     }
     
 };
