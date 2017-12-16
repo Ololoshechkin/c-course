@@ -113,7 +113,7 @@ public:
                     std::cerr << "<x> : \n";
                     while(true) {
                         assert(!path.empty());
-                        std::cerr << "wh : " << path.size() << std::endl;
+                        std::cerr << "wh" << std::endl;
                         if (path.size() != 1 && !last_is_left_son())
                             break;
                         std::cerr << "pb" << std::endl;
@@ -334,7 +334,7 @@ public:
 
     void erase(iterator it) {
         assert(!it.path.empty());
-        auto last = it.cur_node();
+        Node last = it.path.back();
         std::function<T(Node)> get_min = [&get_min](Node v) {
             return v->left ? get_min(v->left) : v->value;
         };

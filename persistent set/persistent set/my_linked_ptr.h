@@ -1,26 +1,26 @@
 //
-//  linked_ptr.h
+//  my_linked_ptr.h
 //  persistent set
 //
 //  Created by Vadim on 14/10/2017.
 //  Copyright © 2017 Vadim. All rights reserved.
 //
 
-#ifndef linked_ptr_h
-#define linked_ptr_h
+#ifndef my_linked_ptr_h
+#define my_linked_ptr_h
 #include <algorithm>
 
 template <typename T>
-class linked_ptr {
+class my_linked_ptr {
 private:
     
-    linked_ptr* prev;
-    linked_ptr* next;
+    my_linked_ptr* prev;
+    my_linked_ptr* next;
     T* payload;
     
-    linked_ptr(T* payload,
-               linked_ptr* prev,
-               linked_ptr* next) noexcept
+    my_linked_ptr(T* payload,
+               my_linked_ptr* prev,
+               my_linked_ptr* next) noexcept
     :   prev(prev),
         next(next),
         payload(payload)
@@ -28,32 +28,32 @@ private:
     
 public:
     
-    linked_ptr(T* ptr) noexcept
-    : linked_ptr(ptr, nullptr, nullptr)
+    my_linked_ptr(T* ptr) noexcept
+    : my_linked_ptr(ptr, nullptr, nullptr)
     {}
     
     template <typename... Args>
-    static linked_ptr of(Args&&... args) {
-        return linked_ptr(new T(std::forward<Args>(args)...));
+    static my_linked_ptr of(Args&&... args) {
+        return my_linked_ptr(new T(std::forward<Args>(args)...));
     }
     
-    linked_ptr() noexcept
-    : linked_ptr(nullptr)
+    my_linked_ptr() noexcept
+    : my_linked_ptr(nullptr)
     {}
     
-    void swap(linked_ptr& other) noexcept {
+    void swap(my_linked_ptr& other) noexcept {
         std::swap(payload, other.payload);
         std::swap(prev, other.prev);
         std::swap(next, other.next);
     }
     
-    linked_ptr(linked_ptr const& other) noexcept :
+    my_linked_ptr(my_linked_ptr const& other) noexcept :
         prev(other.prev),
         next(other.next),
         payload(other.payload)
     {}
     
-    linked_ptr* operator=(linked_ptr other) noexcept {
+    my_linked_ptr* operator=(my_linked_ptr other) noexcept {
         swap(other);
         return this;
     }
@@ -71,7 +71,7 @@ public:
         return (bool) payload;
     }
     
-    ~linked_ptr() noexcept {
+    ~my_linked_ptr() noexcept {
         if (!payload) return;
         if (prev == this) {
             delete payload;
@@ -81,10 +81,10 @@ public:
         }
     }
     
-    friend bool operator==(linked_ptr<T> a, linked_ptr<T> b) {
+    friend bool operator==(my_linked_ptr<T> a, my_linked_ptr<T> b) {
         return a.payload == b.payload;
     }
     
 };
 
-#endif /* linked_ptr_h */
+#endif /* my_linked_ptr_h */
