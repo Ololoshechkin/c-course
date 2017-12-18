@@ -11,15 +11,17 @@
 
 #include "abstract_test.h"
 
-template <template<class> class smart_ptr, typename T, T*(*new_T)()>
-struct alloc_dealloc_test : public abstract_test {
-protected:
-    void test_impl(int test_number) {
-        std::vector<smart_ptr<T>> pointers;
-        for (int i = 0; i < BIG_CONST * test_number; ++i) {
-            pointers.push_back(smart_ptr<T>(new_T()));
-        }
-    }
-};
+template <template <typename > class smart_ptr, typename T>
+void alloc_dealloc_test_impl(int test_number) {
+	std::vector<smart_ptr<T>> pointers;
+	for (int i = 0; i < BIG_CONST * test_number; ++i)
+		pointers.push_back(smart_ptr<T>(new T()));
+}
+
+template <template <typename > class smart_ptr, typename T>
+decltype(auto) alloc_dealloc_benchmark(int test_count) {
+	return run_benchmark(test_count, [](int test_number) { alloc_dealloc_test_impl<smart_ptr, T>(test_number); });
+}
+
 
 #endif /* allocations_test_h */
