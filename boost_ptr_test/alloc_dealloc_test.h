@@ -17,7 +17,7 @@ protected:
     void test_impl(int test_number) {
         std::vector<smart_ptr<T>> pointers;
         for (int i = 0; i < BIG_CONST * test_number; ++i) {
-            pointers.push_back(smart_ptr<T>(new_T()));
+            pointers.push_back(smart_ptr<T>(new_T())); 
         }
     }
 };

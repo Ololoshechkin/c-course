@@ -1,7 +1,6 @@
 #include <iostream>
+// #include <boost/intrusive_ptr.h>
 #include "intrusive_ptr.h"
-#include <shared_ptr.hpp>
-#include <scoped_ptr.hpp>
 #include <memory.h>
 #include "alloc_dealloc_test.h"
 #include "equasion_and_copy_test.h"
@@ -45,7 +44,26 @@ template <typename T>
 using my_unique_ptr = unique_ptr<T, default_delete<T>>;
 
 int main(int argc, const char * argv[]) {
-    bench_t bench_linked, bench_shared, bench_unique, bench_intrusive;
+    bench_t bench_linked, bench_shared, bench_unique, bench_intrusive;//, bench_row;
+
+//    bench_row["alloc / dealloc"] = alloc_dealloc_test<
+//        row_ptr,
+//        int,
+//        *new_int_array
+//    >().get_benchmark();
+//    
+//    bench_row["copy / := "] = equasion_and_copy_test<
+//        row_ptr,
+//        int,
+//        *new_int_array
+//    >().get_benchmark();
+//    
+//    bench_row["decart tree usage"] = decart_tree_test<
+//        row_ptr,
+//        int
+//    >().get_benchmark();
+//    
+//    print_bench("row", bench_row);
     
     bench_linked["alloc / dealloc"] = alloc_dealloc_test<
         linked_ptr,
