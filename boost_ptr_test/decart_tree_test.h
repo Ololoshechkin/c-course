@@ -25,7 +25,7 @@ ptr&& arg(std::enable_if_t<!std::is_copy_constructible_v<ptr>, ptr&> p) {
 #define index(v) ((v->l.get() ? v->l->size : 0) + 1)
 
 template <template<typename> class smart_ptr, typename T>
-struct decart_tree_test : public abstract_test<smart_ptr, T> {
+struct decart_tree_test : public abstract_test {
 protected:
 	void test_impl(int test_number) {
 		treap_array t;

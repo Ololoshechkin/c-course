@@ -1,7 +1,7 @@
 #include <iostream>
 // #include <boost/intrusive_ptr.h>
 #include "intrusive_ptr.h"
-#include <memory.h>
+#include <memory>
 #include "alloc_dealloc_test.h"
 #include "equasion_and_copy_test.h"
 #include "decart_tree_test.h"
@@ -35,6 +35,8 @@ struct my_int {
         return value;
     }
 };
+
+
 
 my_int* new_my_int_array() {
     return new my_int[4];

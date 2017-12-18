@@ -14,7 +14,6 @@
 
 constexpr int BIG_CONST = 500000;
 
-template <template<typename> class smart_ptr, typename T>
 struct abstract_test {
     static constexpr int TEST_COUNT = 10;
     static constexpr double TIME_SCALE = 1e6;
