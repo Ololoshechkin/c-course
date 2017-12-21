@@ -107,12 +107,12 @@
       <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="191" column="37" lean-forward="false" selection-start-line="191" selection-start-column="37" selection-end-line="191" selection-end-column="37" />
+            <state relative-caret-position="277">
+              <caret line="96" column="4" lean-forward="true" selection-start-line="96" selection-start-column="4" selection-end-line="96" selection-end-column="4" />
               <folding>
                 <element signature="e#56#82#0" expanded="true" />
                 <element signature="e#353#373#0" expanded="true" />
-                <element signature="e#4582#4594#0" expanded="true" />
+                <element signature="e#5076#5088#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -148,10 +148,17 @@
       <find>middle</find>
       <find>.c_str()</find>
       <find>print_name</find>
-      <find>bench_width</find>
       <find>print_extra_for_memory_allocs</find>
       <find>label_hei</find>
       <find>print_labe</find>
+      <find>&quot;move&quot;</find>
+      <find>&quot;copy&quot;</find>
+      <find>linked</find>
+      <find>if (</find>
+      <find>if (n</find>
+      <find>middle(</find>
+      <find>bench_width</find>
+      <find>print_</find>
     </findStrings>
     <replaceStrings>
       <replace>std::move(</replace>
@@ -435,12 +442,12 @@
       <workItem from="1513758508832" duration="36000" />
       <workItem from="1513758565959" duration="1707000" />
       <workItem from="1513791202268" duration="102000" />
-      <workItem from="1513861500597" duration="6008000" />
+      <workItem from="1513861500597" duration="6956000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29777000" />
+    <option name="totallyTimeSpent" value="30725000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -448,13 +455,13 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24861" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.88170564" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.55158186" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48219177" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1911967" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27235213" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5392022" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39889959" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -486,7 +493,7 @@
           <folding>
             <element signature="e#56#82#0" expanded="true" />
             <element signature="e#353#373#0" expanded="true" />
-            <element signature="e#4582#4594#0" expanded="true" />
+            <element signature="e#5076#5088#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -551,7 +558,7 @@
           <folding>
             <element signature="e#56#82#0" expanded="true" />
             <element signature="e#353#373#0" expanded="true" />
-            <element signature="e#4582#4594#0" expanded="true" />
+            <element signature="e#5076#5088#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -637,7 +644,7 @@
           <folding>
             <element signature="e#56#82#0" expanded="true" />
             <element signature="e#353#373#0" expanded="true" />
-            <element signature="e#4582#4594#0" expanded="true" />
+            <element signature="e#5076#5088#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -723,7 +730,7 @@
           <folding>
             <element signature="e#56#82#0" expanded="true" />
             <element signature="e#353#373#0" expanded="true" />
-            <element signature="e#4582#4594#0" expanded="true" />
+            <element signature="e#5076#5088#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -809,7 +816,7 @@
           <folding>
             <element signature="e#56#82#0" expanded="true" />
             <element signature="e#353#373#0" expanded="true" />
-            <element signature="e#4582#4594#0" expanded="true" />
+            <element signature="e#5076#5088#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -885,7 +892,7 @@
           <folding>
             <element signature="e#56#82#0" expanded="true" />
             <element signature="e#353#373#0" expanded="true" />
-            <element signature="e#4582#4594#0" expanded="true" />
+            <element signature="e#5076#5088#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1001,12 +1008,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="191" column="37" lean-forward="false" selection-start-line="191" selection-start-column="37" selection-end-line="191" selection-end-column="37" />
+        <state relative-caret-position="277">
+          <caret line="96" column="4" lean-forward="true" selection-start-line="96" selection-start-column="4" selection-end-line="96" selection-end-column="4" />
           <folding>
             <element signature="e#56#82#0" expanded="true" />
             <element signature="e#353#373#0" expanded="true" />
-            <element signature="e#4582#4594#0" expanded="true" />
+            <element signature="e#5076#5088#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -72,16 +72,29 @@ constexpr const char* LINKED_NAME = "$linked\\underline{\\hspace{0.3cm}}ptr$";
 constexpr const char* SHARED_NAME = "$std::shared\\underline{\\hspace{0.3cm}}ptr$";
 constexpr const char* INTRUISIVE_NAME = "$boost::intruisive\\underline{\\hspace{0.3cm}}ptr$";
 constexpr const char* UNIQUE_NAME = "$std::unique\\underline{\\hspace{0.3cm}}ptr$";
+constexpr const char* HEAP_USAGE = "$heap allocation$";
 
-void print_labels(const char* name1, const char* name2, const char* name3, const char* name4, const char* pen_color)
+void print_labels(const char* name1, const char* name2, const char* name3, const char* name4, bool is_heap = false)
 {
-	printf(
-			"label(\"%s\", (linked_offset - label_offset, linked), %s);\n"
-					"label(\"%s\", (shared_offset - label_offset, shared), %s);\n"
-					"label(\"%s\", (intrusive_offset - label_offset, intrusive), %s);\n"
-					"label(\"%s\", (unique_offset - label_offset, unique), %s);\n",
-			name1, pen_color, name2, pen_color, name3, pen_color, name4, pen_color
-	);
+	if (!is_heap) {
+		printf(
+				"label(\"%s\", (linked_offset - label_offset, linked * 1.03), black);\n"
+						"label(\"%s\", (shared_offset - label_offset, shared * 1.03), black);\n"
+						"label(\"%s\", (intrusive_offset - label_offset, intrusive * 1.03), black);\n"
+						"label(\"%s\", (unique_offset - label_offset, unique * 1.03), black);\n",
+				name1, name2, name3, name4
+		);
+	}
+	else {
+		printf("real label_heigth=bench_width / 4.0;\n"
+				       "label(\"%s\", (linked_offset - label_offset, label_heigth), white);\n"
+				       "label(\"%s\", (shared_offset - label_offset, label_heigth), white);\n"
+				       "label(\"%s\", (intrusive_offset - label_offset, label_heigth), white);\n"
+				       "label(\"%s\", (unique_offset - label_offset, label_heigth), white);\n",
+		       name1, name2, name3, name4
+		);
+	}
+	
 }
 
 void print_middle_part(const char* color1, const char* color2, const char* color3, const char* color4)
@@ -116,7 +129,7 @@ void print_code(const char* name,
 	printf("settings.outformat = \"pdf\";\n\n");
 	print_constants(benchmark_linked, benchmark_shared, benchmark_intrusive, benchmark_unique);
 	print_middle_part("green", "blue", "magenta", "red");
-	print_labels(LINKED_NAME, SHARED_NAME, INTRUISIVE_NAME, UNIQUE_NAME, "black");
+	print_labels(LINKED_NAME, SHARED_NAME, INTRUISIVE_NAME, UNIQUE_NAME);
 	print_name(name);
 }
 
@@ -127,7 +140,7 @@ void print_extra_for_memory_allocs(uint64_t benchmark_linked,
 {
 	print_constants(benchmark_linked, benchmark_shared, benchmark_intrusive, benchmark_unique, false);
 	print_middle_part("black", "black", "black", "black");
-	print_labels("heap allocs", "heap allocs", "heap allocs", "heap allocs", "white");
+	print_labels(HEAP_USAGE, HEAP_USAGE, HEAP_USAGE, HEAP_USAGE, true);
 }
 
 struct my_int
@@ -173,24 +186,24 @@ int main(int argc, const char* argv[])
 				alloc_time_int
 		);
 	}
-	else if (strcmp(argv[1], "copy constructor benchmark : ") == 0) {
-		print_code("copy",
+	else if (strcmp(argv[1], "copy") == 0) {
+		print_code("copy constructor benchmark : ",
 		           copy_benchmark<linked_ptr, int>(OPERATIONS_COUNT),
 		           copy_benchmark<shared_ptr, int>(OPERATIONS_COUNT),
 		           copy_benchmark<intrusive_ptr, my_int>(OPERATIONS_COUNT),
 		           0ll
 		);
 	}
-	else if (strcmp(argv[1], "std::move benchmark : ") == 0) {
-		print_code("std::move",
+	else if (strcmp(argv[1], "move") == 0) {
+		print_code("std::move benchmark : ",
 		           move_benchmark<linked_ptr, int>(OPERATIONS_COUNT),
 		           move_benchmark<shared_ptr, int>(OPERATIONS_COUNT),
 		           move_benchmark<intrusive_ptr, my_int>(OPERATIONS_COUNT),
 		           move_benchmark<my_unique_ptr, int>(OPERATIONS_COUNT)
 		);
 	}
-	else if (strcmp(argv[1], "real usecase (decart treee) benchmark : ") == 0) {
-		print_code("decart treap",
+	else if (strcmp(argv[1], "real") == 0) {
+		print_code("real usecase (decart treee) benchmark : ",
 		           decart_treap_benchmark<linked_ptr, int>(OPERATIONS_COUNT),
 		           decart_treap_benchmark<shared_ptr, int>(OPERATIONS_COUNT),
 		           decart_treap_benchmark<intrusive_ptr, my_int>(OPERATIONS_COUNT),
