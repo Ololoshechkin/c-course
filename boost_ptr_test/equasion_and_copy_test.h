@@ -11,34 +11,34 @@
 
 #include "abstract_test.h"
 
-
 template <template<class> class smart_ptr, typename T>
-void copy_test(int test_number) {
-	smart_ptr<T> ptr = smart_ptr<T>(new T());
-	for (int i = 0; i < BIG_CONST * 10 * test_number; ++i) {
-		smart_ptr<T> ptr2 = ptr;
-		ptr = ptr2;
-	}
-}
-
-template <template<class> class smart_ptr, typename T>
-void move_test(int test_number) {
-	smart_ptr<T> ptr = smart_ptr<T>(new T());
-	for (int i = 0; i < BIG_CONST * 10 * test_number; ++i) {
-		smart_ptr<T> ptr2 = std::move(ptr);
-		ptr =  std::move(ptr2);
-	}
-}
-
-template <template<class> class smart_ptr, typename T>
-decltype(auto) copy_benchmark(int test_count) {
-	return run_benchmark(test_count, [](int i) { return copy_test<smart_ptr, T>(i);});
+decltype(auto) copy_benchmark(int operations_count) {
+	return run_benchmark([operations_count]() {
+		smart_ptr<T> ptr = smart_ptr<T>(new T());
+		for (int i = 0; i < operations_count / 2; ++i) {
+			clobber();
+			smart_ptr<T> ptr2 = ptr;
+			escape(&ptr2);
+			ptr = ptr2;
+			clobber();
+		}
+	});
 }
 
 
 template <template<class> class smart_ptr, typename T>
-decltype(auto) move_benchmark(int test_count) {
-	return run_benchmark(test_count, [](int i) { return move_test<smart_ptr, T>(i);});
+decltype(auto) move_benchmark(int operations_count) {
+	return run_benchmark([operations_count]() {
+		smart_ptr<T> ptr = smart_ptr<T>(new T());
+		smart_ptr<T> ptr2;
+		for (int i = 0; i < operations_count / 2; ++i) {
+			clobber();
+			ptr2 = std::move(ptr);
+			escape(&ptr2);
+			ptr = std::move(ptr2);
+			clobber();
+		}
+	});
 }
 
 #endif /* equasion_and_copy_test_h */

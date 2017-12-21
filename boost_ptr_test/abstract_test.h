@@ -9,24 +9,31 @@
 #ifndef abstract_test_h
 #define abstract_test_h
 
-#include <chrono>
 #include <vector>
+#include <cstdint>
 
-constexpr int BIG_CONST = 500000;
+uint64_t rdtsc(){
+	unsigned int lo, hi;
+	__asm__ __volatile__ ("rdtsc" : "=a" (lo), "=d" (hi));
+	return ((uint64_t)hi << 32) | lo;
+}
+
+void escape(void* p)
+{
+	asm volatile("" : : "g"(p) : "memory");
+}
+
+void clobber()
+{
+	asm volatile("" : : : "memory");
+}
 
 template <typename F>
-std::vector<std::chrono::high_resolution_clock::duration> run_benchmark(int test_count, F f)
+uint64_t run_benchmark(F f)
 {
-	using namespace std::chrono;
-	std::vector<high_resolution_clock::duration> bench;
-	for (int i = 0; i < test_count; ++i) {
-		auto start = high_resolution_clock::now();
-		f(i);
-		auto end = high_resolution_clock::now();
-		bench.push_back(end - start);
-	}
-	
-	return bench;
+	uint64_t start = rdtsc();
+	f();
+	return rdtsc() - start;
 }
 
 #endif /* abstract_test_h */

@@ -12,8 +12,8 @@
 #include "abstract_test.h"
 
 
-#define sz(v) (v.get() ? v->size : 0)
-#define index(v) ((v->l.get() ? v->l->size : 0) + 1)
+#define sz(v) ((v).get() ? (v)->size : 0)
+#define index(v) (((v)->l.get() ? (v)->l->size : 0) + 1)
 
 template <template <typename> class smart_ptr, typename T>
 struct treap_array {
@@ -97,25 +97,20 @@ private:
 };
 
 template <template <typename> class smart_ptr, typename T>
-void decart_test(int test_number)
-{
-	treap_array<smart_ptr, T> t;
-	int max_cnt = BIG_CONST * test_number;
-	for (int i = 0; i < max_cnt; ++i)
-		t.push_back(i);
-	for (int i = 0; i < max_cnt; ++i) {
-		int index = rand() % max_cnt + 1;
-		t.insert(index, i);
-	}
-	for (int i = 0; i < max_cnt; ++i) {
-		int index = t.size() + 1;
-		t.erase(index);
-	}
-}
-
-template <template <typename> class smart_ptr, typename T>
-decltype(auto) decart_treap_benchmark(int test_count) {
-	return run_benchmark(test_count, [](int test_number) { decart_test<smart_ptr, T>(test_number); });
+decltype(auto) decart_treap_benchmark(int operations_count) {
+	return run_benchmark([operations_count]() {
+		treap_array<smart_ptr, T> t;
+		for (int i = 0; i < operations_count; ++i)
+			t.push_back(i);
+		for (int i = 0; i < operations_count; ++i) {
+			int index = rand() % operations_count + 1;
+			t.insert(index, i);
+		}
+		for (int i = 0; i < operations_count; ++i) {
+			int index = t.size() + 1;
+			t.erase(index);
+		}
+	});
 };
 
 #endif /* decart_tree_test_h */
