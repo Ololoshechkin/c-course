@@ -120,9 +120,6 @@ public:
 					path.push_back(cur_node()->left);
 					go_right();
 				} else {
-					for (auto x : path) {
-						std::cerr << x->value << ' ';
-					}
 					while(true) {
 						assert(!path.empty());
 						if (path.size() != 1 && !last_is_left_son())
@@ -191,7 +188,7 @@ public:
 	};
 	persistent_set()
 	{}
-	persistent_set(persistent_set const& other)
+	persistent_set(persistent_set const& other) 
 			: root(other.root)
 	{}
 	void swap(persistent_set& other) {

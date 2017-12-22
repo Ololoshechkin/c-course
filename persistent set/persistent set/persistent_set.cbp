@@ -353,6 +353,9 @@
 		<Unit filename="/Users/Vadim/Documents/coding/c++ course/persistent set/persistent set/persistent_set.h">
 			<Option target="persistent_set"/>
 		</Unit>
+		<Unit filename="/Users/Vadim/Documents/coding/c++ course/persistent set/persistent set/unit_test.h">
+			<Option target="persistent_set"/>
+		</Unit>
 		<Unit filename="/Users/Vadim/Documents/coding/c++ course/persistent set/persistent set/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

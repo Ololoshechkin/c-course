@@ -53,24 +53,7 @@ TEST(test_set, copy2) {
     EXPECT_EQ(vector<int>({ 0, 12 }), vec(p));
 }
 
-TEST(test_set, insert_and_copy) {
-    persistent_set<int> s;
-    s.insert(4);
-    s.insert(5);
-    s.insert(7);
-    s.insert(6);
-    s.insert(1);
-    s.insert(2);
-    s.insert(8);
-    s.insert(3);
-    s.insert(0);
-    s.insert(9);
-    EXPECT_EQ(vector<int>({ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }), vec(s));
-    persistent_set<int> p(s);
-    s.insert(100);
-    EXPECT_EQ(vector<int>({ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 100 }), vec(s));
-    EXPECT_EQ(vector<int>({ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }), vec(p));
-}
+
 TEST(test_set, erase0) {
     persistent_set<int> s;
     s.insert(4);
@@ -194,27 +177,27 @@ TEST(test_set, smth) {
     EXPECT_EQ(vector<smth>({ 1, 5, 8 }), vec(q));
 }
 
-TEST(test_linked_ptr, copy_null) {
-    my_linked_ptr<int> a;
-    my_linked_ptr<int> b = a;
-    my_linked_ptr<int> c = a;
-    my_linked_ptr<int> d = a;
-    my_linked_ptr<int> e = a;
-
-    my_linked_ptr<int> f(new int(5));
-    a = f;
-    c = f;
-    f = f;
-    d = f;
-    b = my_linked_ptr<int>(new int(6));
-    c = b;
-    b.swap(c);
-    f = c;
-    e = f;
-    a = f;
-    d = a;
-    b = f;
-}
+//TEST(test_linked_ptr, copy_null) {
+//    my_linked_ptr<int> a;
+//    my_linked_ptr<int> b = a;
+//    my_linked_ptr<int> c = a;
+//    my_linked_ptr<int> d = a;
+//    my_linked_ptr<int> e = a;
+//
+//    my_linked_ptr<int> f(new int(5));
+//    a = f;
+//    c = f;
+//    f = f;
+//    d = f;
+//    b = my_linked_ptr<int>(new int(6));
+//    c = b;
+//    b.swap(c);
+//    f = c;
+//    e = f;
+//    a = f;
+//    d = a;
+//    b = f;
+//}
 
 TEST(test_set, decrease_end) {
     persistent_set<int> s;
@@ -252,6 +235,85 @@ std::vector < std::vector < int > > test(std::string const& msg) {
             a[i].push_back(x);
     std::cout << msg << " " << 1.*(clock() - tt) / CLOCKS_PER_SEC << "\n";
     return a;
+}
+
+std::set<void*> cnt;
+
+struct Counter {
+	int x;
+	Counter(int x = 0) : x(x) {
+		cnt.insert(this);
+	}
+	Counter(Counter const& other): x(other.x) {
+		cnt.insert(this);
+	}
+	void swap(Counter& other) {
+		std::swap(x, other.x);
+	}
+	Counter& operator=(Counter const& other) {
+		Counter tmp(other);
+		swap(tmp);
+		return *this;
+	}
+	bool operator<(Counter const& other) const {
+		return x < other.x;
+	}
+	friend ostream& operator<<(ostream& o, Counter const& c) {
+		o << c.x;
+		return o;
+	}
+	~Counter() {
+		cnt.erase(this);
+	}
+};
+
+TEST(test_set, counter_no_cpy) {
+	if (true) {
+		persistent_set<Counter> s;
+		for (int i = 0; i < 25; ++i)
+			s.insert(Counter(i));
+		for (int i = 0; i < 5; ++i) 
+			s.insert(*s.begin());
+		for (int i = 1; i <= 5; ++i) {
+			auto it = s.end();
+			for (int j = 0; j <= i; ++j)
+				--it;
+			s.insert(*it);
+		}
+		s.erase(s.begin());
+		for (int i = 0; i < 10; ++i) {
+			auto it = s.begin();
+			for (int j = 0; j < i; ++j)
+				++it;
+			s.erase(it);
+		}
+	}
+	EXPECT_TRUE(cnt.empty());
+}
+
+TEST(test_set, counter_cpy) {
+	if (true) {
+		persistent_set<Counter> s;
+		for (int i = 0; i < 25; ++i)
+			s.insert(Counter(i));
+		persistent_set<Counter> p(s);
+		for (int i = 0; i < 5; ++i)
+			p.insert(*p.begin());
+		for (int i = 1; i <= 5; ++i) {
+			auto it = p.end();
+			for (int j = 0; j <= i; ++j)
+				--it;
+			p.insert(*it);
+		}
+		p.erase(p.begin());
+		for (int i = 0; i < 10; ++i) {
+			auto it = p.begin();
+			for (int j = 0; j < i; ++j)
+				++it;
+			p.erase(it);
+		}
+	}
+	EXPECT_TRUE(cnt.empty());
 }
 
 TEST(test_set, random) {

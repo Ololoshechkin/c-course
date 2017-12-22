@@ -90,10 +90,11 @@ public:
     }
     
     friend bool operator==(my_shared_ptr<T> a, my_shared_ptr<T> b) {
-        if (!a.ptr || !b.ptr) {
-            return !a.ptr && !b.ptr;
-        }
-        return *a == *b;
+        return a.get() == b.get();
+    }
+    
+    T* get() {
+        return ptr? &ptr->payload : nullptr;
     }
     
 };
