@@ -90,7 +90,6 @@ public:
     }
     
     friend bool operator==(my_shared_ptr<T> a, my_shared_ptr<T> b) {
-        std::cerr << "==(ptr)\n";
         if (!a.ptr || !b.ptr) {
             return !a.ptr && !b.ptr;
         }

@@ -58,7 +58,7 @@ public:
         return this;
     }
     
-    T* operator->() noexcept {
+    T* operator->() const noexcept {
         return payload;
     }
     
