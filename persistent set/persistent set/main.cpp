@@ -1,9 +1,5 @@
 #include "persistent_set.h"
-#include <iostream>
-#include "my_shared_ptr.h"
-#include "my_linked_ptr.h"
 #include <set>
-#include <vector>
 #include "unit_test.h"
 
 template<template <typename> class smart_ptr>
