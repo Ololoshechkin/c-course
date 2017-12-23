@@ -10,6 +10,7 @@
 #define persistent_set_h
 
 #include "my_shared_ptr.h"
+#include "my_linked_ptr.h"
 #include <vector>
 #include <cassert>
 #include <algorithm>
