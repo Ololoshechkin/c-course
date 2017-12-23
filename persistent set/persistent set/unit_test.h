@@ -288,7 +288,9 @@ TEST(test_set, counter_no_cpy) {
 			s.erase(it);
 		}
 	}
+	cout << "objects count : " << cnt.size() << '\n';
 	EXPECT_TRUE(cnt.empty());
+	cnt.clear();
 }
 
 TEST(test_set, counter_cpy) {
@@ -313,7 +315,9 @@ TEST(test_set, counter_cpy) {
 			p.erase(it);
 		}
 	}
+	cout << "objects count : " << cnt.size() << '\n';
 	EXPECT_TRUE(cnt.empty());
+
 }
 
 TEST(test_set, random) {

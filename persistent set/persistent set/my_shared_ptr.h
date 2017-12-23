@@ -15,77 +15,73 @@
 template <typename T>
 class my_shared_ptr {
 private:
-    
-    struct connected_block {
-        T payload;
-        size_t cnt;
-        template<typename... Args>
-        connected_block(Args&&... args) noexcept :
-            payload(std::forward<Args>(args)...),
-            cnt(1)
-        {}
-    }* ptr;
+	
+	T* payload;
+	size_t* cnt;
     
     void inc_count() noexcept {
-        if (ptr) ptr->cnt++;
+        if (cnt) ++*cnt;
     }
     
     size_t dec_count() noexcept {
-        return --ptr->cnt;
+        return --*cnt;
     }
-    
-    my_shared_ptr(connected_block* ptr) noexcept : ptr(ptr) {
-        inc_count();
-    }
-    
+	
 public:
-    
+	
+	my_shared_ptr(T* payload) noexcept : 
+			payload(payload), 
+			cnt(payload ? new size_t(1) : nullptr) 
+	{}
+	
+	my_shared_ptr() noexcept : 
+			my_shared_ptr(nullptr)
+	{}
+	
     template<typename... Args>
-    static my_shared_ptr of(Args&&... args) noexcept {
-        return my_shared_ptr(new connected_block(std::forward<Args>(args)...));
+    static my_shared_ptr make_shared(Args&& ... args) {
+        return my_shared_ptr(new T(args...));
     }
-    
-    my_shared_ptr() noexcept
-    : my_shared_ptr(nullptr)
-    {}
     
     void swap(my_shared_ptr& other) noexcept {
-        std::swap(ptr, other.ptr);
+	    std::swap(cnt, other.cnt);
+	    std::swap(payload, other.payload);
     }
     
     my_shared_ptr(my_shared_ptr const& other) noexcept
-    : ptr(other.ptr)
+		    : payload(other.payload), cnt(other.cnt)
     {
         inc_count();
     }
     
-    my_shared_ptr* operator=(my_shared_ptr other) noexcept {
+    my_shared_ptr& operator=(my_shared_ptr other) noexcept {
         swap(other);
-        return this;
+        return *this;
     }
     
     T* operator->() noexcept {
-        return ptr ? &ptr->payload : nullptr;
+        return payload;
     }
     
     T& operator*() {
-        if (!ptr) throw "NPE";
-        return ptr->payload;
+        if (!payload) throw "NPE";
+        return *payload;
     }
     
     T const& operator*() const {
-        if (!ptr) throw "NPE";
-        return ptr->payload;
+        if (!payload) throw "NPE";
+        return *payload;
     }
     
     operator bool() const noexcept {
-        return (bool) ptr;
+        return payload != nullptr;
     }
     
     ~my_shared_ptr() noexcept {
-        if (!ptr) return;
+        if (!payload) return;
         if (!dec_count()) {
-            delete ptr;
+            delete payload;
+	        delete cnt;
         }
     }
     
@@ -93,8 +89,8 @@ public:
         return a.get() == b.get();
     }
     
-    T* get() {
-        return ptr? &ptr->payload : nullptr;
+    T* get() const {
+        return payload;
     }
     
 };

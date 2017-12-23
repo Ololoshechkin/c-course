@@ -19,34 +19,7 @@
 #include <iostream>
 #include <memory>
 
-template <typename T>
-class std_shared_ptr {
-public:
-	std::shared_ptr<T> p;
-	std_shared_ptr() : p(nullptr) {}
-	std_shared_ptr(std::shared_ptr<T> p) : p(p) {}
-	operator std::shared_ptr<T>() {
-		return p;
-	}
-	template <typename... Args>
-	static std_shared_ptr of(Args... args) {
-		return std_shared_ptr(std::make_shared<T>(args...));
-	}
-	operator bool() const noexcept {
-		return (bool)p;
-	}
-	T* operator->() noexcept {
-		return p.get();
-	}
-	bool operator==(const std_shared_ptr& other) const noexcept {
-		return p == other.p;
-	}
-	bool operator!=(const std_shared_ptr& other) const noexcept {
-		return p != other.p;
-	}
-};
-
-template <typename T, template <typename> class smart_ptr = std_shared_ptr>
+template <typename T, template <typename> class smart_ptr = std::shared_ptr>//my_linked_ptr>//my_shared_ptr>//std::shared_ptr>
 class persistent_set {
 private:
 	struct node {
@@ -70,7 +43,7 @@ private:
 	Node root;
 	
 	Node copy(Node other) const {
-		return Node::of(other->value, other->left, other->right);
+		return Node::make_shared(other->value, other->left, other->right);
 	}
 	
 	void print(Node v) {
@@ -88,13 +61,12 @@ public:
 	// Bidirectional iterator.
 	struct iterator {
 		T const& operator*() const {
-			Node n = path.back();
-			return n->value;
+			return path.back()->value;
 		}
 		iterator& operator++() {
 			assert(!path.empty());
 			if (cur_node()->right) {
-				path.push_back(cur_node()->right);
+				path.push_back(cur_node()->right.get());
 				go_left();
 			} else {
 				while(true) {
@@ -118,7 +90,7 @@ public:
 				go_right();
 			} else {
 				if (cur_node()->left) {
-					path.push_back(cur_node()->left);
+					path.push_back(cur_node()->left.get());
 					go_right();
 				} else {
 					while(true) {
@@ -158,32 +130,32 @@ public:
 		}
 	private:
 		const persistent_set* s;
-		std::vector<Node> path;
-		Node root() const {
-			return s->root;
+		std::vector<node*> path;
+		node* root() const {
+			return s->root.get();
 		}
-		iterator(const persistent_set* s, std::vector<Node> path)
+		iterator(const persistent_set* s, std::vector<node*> path)
 				: s(s), path(path)
 		{}
 		bool is_end() const noexcept {
 			return path.empty();
 		}
-		Node cur_node() const noexcept {
+		node* cur_node() const noexcept {
 			return path.back();
 		}
-		Node cur_node_or_null() const noexcept {
-			return path.empty() ? Node() : cur_node();
+		node* cur_node_or_null() const noexcept {
+			return path.empty() ? nullptr : cur_node();
 		}
 		void go_left() noexcept {
 			while (cur_node()->left)
-				path.push_back(cur_node()->left);
+				path.push_back(cur_node()->left.get());
 		}
 		void go_right() noexcept {
 			while (cur_node()->right)
-				path.push_back(cur_node()->right);
+				path.push_back(cur_node()->right.get());
 		}
 		bool last_is_left_son() {
-			return path[path.size() - 2]->left == cur_node();
+			return path[path.size() - 2]->left.get() == cur_node();
 		}
 		friend persistent_set;
 	};
@@ -202,7 +174,7 @@ public:
 	}
 	iterator begin() const {
 		if (root) {
-			auto st = iterator(this, { root });
+			auto st = iterator(this, { root.get() });
 			st.go_left();
 			return st;
 		}
@@ -222,7 +194,7 @@ public:
 		iterator found(this, {});
 		auto cur = root;
 		while (cur) {
-			found.path.push_back(cur);
+			found.path.push_back(cur.get());
 			if (newVal < cur->value)
 				cur = cur->left;
 			else if (cur->value < newVal)
@@ -241,7 +213,7 @@ public:
 	// std::pair<iterator, bool> insert(T newValue) {
 	//     if (!root) {
 	//         //std::cerr << "root==0\n";
-	//         root = Node::of(std::move(newValue));
+	//         root = Node::make_shared(std::move(newValue));
 	//         return { iterator(this, { root }), true };
 	//     }
 	//     //std::cerr << "root!=0\n";
@@ -257,7 +229,7 @@ public:
 	//             //std::cerr << "newValue < cur->value\n";
 	//             if (!cur->left) {
 	//                 //std::cerr << "!cur->left\n";
-	//                 res.path.push_back(Node::of(std::move(newValue)));
+	//                 res.path.push_back(Node::make_shared(std::move(newValue)));
 	//                 break;
 	//             }
 	//             cur = cur->left;
@@ -265,26 +237,26 @@ public:
 	//             //std::cerr << "cur->value < newValue\n";
 	//             if (!cur->right) {
 	//                 //std::cerr << "!cur->right\n";
-	//                 res.path.push_back(Node::of(std::move(newValue)));
-	//                 //std::cerr << "res <- (Node::of(newValue)\n";
+	//                 res.path.push_back(Node::make_shared(std::move(newValue)));
+	//                 //std::cerr << "res <- (Node::make_shared(newValue)\n";
 	//                 break;
 	//             }
 	//             cur = cur->right;
 	//         } else return { res, false };
 	//     }
 	
-	//     //std::cerr << "out of while\n";
+	//     //std::cerr << "out make_shared while\n";
 	//     for (auto i = res.path.size() - 1; i > 0;) {
 	//         //std::cerr << "for (" << i << ")\n";
 	//         --i;
 	//         Node v = res.path[i];
 	//         //std::cerr << "Node v = res.path[i];\n";
 	//         if (newValue < v->value)
-	//             res.path[i] = Node::of(v->value, res.path[i + 1], v->right);
+	//             res.path[i] = Node::make_shared(v->value, res.path[i + 1], v->right);
 	//         else
-	//             res.path[i] = Node::of(v->value, v->left, res.path[i + 1]);
+	//             res.path[i] = Node::make_shared(v->value, v->left, res.path[i + 1]);
 	//     }
-	//     //std::cerr << "out of for\n";
+	//     //std::cerr << "out make_shared for\n";
 	//     root = res.path[0];
 	//     //std::cerr << "return\n";
 	//     return { res, true };
@@ -294,8 +266,8 @@ public:
 	std::pair<iterator, bool> insert(T newValue) {
 		if (!root) {
 //            std::cerr << "!root\n";
-			root = Node::of(newValue);
-			return { iterator(this, { root }), true };
+			root = Node::make_shared(newValue);
+			return { iterator(this, { root.get() }), true };
 		}
 //        std::cerr << "root\n";
 		auto found = find(newValue);
@@ -306,20 +278,20 @@ public:
 //            std::cerr << "found == end()\n";
 			auto new_root = copy(root);
 			auto cur = new_root, cur_old = root;
-			std::vector<Node> path = { new_root };
+			std::vector<node*> path = { new_root.get() };
 			while (true) {
 				if (!cur_old) break;
 //                std::cerr << "val : " << cur_old->value << '\n';
 				if (cur_old->value < newValue) {
 					cur_old = cur_old->right;
-					cur->right = cur_old ? copy(cur_old) : Node::of(newValue);
+					cur->right = cur_old ? copy(cur_old) : Node::make_shared(newValue);
 					cur = cur->right;
 				} else {
 					cur_old = cur_old->left;
-					cur->left = cur_old ? copy(cur_old) : Node::of(newValue);
+					cur->left = cur_old ? copy(cur_old) : Node::make_shared(newValue);
 					cur = cur->left;
 				}
-				path.push_back(cur);
+				path.push_back(cur.get());
 			}
 			root = new_root;
 			return { iterator(this, path), true };
@@ -328,25 +300,25 @@ public:
 	
 	void erase(iterator it) {
 		assert(!it.path.empty());
-		auto last = it.cur_node();
+		auto last = Node(it.cur_node());
 		std::function<T(Node)> get_min = [&get_min](Node v) {
 			return v->left ? get_min(v->left) : v->value;
 		};
 		std::function<Node(Node)> copy_path = [&copy_path](Node v) {
-			return v->left ? Node::of(v->value, copy_path(v->left), v->right) : v->right;
+			return v->left ? Node::make_shared(v->value, copy_path(v->left), v->right) : v->right;
 		};
 		Node cur_v = !last->left ? last->right :
-		             !last->right ? last->left : Node::of(
+		             !last->right ? last->left : Node::make_shared(
 				             get_min(last->right),
 				             last->left,
 				             copy_path(last->right)
 		             );
 		for (auto i = it.path.size() - 1; i > 0;) {
-			Node parent = it.path[--i];
+			Node parent = Node(it.path[--i]);
 			if (parent->left == last)
-				cur_v = Node::of(parent->value, cur_v, parent->right);
+				cur_v = Node::make_shared(parent->value, cur_v, parent->right);
 			else
-				cur_v = Node::of(parent->value, parent->left, cur_v);
+				cur_v = Node::make_shared(parent->value, parent->left, cur_v);
 			last = parent;
 		}
 		root = cur_v;

@@ -101,6 +101,9 @@
 		<Unit filename="/Users/Vadim/Documents/coding/c++ course/boost_ptr_test/main.cpp">
 			<Option target="pointers_test"/>
 		</Unit>
+		<Unit filename="/Users/Vadim/Documents/coding/c++ course/boost_ptr_test/shared_no_thread.h">
+			<Option target="pointers_test"/>
+		</Unit>
 		<Unit filename="/Users/Vadim/Documents/coding/c++ course/boost_ptr_test/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

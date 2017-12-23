@@ -33,7 +33,7 @@ public:
     {}
     
     template <typename... Args>
-    static my_linked_ptr of(Args&&... args) {
+    static my_linked_ptr make_shared(Args&& ... args) {
         return my_linked_ptr(new T(std::forward<Args>(args)...));
     }
     
@@ -84,6 +84,10 @@ public:
     friend bool operator==(my_linked_ptr<T> a, my_linked_ptr<T> b) {
         return a.payload == b.payload;
     }
+	
+	T* get() const {
+		return payload;
+	}
     
 };
 

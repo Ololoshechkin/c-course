@@ -50,10 +50,18 @@ void test_1() {
     std::cout << std::endl << std::endl;
 }
 
+template <template < typename > class ptr_t>
+void test_2() {
+    persistent_set<int, ptr_t> s;
+    s.insert(4);
+    s.erase(s.begin());
+}
+
+
 int main(int argc, char** agrv) {
-//    test_1<my_shared_ptr>();
-//     test_1<my_linked_ptr>();
-     ::testing::InitGoogleTest(&argc, agrv);
-     return RUN_ALL_TESTS();
-//    return 0;
+    test_2<my_shared_ptr>();
+     test_2<my_linked_ptr>();
+//     ::testing::InitGoogleTest(&argc, agrv);
+//     return RUN_ALL_TESTS();
+    return 0;
 }
