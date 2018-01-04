@@ -59,6 +59,7 @@ void test_2() {
 
 
 int main(int argc, char** agrv) {
+    std::cout << "bow-wow!!!\n";
     test_2<my_shared_ptr>();
      test_2<my_linked_ptr>();
 //     ::testing::InitGoogleTest(&argc, agrv);
