@@ -13,7 +13,7 @@ ExternalProject_Add(googletest
 include_directories(${EXTERNAL_INSTALL_LOCATION}/include)
 link_directories(${EXTERNAL_INSTALL_LOCATION}/lib)
 
-add_executable(${PROJECT_NAME} main.cpp persistent_set.h my_shared_ptr.h my_linked_ptr.h unit_test.h)
+add_executable(${PROJECT_NAME} main.cpp persistent_set.h my_shared_ptr.h my_linked_ptr.h unit_test.h persistent_set.h fast_rand.cpp fast_rand.h)
 add_dependencies(persistent_set googletest)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -fsanitize=undefined -D_GLIBCXX_DEBUG")
