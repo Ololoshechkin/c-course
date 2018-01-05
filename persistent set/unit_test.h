@@ -8,7 +8,7 @@ using namespace std;
 template <typename T, template <typename> class P>
 vector<T> vec(persistent_set<T, P> const& s) {
     vector<T> res;
-    for (auto it = s.begin(); it != s.end(); ++it) {
+    for (auto it = s.begin(); it != s.end(); it++) {
         res.push_back(*it);
     }
     return res;
@@ -125,13 +125,13 @@ TEST(test_set, erase2) {
     EXPECT_EQ(vector<int>({ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }), vec(s));
     persistent_set<int> p;
     for (int i = 0; i < 10; i++) {
+		vector<int> ans({ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 });
         p = s;
         auto it = p.begin();
         for (int j = 0; j < i; j++) {
             it++;
         }
         p.erase(it);
-        vector<int> ans({ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 });
         ans.erase(ans.begin() + i);
         EXPECT_EQ(ans, vec(p));
     }
@@ -153,6 +153,10 @@ struct smth {
     bool operator==(smth const& rhs) const {
         return var == rhs.var;
     }
+	friend ostream& operator<<(ostream& out, smth const& s) {
+		out << s.var;
+		return out;
+	}
 };
 
 TEST(test_set, smth) {
@@ -177,27 +181,27 @@ TEST(test_set, smth) {
     EXPECT_EQ(vector<smth>({ 1, 5, 8 }), vec(q));
 }
 
-//TEST(test_linked_ptr, copy_null) {
-//    my_linked_ptr<int> a;
-//    my_linked_ptr<int> b = a;
-//    my_linked_ptr<int> c = a;
-//    my_linked_ptr<int> d = a;
-//    my_linked_ptr<int> e = a;
-//
-//    my_linked_ptr<int> f(new int(5));
-//    a = f;
-//    c = f;
-//    f = f;
-//    d = f;
-//    b = my_linked_ptr<int>(new int(6));
-//    c = b;
-//    b.swap(c);
-//    f = c;
-//    e = f;
-//    a = f;
-//    d = a;
-//    b = f;
-//}
+TEST(test_linked_ptr, copy_null) {
+    my_linked_ptr<int> a;
+    my_linked_ptr<int> b = a;
+    my_linked_ptr<int> c = a;
+    my_linked_ptr<int> d = a;
+    my_linked_ptr<int> e = a;
+
+    my_linked_ptr<int> f(new int(5));
+    a = f;
+    c = f;
+    f = f;
+    d = f;
+    b = my_linked_ptr<int>(new int(6));
+    c = b;
+    b.swap(c);
+    f = c;
+    e = f;
+    a = f;
+    d = a;
+    b = f;
+}
 
 TEST(test_set, decrease_end) {
     persistent_set<int> s;
@@ -272,7 +276,7 @@ TEST(test_set, counter_no_cpy) {
 		persistent_set<Counter> s;
 		for (int i = 0; i < 25; ++i)
 			s.insert(Counter(i));
-		for (int i = 0; i < 5; ++i) 
+		for (int i = 0; i < 5; ++i)
 			s.insert(*s.begin());
 		for (int i = 1; i <= 5; ++i) {
 			auto it = s.end();

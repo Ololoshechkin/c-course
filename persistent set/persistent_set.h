@@ -85,6 +85,8 @@ private:
 			return static_cast<node const*>(this);
 		}
 
+		virtual ~abstract_node() = default;
+
 	};
 
 	struct node : public abstract_node
