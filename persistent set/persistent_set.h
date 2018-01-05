@@ -18,12 +18,12 @@
 #include <functional>
 #include <iostream>
 #include <memory>
+#include "fast_rand.h"
 
-template <typename T, template <typename> class smart_ptr = std::shared_ptr>//my_linked_ptr>//my_shared_ptr>//std::shared_ptr>
+template <typename T, template <typename> class smart_ptr = my_shared_ptr>
 class persistent_set
 {
 private:
-
 	struct abstract_node;
 	struct node;
 
@@ -31,46 +31,46 @@ private:
 	{
 		typedef smart_ptr<abstract_node> AbstractNode;
 		typedef smart_ptr<node> Node;
+		typedef std::vector<node*> path_t;
 		Node left;
 
-		abstract_node(abstract_node const &other) noexcept
-				: left(other.left)
-		{}
+		abstract_node(abstract_node const& other) noexcept
+				: left(other.left) {}
 
-		abstract_node(abstract_node &&other) noexcept
-				: left(std::move(other.left))
-		{}
+		abstract_node(abstract_node&& other) noexcept
+				: left(std::move(other.left)) {}
 
 		explicit abstract_node(Node left) noexcept
-				: left(std::move(left))
-		{}
+				: left(std::move(left)) {}
 
-		virtual bool operator==(abstract_node const &other) const noexcept
+		decltype(auto) path_to_with_first(T const& value)
 		{
-			return left == other.left;
+			auto sufix = std::move(path_to(value));
+			std::vector<abstract_node*> p(sufix.size() + 1, nullptr);
+			p[0] = this;
+			for (size_t i = 0; i < sufix.size(); ++i)
+				p[i + 1] = sufix[i];
+			return p;
 		}
 
-		virtual bool operator==(node const &other) const noexcept
+		path_t path_to(T const& value)
 		{
-			return false;
+			path_t path;
+			auto v = is_last() ? this->left.get() : this->as_node();
+			while (v) {
+				path.push_back(v);
+				if (v->value < value) {
+					v = v->right.get();
+				} else if (value < v->value) {
+					v = v->left.get();
+				} else {
+					break;
+				}
+			}
+			return path;
 		}
 
-		virtual bool operator<(node const &other) const noexcept
-		{
-			return false;
-		}
-
-		virtual bool operator<(T const& value) const noexcept
-		{
-			return false;
-		}
-
-		friend bool operator<(T const& value, abstract_node const& self) noexcept
-		{
-			return true;
-		}
-
-		virtual bool is_last()
+		virtual bool is_last() const noexcept
 		{
 			return true;
 		}
@@ -78,6 +78,11 @@ private:
 		node* as_node()
 		{
 			return static_cast<node*>(this);
+		}
+
+		node const* as_node() const
+		{
+			return static_cast<node const*>(this);
 		}
 
 	};
@@ -90,51 +95,20 @@ private:
 
 		bool operator==(node const& other) const noexcept
 		{
-			return this->left == other.left && right == other.right && value == other.value;
+			return this->left == other.left && right == other.right;
 		}
 
-		bool operator==(abstract_node const &other) const noexcept
+		bool operator==(abstract_node const& other) const noexcept
 		{
 			return false;
 		}
 
-		bool operator<(abstract_node const &other) const noexcept
-		{
-			return true;
-		}
-
-		bool operator<(node const &other) const noexcept
-		{
-			return value < other.value;
-		}
-
-		bool operator<(T const& value) const noexcept
-		{
-			return this->value < value;
-		}
-
-		friend bool operator<(T const& value, node const& self) noexcept
-		{
-			return value < self.value;
-		}
-
-		explicit node(T const &value, Node left = Node(), Node right = Node()) noexcept(noexcept(T(value)))
+		explicit node(T const& value, Node left = Node(), Node right = Node()) noexcept(noexcept(T(value)))
 				: abstract_node(std::move(left)),
 				  right(std::move(right)),
-				  value(value)
-		{}
+				  value(value) {}
 
-		T get_min()
-		{
-			return this->left ? this->left->get_min() : value;
-		};
-
-		Node copy_path()
-		{
-			return this->left ? Node::make_shared(value, this->left->copy_path(), right) : right;
-		};
-
-		bool is_last()
+		bool is_last() const noexcept
 		{
 			return false;
 		}
@@ -143,50 +117,91 @@ private:
 
 	using AbstractNode = typename abstract_node::AbstractNode;
 	using Node = typename abstract_node::Node;
-	typedef std::vector<abstract_node*> path_t;
+	using path_t = typename abstract_node::path_t;
 
-	abstract_node* root;
+	AbstractNode root;
 
-	void print(Node v)
+	Node merge(Node left, Node right)
 	{
-		if (!v) return;
-		print(v->left);
-		std::cout << " " << v->value << " ";
-		print(v->right);
+		if (!left) return right;
+		if (!right) return left;
+		if (rand_bit()) {
+			left = Node::make_shared(left->value, left->left, merge(left->right, right));
+			return left;
+		} else {
+			right = Node::make_shared(right->value, merge(left, right->left), right->right);
+			return right;
+		}
+	}
+
+	std::string n_spaces(size_t n) const {
+		return std::string(n, ' ');
+	}
+
+	void print(Node v, size_t depth = 1) const
+	{
+		if (!v) {
+			std::cout << n_spaces(depth) << "{}\n";
+			return;
+		}
+		std::cout << n_spaces(depth) << "{\nvalue : " << v->value << "\nleft : \n";
+		print(v->left, depth + 1);
+		std::cout << n_spaces(depth) << "right : \n";
+		print(v->right, depth + 1);
+		std::cout << n_spaces(depth) << "}\n";
+	}
+
+	void print_content(node* v) const
+	{
+		if (!v)
+			return;;
+		print_content(v->left.get());
+		std::cout << v->value << ' ';
+		print_content(v->right.get());
+	}
+
+	bool tree_check(Node v) const noexcept
+	{
+		if (!v) return true;
+		if (!tree_check(v->left) || !tree_check(v->right))
+			return false;
+		return (!v->left || v->left->value < v->value) &&
+			   (!v->right || v->value < v->right->value);
 	}
 
 public:
 
-	void print()
+	void print() const
 	{
-		print(root);
-		std::cout << '\n';
+		std::cout << "tree_check : " << (tree_check(root->left) ? "GOOD" : "BAD") << '\n';
+		std::cout << "set content: \n";
+		std::cout << "value : #ROOT#\n";
+		std::cout << "left : \n";
+		print(root->left);
 	}
 
-	// Bidirectional iterator.
 	struct iterator
 	{
-
-		T const &operator*() const
+		T const& operator*() const
 		{
 			return cur_node()->value;
 		}
 
-		iterator &operator++()
+		iterator& operator++()
 		{
+			assert(!is_end());
 			auto cur = cur_node();
 			if (cur->right) {
-				cur = cur->right.get();
+				current_node = cur->right.get();
 				go_left();
 			} else {
-				auto path = path_to(cur);
-				auto v = path.back()->as_node();
+				auto path = s->root->path_to_with_first(cur->value);
+				auto v = path.back();
 				path.pop_back();
 				while (path.back()->left.get() != v)
 					v = path.back(), path.pop_back();
-				cur = path.back()->as_node();
+				current_node = path.back();
 			}
-			current_node = cur;
 			return *this;
 		}
 
@@ -197,21 +212,20 @@ public:
 			return res;
 		}
 
-		iterator &operator--()
+		iterator& operator--()
 		{
-			auto cur = cur_node();
-			if (cur->left) {
-				cur = cur->left.get();
+			if (current_node->left) {
+				current_node = current_node->left.get();
 				go_right();
 			} else {
-				auto path = path_to(cur);
-				auto v = path.back()->as_node();
+				auto cur = cur_node();
+				auto path = s->root->path_to(cur->value);
+				auto v = path.back();
 				path.pop_back();
-				while (path.back()->as_node()->right.get() != v)
+				while (path.back()->right.get() != v)
 					v = path.back(), path.pop_back();
-				cur = path.back()->as_node();
+				current_node = path.back();
 			}
-			current_node = cur;
 			return *this;
 		}
 
@@ -222,66 +236,48 @@ public:
 			return res;
 		}
 
-		iterator(iterator const &other) :
+		iterator(iterator const& other) :
 				s(other.s),
-				current_node(other.current_node)
-		{}
+				current_node(other.current_node) {}
 
-		void swap(iterator &other)
+		void swap(iterator& other)
 		{
 			std::swap(s, other.s);
 			std::swap(current_node, other.current_node);
 		}
 
-		iterator &operator=(iterator other)
+		iterator& operator=(iterator other)
 		{
 			auto tmp = other;
 			swap(tmp);
 			return *this;
 		}
 
-		bool operator==(iterator const &other) const
+		operator bool() const noexcept
 		{
-			return s == other.s && current_node == other.current_node;
-		}
-
-		bool operator!=(iterator const &other) const noexcept
-		{
-			return !(*this == other);
+			return !is_end();
 		}
 
 	private:
 
-		const persistent_set* s;
-		abstract_node* current_node;
+		persistent_set const* s;
+		abstract_node const* current_node;
 
-		node* root() const
-		{
-			return s->root->as_node();
-		}
-
-		iterator(const persistent_set* s, abstract_node* cur_node)
+		iterator(const persistent_set* s, abstract_node const* current_node)
 				: s(s),
-				  current_node(current_node)
-		{}
+				  current_node(current_node) {}
 
 		explicit iterator(const persistent_set* s)
-				: iterator(s, s->root)
-		{}
+				: iterator(s, s->root.get()) {}
 
 		bool is_end() const noexcept
 		{
 			return current_node->is_last();
 		}
 
-		node* cur_node() const noexcept
+		node const* cur_node() const noexcept
 		{
 			return current_node->as_node();
-		}
-
-		node* cur_node_or_null() const noexcept
-		{
-			return is_end() ? nullptr : cur_node();
 		}
 
 		void go_left() noexcept
@@ -300,77 +296,44 @@ public:
 			current_node = cur;
 		}
 
-		path_t path_to(node* cur) {
-			path_t path;
-			path.push_back(s->root);
-			auto v = s->root->left;
-			while (true) {
-				path.push_back(v);
-				if (v < cur) {
-					v = v->right.get();
-				} else if (cur < v) {
-					v = v->left.get();
-				} else {
-					break;
-				}
-			}
-			return path;
+		// Сравнение. Итераторы считаются эквивалентными если они ссылаются на один и тот же элемент.
+		// Сравнение с невалидным итератором не определено.
+		// Сравнение итераторов двух разных контейнеров не определено.
+		friend bool operator==(iterator it1, iterator it2)
+		{
+			return it1.current_node == it2.current_node;
+		}
+
+		friend bool operator!=(iterator it1, iterator it2)
+		{
+			return !(it1 == it2);
 		}
 
 		friend persistent_set;
 	};
 
-	persistent_set()
-			: root(nullptr)
-	{}
+	persistent_set() noexcept
+			: root(AbstractNode::make_shared(Node())) {}
 
-	persistent_set(persistent_set const &other)
-			: root(other.root)
-	{}
+	persistent_set(persistent_set const& other) noexcept
+			: root(AbstractNode::make_shared(other.root->left)) {}
 
-	void swap(persistent_set &other)
-	{
-		std::swap(root, other.root);
-	}
-
-	persistent_set &operator=(persistent_set const &rhs)
-	{
-		persistent_set tmp(rhs);
-		swap(tmp);
-		return *this;
-	}
-
-	iterator end() const
-	{
-		return iterator(this);
-	}
-
-	iterator begin() const
-	{
-		auto beg = end();
-		beg.go_left();
-		return beg;
-	}
-
-	iterator last() const
-	{
-		iterator en = end();
-		return --en;
-	}
+	persistent_set(persistent_set&& other) noexcept
+			: root(std::move(other.root)) {}
 
 	// Поиск элемента.
 	// Возвращает итератор на найденный элемент, либо end(), если элемент
 	// с указанным значением отсутвует.
-	iterator find(T const &newVal)
+	iterator find(T const& newVal)
 	{
-		if (root->is_last())
+		if (!root->left)
 			return end();
-		auto cur = root->as_node();
+		auto cur = root->left.get();
 		while (cur) {
 			if (newVal < cur->value)
-				cur = cur->left;
+				cur = cur->left.get();
 			else if (cur->value < newVal)
-				cur = cur->right;
+				cur = cur->right.get();
 			else
 				return iterator(this, cur);
 		}
@@ -382,91 +345,96 @@ public:
 	//    на уже присутствующий элемент и false.
 	// 2. Если такого ключа ещё нет, производиться вставка, возвращается итератор на созданный
 	//    элемент и true.
-	std::pair<iterator, bool> insert(T newValue)
+	std::pair<iterator, bool> insert(T const& newValue)
 	{
-		if (!root) {
-			root = new node(newValue);
-			return { iterator(this, root), true };
-		}
 		auto found = find(newValue);
-		if (found != end()) {
+		if (found) {
 			return { found, false };
 		} else {
-			iterator iter(this);
-			path_t path;
-			auto v = root;
-			while (v) {
-				if (newValue < *v) {
-					if (!v->left) {
-						iter.current_node = new node(std::move(newValue));
-						path.push_back(iter.current_node);
-						break;
-					}
-					v = v->left.get();
-				} else if (*v < newValue) {
-					if (!v->as_node()->right) {
-						iter.current_node = new node(std::move(newValue));
-						path.push_back(iter.current_node);
-						break;
-					}
-					v = v->as_node()->right.get();
-				} else
-					return { iter, false };
+			auto path = root->path_to(newValue);
+			auto v = Node::make_shared(std::move(newValue));
+			found.current_node = v.get();
+			for (size_t i = path.size(); i --> 0 ;) {
+				if ((i != path.size() - 1 && path[i]->left.get() == path[i + 1]) ||
+					(i == path.size() - 1 && newValue < path.back()->value)) {
+					v = Node::make_shared(
+							path[i]->value,
+							v,
+							path[i]->right
+					);
+				} else {
+					v = Node::make_shared(
+							path[i]->value,
+							path[i]->left,
+							v
+					);
+				}
 			}
-			size_t i = path.size() - 1;
-			while (i > 0) {
-				--i;
-				auto cur_v = path[i];
-				if (newValue < *cur_v)
-					path[i] = new node(cur_v->as_node()->value, Node(path[i + 1]->as_node()), cur_v->as_node()->right);
-				else
-					path[i] = new node(cur_v->as_node()->value, cur_v->left, Node(path[i + 1]->as_node()));
-			}
-			root = path.front();
-			return { iter, true };
+			root->left = v;
+			return { found, true };
 		}
 	}
 
-	void erase(iterator it)
+	void erase(iterator const& it)
 	{
-		assert(!it.is_end());
-		auto last = Node(it.cur_node());
-		Node cur_v = !last->left ? last->right :
-					 !last->right ? last->left : Node::make_shared(
-							 last->right->get_min(),
-							 last->left,
-							 last->right->copy_path()
-					 );
-		auto path = it.path_to(it.cur_node());
-		for (auto i = path.size() - 1; i > 0;) {
-			Node parent = Node(path[--i]);
-			if (parent->left == last)
-				cur_v = Node::make_shared(parent->value, cur_v, parent->right);
-			else
-				cur_v = Node::make_shared(parent->value, parent->left, cur_v);
-			last = parent;
+		assert(it);
+		if (empty())
+			return;
+		auto value = *it;
+		auto found = find(value);
+		if (!found)
+			return;
+		auto path = root->path_to(value);
+		path.pop_back();
+		auto cur = merge(found.cur_node()->left, found.cur_node()->right);
+		while (!path.empty()) {
+			cur = value < path.back()->value ?
+				  Node::make_shared(
+						  path.back()->value,
+						  cur,
+						  path.back()->right
+				  ) :
+				  Node::make_shared(
+						  path.back()->value,
+						  path.back()->left,
+						  cur
+				  );
+			path.pop_back();
 		}
-		root = cur_v;
+		root = AbstractNode::make_shared(cur);
 	}
+
+	bool empty() const noexcept { return !begin(); }
+
+	iterator begin() const noexcept
+	{
+		auto beg = end();
+		beg.go_left();
+		return beg;
+	}
+
+	iterator end() const noexcept { return iterator(this); }
 
 	~persistent_set() = default;
 
+	persistent_set& operator=(persistent_set const& other) noexcept
+	{
+		persistent_set tmp(other);
+		swap(tmp);
+		return *this;
+	}
+
+	persistent_set& operator=(persistent_set&& other) noexcept
+	{
+		root = std::move(other.root);
+		return *this;
+	}
+
+	void swap(persistent_set& other) noexcept
+	{
+		std::swap(root, other.root);
+	}
+
 };
-
-// Сравнение. Итераторы считаются эквивалентными если они ссылаются на один и тот же элемент.
-// Сравнение с невалидным итератором не определено.
-// Сравнение итераторов двух разных контейнеров не определено.
-template <typename T>
-bool operator==(typename persistent_set<T>::iterator it1, typename persistent_set<T>::iterator it2)
-{
-	return it1.s == it2.s && it1.root == it2.root;
-}
-
-template <typename T>
-bool operator!=(typename persistent_set<T>::iterator it1, typename persistent_set<T>::iterator it2)
-{
-	return !(it1 == it2);
-}
-
 
 #endif /* persistent_set_h */
