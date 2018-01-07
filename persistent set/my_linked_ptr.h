@@ -63,16 +63,23 @@ public:
 
 	my_linked_ptr& operator=(my_linked_ptr const& other) noexcept
 	{
-		my_linked_ptr tmp(other);
-		swap(tmp);
+//		my_linked_ptr tmp(other);
+//		swap(tmp);
+
 		return *this;
 	}
 
-	T& operator*() const noexcept { return *payload; }
+	T& operator*() const noexcept {
+		assert(!payload);
+		return *payload;
+	}
 
-	T* operator->() const noexcept { return payload; }
+	T* operator->() const noexcept {
+		assert(!payload);
+		return payload;
+	}
 
-	operator bool() const noexcept
+	explicit operator bool() const noexcept
 	{
 		return payload != nullptr;
 	}
@@ -91,6 +98,11 @@ public:
 	friend bool operator==(my_linked_ptr const& a, my_linked_ptr const& b) noexcept
 	{
 		return a.get() == b.get();
+	}
+
+	friend bool operator!=(my_linked_ptr const& a, my_linked_ptr const& b) noexcept
+	{
+		return !(a == b);
 	}
 
 	T* get() const { return payload; }

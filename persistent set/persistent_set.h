@@ -156,7 +156,7 @@ private:
 	void print_content(node* v) const
 	{
 		if (!v)
-			return;;
+			return;
 		print_content(v->left.get());
 		std::cout << v->value << ' ';
 		print_content(v->right.get());
@@ -255,7 +255,7 @@ public:
 			return *this;
 		}
 
-		operator bool() const noexcept
+		explicit operator bool() const noexcept
 		{
 			return !is_end();
 		}

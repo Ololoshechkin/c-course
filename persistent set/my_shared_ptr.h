@@ -11,6 +11,7 @@
 
 #include <algorithm>
 #include <iostream>
+#include <cassert>
 
 template <typename T>
 class my_shared_ptr
@@ -70,17 +71,17 @@ public:
 
 	T& operator*()
 	{
-		if (!payload) throw "NPE";
+		assert(!payload);
 		return *payload;
 	}
 
 	T const& operator*() const
 	{
-		if (!payload) throw "NPE";
+		assert(!payload);
 		return *payload;
 	}
 
-	operator bool() const noexcept
+	explicit operator bool() const noexcept
 	{
 		return payload != nullptr;
 	}
@@ -97,6 +98,11 @@ public:
 	friend bool operator==(my_shared_ptr const& a, my_shared_ptr const b)
 	{
 		return a.get() == b.get();
+	}
+
+	friend bool operator!=(my_shared_ptr const& a, my_shared_ptr const& b) noexcept
+	{
+		return !(a == b);
 	}
 
 	T* get() const
