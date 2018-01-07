@@ -1,7 +1,3 @@
-//
-// Created by jetbrains on 06/01/2018.
-//
-
 #ifndef CALL_ONCE_FUNCTION_CALL_ONCE_FUNCTION_H
 #define CALL_ONCE_FUNCTION_CALL_ONCE_FUNCTION_H
 
@@ -61,18 +57,6 @@ private:
 		{
 			as_small<T>(storage).~T();
 		}
-
-//		template <typename T>
-//		static T* small_move_construct(small_or_big_t&& storage)
-//		{
-//			new small_or_big_t(T(as_small<T>(storage)));
-//		}
-//
-//		template <typename T>
-//		static small_or_big_t* big_move_construct(small_or_big_t&& storage)
-//		{
-//			new small_or_big_t(as_big<T>(storage));
-//		}
 
 		template <typename T>
 		static Ret big_call(small_or_big_t& storage, Args&& ... args)
@@ -176,7 +160,6 @@ public:
 	explicit call_once_function(T f) noexcept(is_small_v<T>)
 			: ops(get_func_ops<T>())
 	{
-		std::cout << "is_small : " << is_small_v<T> << '\n';
 		if constexpr (is_small_v<T>) {
 			new(&storage) T(std::move(f));
 		} else {
