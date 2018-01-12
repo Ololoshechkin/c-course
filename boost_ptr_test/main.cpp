@@ -5,7 +5,6 @@
 #include "equasion_and_copy_test.h"
 #include "decart_tree_test.h"
 #include "linked_ptr.h"
-#include "shared_no_thread.h"
 #include <cstdio>
 
 using namespace std;
@@ -174,7 +173,7 @@ int main(int argc, const char* argv[])
 	if (strcmp(argv[1], "alloc") == 0) {
 		print_code("allocation/deallocation benchmark : ",
 		           alloc_dealloc_benchmark<linked_ptr, int>(OPERATIONS_COUNT),
-		           alloc_dealloc_benchmark<shared_ptr_no_thread, int>(OPERATIONS_COUNT),
+		           alloc_dealloc_benchmark<shared_ptr, int>(OPERATIONS_COUNT),
 		           alloc_dealloc_benchmark<intrusive_ptr, my_int>(OPERATIONS_COUNT),
 		           alloc_dealloc_benchmark<my_unique_ptr, int>(OPERATIONS_COUNT)
 		);
