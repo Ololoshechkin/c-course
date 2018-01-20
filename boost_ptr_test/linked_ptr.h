@@ -41,17 +41,17 @@ public:
         next->prev = this;
     }
 
-    linked_ptr(linked_ptr&& other) noexcept :
-            payload(other.payload)
+    linked_ptr(linked_ptr&& other) noexcept
+        : payload(other.payload)
+        , prev(other.prev)
+        , next(other.next)
     {
-        if (!payload) {
-            prev = next = nullptr;
-            return;
-        }
-        prev = &other;
-        next = other.next;
-        prev->next = this;
-        next->prev = this;
+        other.prev = other.next = nullptr;
+        other.payload = nullptr;
+        if (this->prev) 
+            this->prev->next = this;
+        if (this->next) 
+            this->next->prev = this;
     }
 
     template <typename ...Args>
