@@ -110,7 +110,7 @@ decltype(auto) decart_treap_benchmark(int operations_count) {
 			int index = t.size() + 1;
 			t.erase(index);
 		}
-	});
+	}) / operations_count;;
 };
 
 #endif /* decart_tree_test_h */

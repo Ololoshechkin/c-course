@@ -5,91 +5,117 @@
 #include <cstdlib>
 #include <cassert>
 
-template < typename T >
-struct linked_ptr {
-    linked_ptr(std::nullptr_t = nullptr) noexcept : ptr(nullptr), l(nullptr), r(nullptr) {}
-    
-    linked_ptr(linked_ptr const& b) noexcept : ptr(b.ptr) {
-        if (ptr == nullptr) {
-            l = r = nullptr;
+#include <algorithm>
+#include <cassert>
+
+template <typename T>
+class linked_ptr
+{
+private:
+
+    T* payload;
+    mutable linked_ptr const* prev, * next;
+
+public:
+
+    linked_ptr(T* payload) :
+            payload(payload),
+            prev(this),
+            next(this) {}
+
+    linked_ptr() noexcept :
+            payload(nullptr),
+            prev(nullptr),
+            next(nullptr) {}
+
+    linked_ptr(linked_ptr const& other) noexcept :
+            payload(other.payload)
+    {
+        if (!payload) {
+            prev = next = nullptr;
             return;
         }
-        l = &b;
-        r = b.r;
-        l->r = this;
-        r->l = this;
+        prev = &other;
+        next = other.next;
+        prev->next = this;
+        next->prev = this;
     }
-    
-    void swap(linked_ptr &b) noexcept {
-        if (ptr == b.ptr)
+
+    linked_ptr(linked_ptr&& other) noexcept :
+            payload(other.payload)
+    {
+        if (!payload) {
+            prev = next = nullptr;
             return;
-        std::swap(ptr, b.ptr);
-        std::swap(l, b.l);
-        std::swap(r, b.r);
-        if (ptr) {
-            if (l == &b) {
-                l = r = this;
-            } else {
-                l->r = this;
-                r->l = this;
-            }
         }
-        if (b.ptr) {
-            if (b.l == this) {
-                b.l = b.r = &b;
-            } else {
-                b.l->r = &b;
-                b.r->l = &b;
-            }
-        }
+        prev = &other;
+        next = other.next;
+        prev->next = this;
+        next->prev = this;
     }
-    
-    linked_ptr& operator = (linked_ptr rhs) noexcept {
-        swap(rhs);
+
+    template <typename ...Args>
+    static linked_ptr make_shared(Args&& ...args) { return linked_ptr(new T(std::forward<Args>(args)...)); }
+
+    void swap(linked_ptr& other) noexcept
+    {
+        if (payload == other.payload)
+            return;
+        std::swap(payload, other.payload);
+        std::swap(prev, other.prev);
+        std::swap(next, other.next);
+        if (next) next->prev = this;
+        if (prev) prev->next = this;
+        if (other.next) other.next->prev = &other;
+        if (other.prev) other.prev->next = &other;
+    }
+
+    linked_ptr& operator=(linked_ptr const& other) noexcept
+    {
+//		linked_ptr tmp(other);
+//		swap(tmp);
+
         return *this;
     }
-    
-    ~linked_ptr() noexcept {
-        if (ptr == nullptr)
-            return;
-        if (l == this) {
-            delete ptr;
-            return;
-        }
-        l->r = r;
-        r->l = l;
-    }
-    
-    T* get() {
-        return ptr;
-    }
-    
-    T& operator *() const noexcept {
-        assert(ptr != nullptr);
-        return *ptr;
-    }
-    
-    T* operator ->() const noexcept {
-        assert(ptr != nullptr);
-        return ptr;
-    }
-    
-    template < typename ...Args >
-    static linked_ptr create(Args&& ...args) {
-        return linked_ptr(new T(std::forward<Args>(args)...));
-    }
-    
-    friend bool operator == (linked_ptr const& a, linked_ptr const& b) noexcept { return a.ptr == b.ptr; }
-    friend bool operator != (linked_ptr const& a, linked_ptr const& b) noexcept { return a.ptr != b.ptr; }
-    
-    linked_ptr(T *p) : ptr(p), l(this), r(this) {
-    }
-    
-private:
-    T *ptr;
-    mutable linked_ptr const *l, *r;
-    
-};
 
+    T& operator*() const noexcept {
+        assert(!payload);
+        return *payload;
+    }
+
+    T* operator->() const noexcept {
+        assert(!payload);
+        return payload;
+    }
+
+    explicit operator bool() const noexcept
+    {
+        return payload != nullptr;
+    }
+
+    ~linked_ptr() noexcept
+    {
+        if (!payload) return;
+        if (prev == this) {
+            delete payload;
+        } else {
+            if (prev) prev->next = next;
+            if (next) next->prev = prev;
+        }
+    }
+
+    friend bool operator==(linked_ptr const& a, linked_ptr const& b) noexcept
+    {
+        return a.get() == b.get();
+    }
+
+    friend bool operator!=(linked_ptr const& a, linked_ptr const& b) noexcept
+    {
+        return !(a == b);
+    }
+
+    T* get() const { return payload; }
+
+};
 
 #endif

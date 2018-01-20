@@ -17,12 +17,17 @@ decltype(auto) copy_benchmark(int operations_count) {
 		smart_ptr<T> ptr = smart_ptr<T>(new T());
 		for (int i = 0; i < operations_count / 2; ++i) {
 			clobber();
+			escape(&ptr);
 			smart_ptr<T> ptr2 = ptr;
+			clobber();
 			escape(&ptr2);
+			escape(&ptr);
 			ptr = ptr2;
 			clobber();
+			escape(&ptr2);
+			escape(&ptr);
 		}
-	});
+	}) / operations_count;;
 }
 
 
@@ -33,12 +38,18 @@ decltype(auto) move_benchmark(int operations_count) {
 		smart_ptr<T> ptr2;
 		for (int i = 0; i < operations_count / 2; ++i) {
 			clobber();
-			ptr2 = std::move(ptr);
 			escape(&ptr2);
+			escape(&ptr);
+			ptr2 = std::move(ptr);
+			clobber();
+			escape(&ptr2);
+			escape(&ptr);
 			ptr = std::move(ptr2);
 			clobber();
+			escape(&ptr2);
+			escape(&ptr);
 		}
-	});
+	}) / operations_count;;
 }
 
 #endif /* equasion_and_copy_test_h */

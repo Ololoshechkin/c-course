@@ -19,7 +19,7 @@ decltype(auto) alloc_dealloc_benchmark(int operations_count) {
 			clobber();
 			escape(&ptr);
 		}
-	});
+	}) / operations_count;
 }
 
 template <typename T>
@@ -30,7 +30,7 @@ decltype(auto) raw_alloc_benchmark(int operations_count) {
 			clobber();
 			escape(obj);
 		}
-	});
+	}) / operations_count;
 }
 
 
